@@ -1,12 +1,10 @@
-BACKUPDIR=file:///media/allencat/TODS512G/server_backup
-#BACKUPDIR=file:///media/allencat/ALN16G01/backup
-
 SOURCEDIR=/
-FULLBACKUPTIME=1M
+BACKUPDIR=file:///media/allencat/TODS512G/server_backup
+FILEDIR=/home/allencat/docker/server_setup/backup_job
 
-FILEDIR="/home/allencat/docker/server_setup"
 INCLUDELIST=$FILEDIR/backup_list.txt
 LOGFILE=$FILEDIR/backup.log
+
 FULLBACKUPTIME=1M
 
 function dpremove {
@@ -46,7 +44,7 @@ do
   if [ $? -eq 53 ] #dosen't have enough space
   then #remove & clean and try again
     dpremove
-    dpclean
+    #dpclean
   else
     break
   fi
