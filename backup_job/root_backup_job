@@ -27,7 +27,7 @@ SHELL=/bin/bash
 HOME=/
 MAILTO=”user@vexxhost.com”
 #This is a comment
-* * * * * root date &>> /var/log/backup/backup.log
+#* * * * * root date &>> /var/log/backup/backup.log
 #* * * * * root whoami &>> /var/log/backup/backup.log
 0 3 * * * root backup.sh &>> /var/log/backup/backup.log
 #42 9 * * * root export DISPLAY=:0;xauth add $DISPLAY . 6cebd4bc60ef0335c000be0a981d4b5e;deja-dup-preferences &>> /var/log/backup/backup.log

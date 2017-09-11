@@ -1,0 +1,2 @@
+mail._domainkey.10.1.53.168 10.1.53.168:mail:/etc/opendkim/keys/10.1.53.168/mail.private
+mail._domainkey.localhost localhost:mail:/etc/opendkim/keys/localhost/mail.private

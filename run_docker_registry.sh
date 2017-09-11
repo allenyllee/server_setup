@@ -5,6 +5,7 @@ BACKEND=reg-server
 BACKENDPORT=5000
 FRONTEND=reg-ui
 FRONTENDPORT=8080
+MOUNTPOINT=/mnt/docker-srv/registry
 
 #
 # create a network bridge between containers
@@ -22,7 +23,7 @@ docker run \
   --restart=always \
   --name=$BACKEND \
   --network=$NETWORK \
-  -v /mnt/docker_registry:/var/lib/registry \
+  -v $MOUNTPOINT:/var/lib/registry \
   registry:2
 
 #

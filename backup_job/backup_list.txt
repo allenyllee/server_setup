@@ -1,6 +1,4 @@
 - **/Trash
 - **/.recycle
-+ /srv/gitlab
-+ /mnt/docker_registry
-+ /mnt/docker_volume
++ /mnt/docker-srv
 - '**'
