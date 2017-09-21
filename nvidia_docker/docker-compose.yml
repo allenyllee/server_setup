@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  cuda:
+    build: .
+    volumes: 
+    - ./project:/root/project
+
+
+
