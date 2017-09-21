@@ -51,7 +51,9 @@
     RUN apt update && apt -y install freeglut3-dev
 
 
-
+    ### assign "nvidia" instead of "nvidia-367" to all UBUNTU_PKG_NAME, so that library path become -L/usr/lib/nvidia. 
+    ### you should use "mkdir /usr/lib/nvidia && ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so" to make a symbolic link of libnvcuvid.
+    RUN mkdir /usr/lib/nvidia && ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so
 
 
 

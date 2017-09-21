@@ -1,0 +1,15 @@
+services:
+  cuda:
+    build: .
+    devices:
+    - /dev/nvidia0
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+    - /dev/nvidia-uvm-tools
+    volumes:
+    - ./project:/root/project
+    - nvidia_driver_384.69:/usr/local/nvidia:ro
+version: '2'
+volumes:
+  nvidia_driver_384.69:
+    external: true
