@@ -3,7 +3,7 @@
     # VERSION               0.0.1
 
     FROM      nvidia/cuda:8.0-devel-ubuntu16.04
-    MAINTAINER allencat "allencat.lee@liteon.com"
+    LABEL     maintainer="allen7575@gmail.com"
 
     ##
     ## Ubuntu - Packages - Search
@@ -93,139 +93,6 @@
         ln -s /usr/local/nvidia/lib64/libGLESv2_nvidia.so.2 /usr/lib/nvidia/libGLESv2.so
 
 
-
-
-    # install & start sshd server
-    # for ssh login & X11 forward use
-    #RUN yum -y install openssh-server.x86_64
-    # first start to preserve all SSH host keys
-    #RUN service sshd start
-    #
-
-	
-    # install toolchain enviroment for xtensa xplorer-7.0.4
-    #RUN yum -y install gcc
-    #RUN yum -y install glibc-devel.i686
-    #RUN yum -y install libgcc.i686
-    #RUN yum -y install gtk2.i686
-    #RUN yum -y install libXtst.i686
-    #RUN yum -y install libcanberra-gtk2.i686
-    #RUN yum -y install pciutils-devel.i686
-    #RUN yum -y install gtk2-engines.i686
-    #RUN yum -y install PackageKit-gtk-module.i686
-    #RUN yum -y install gcc-c++
-    #
-
-
-    # install pciutils lib
-    #RUN yum -y install pciutils-devel.x86_64
-    #
-
-    # install sudo package
-    #RUN yum -y install sudo.x86_64
-    #
-
-    # install git
-    #RUN yum -y install git.x86_64
-    #
-    # clone faketime lib
-    #RUN git clone https://github.com/allenyllee/libfaketime.git -b allenyllee-patch-1 /home/libfaketime
-    #
-    # make & install faketim lib
-    #RUN cd /home/libfaketime && make install
-    #
-
-	
-    # add user mikewu
-    #RUN useradd mikewu
-    #
-    # add mikewu to root group
-    #RUN usermod -a -G root mikewu
-    #
-    # change password with username:password
-    #RUN echo mikewu:mikewu | chpasswd
-    #RUN echo root:root | chpasswd
-    #
-
-
-
-    # fix Pango-WARNING **: failed to choose a font, expect ugly output. engine-type='PangoRenderFc', script='common'
-    # https://www.centos.org/forums/viewtopic.php?t=1372
-    #
-    #RUN yum -y install liberation-sans-fonts # looks good
-    #RUN yum -y groupinstall 'Fonts' # all fonts
-    #
-
-    # fix issue "failed to read machine uuid: Failed to open “/var/lib/dbus/machine-id”"
-    # for x window use
-    #RUN dbus-uuidgen > /var/lib/dbus/machine-id
-    #
-	
-    # Fix: /bin/dbus-launch terminated abnormally without any error message
-    # https://www.cyberciti.biz/faq/fix-bindbus-launch-terminated-abnormally-without-on-centos-rhel/
-    #RUN yum -y install dbus-x11
-    #
-	
-    #linux - PuTTY X11 proxy: wrong authorisation protocol attempted - Super User
-    #https://superuser.com/questions/610084/putty-x11-proxy-wrong-authorisation-protocol-attempted
-    # 
-    #RUN yum -y install xorg-x11-xauth.x86_64
-    #
-	
-	
-    # install Xvfb (virtual framebuffer)
-    # Running a GUI application in a Docker container | LinuxMeerkat
-    # https://linuxmeerkat.wordpress.com/2014/10/17/running-a-gui-application-in-a-docker-container/
-    #RUN yum -y install xorg-x11-server-Xvfb.x86_64
-    #
-	
-    # install firefox
-    #RUN yum -y install firefox
-    #
-	
-    # install desktop environment GNOME or KDE
-    # https://technozeal.wordpress.com/2009/12/15/linux-graphical-desktop-environment-x-windowgnomekde/
-    #RUN yum -y groupinstall "X Window System" "GNOME Desktop Environment"
-    #RUN yum -y groupinstall "X Window System" "KDE Desktop"
-    #
-	
-    # install file explorer
-    #RUN yum -y install nautilus.x86_64 
-    #
-
-
-    # copy binary file of xtensa xplorer-7.0.4 into container
-    #COPY ./data/Xplorer-7.0.4-linux-installer.bin /home/tmp/Xplorer-7.0.4-linux-installer.bin
-    #COPY ./data/development_tools_RG-2015.2.xws /home/tmp/development_tools_RG-2015.2.xws
-    #COPY ./data/xplorer.sh /home/tmp/xplorer.sh
-    
-    # install xtensa xplorer-7.0.4
-    #RUN /home/tmp/Xplorer-7.0.4-linux-installer.bin --mode unattended --prefix /opt/xtensa/
-
-
-    # copy & apply license
-    #COPY ./data/license_backup.txt /usr/local/flexlm/licenses/license.dat
-    #COPY ./data/license_backup.txt /opt/xtensa/XtDevTools/install/tools/RG-2015.2-linux/XtensaTools/Tools/lic/license.dat
-
-    #
-    #RUN /home/tmp/xplorer.sh
-    
-
-    # remove binary file after installed
-    #RUN rm -rf /home/tmp
-
-    # add write access to mikewu
-    #RUN chmod -R g+w /opt/xtensa/
-
-    #RUN mkdir -p /usr/local/flexlm
-    #RUN ln --symbolic --target-directory=/usr/local/flexlm  /home/xtensa/licenses
-    
-
-    #EXPOSE 22
-
-    
-
-    #CMD    ["/usr/sbin/sshd", "-D"]
     CMD    ["bash"]
 
 
