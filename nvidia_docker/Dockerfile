@@ -74,7 +74,8 @@
 
 
     ###
-    ### Also search and replace all 'UBUNTU_PKG_NAME = "nvidia-367"' to 'UBUNTU_PKG_NAME = "nvidia"' under NVIDIA_CUDA-8.0_Samples folder
+    ### You should also search 'UBUNTU_PKG_NAME = "nvidia-367"' and replace it to 'UBUNTU_PKG_NAME = "nvidia"' 
+    ### for all matched files in the NVIDIA_CUDA-8.0_Samples folder to make it works.
     ###
     RUN mkdir /usr/lib/nvidia && \
         ### solve for  /usr/bin/ld: cannot find -lnvcuvid \
