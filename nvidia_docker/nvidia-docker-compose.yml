@@ -1,6 +1,7 @@
 services:
   cuda:
     build: .
+    container_name: cuda8.0
     devices:
     - /dev/nvidia0
     - /dev/nvidiactl
@@ -8,6 +9,22 @@ services:
     - /dev/nvidia-uvm-tools
     environment:
     - DISPLAY=$DISPLAY
+    volumes:
+    - ./project:/root/project
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - nvidia_driver_384.69:/usr/local/nvidia:ro
+  tensorflow:
+    container_name: tensorflow
+    devices:
+    - /dev/nvidia0
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+    - /dev/nvidia-uvm-tools
+    environment:
+    - DISPLAY=$DISPLAY
+    image: gcr.io/tensorflow/tensorflow:latest-gpu
+    ports:
+    - '8888'
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
