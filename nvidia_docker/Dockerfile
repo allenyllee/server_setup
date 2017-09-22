@@ -11,7 +11,11 @@
     ##
     
     ###
-    ### for libGL.so, libX11.so, Xlib.h, gl.h
+    ### solve for
+    ### >>> WARNING - libGL.so not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
+    ### >>> WARNING - libX11.so not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
+    ### >>> WARNING - Xlib.h not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
+    ### >>> WARNING - gl.h not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
     ###
     ### 2_Graphics/volumeFiltering
     ### 2_Graphics/simpleGL
@@ -36,26 +40,57 @@
     ### 5_Simulations/nbody
     ### 6_Advanced/FunctionPointers
     ### 7_CUDALibraries/randomFog
+    ###
     RUN apt update && apt -y install libgl1-mesa-dev
 
     ###
-    ### for glu.h, libGLU.so
-    ###
+    ### solve for
+    ### >>> WARNING - libGLU.so not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
+    ### >>> WARNING - glu.h not found, refer to CUDA Getting Started Guide for how to find and install them. <<<
+    ### 
     RUN apt update && apt -y install libglu1-mesa-dev
 
     ###
-    ### for glut lib
-    ### linux - /usr/bin/ld: cannot find -lglut - Stack Overflow
+    ### solve for
+    ### /usr/bin/ld: cannot find -lglut
     ### https://stackoverflow.com/questions/15064159/usr-bin-ld-cannot-find-lglut
     ###
     RUN apt update && apt -y install freeglut3-dev
 
+    ### 
+    ### solve for
+    ### >>> WARNING - egl.h not found, please install egl.h <<<
+    ### >>> WARNING - eglext.h not found, please install eglext.h <<<
+    ### >>> WARNING - gl31.h not found, please install gl31.h <<<
+    ###
+    ### 2_Graphics/simpleGLES_EGLOutput
+    ### 2_Graphics/simpleGLES
+    ### 2_Graphics/simpleGLES_screen
+    ### 5_Simulations/nbody_opengles
+    ### 5_Simulations/fluidsGLES
+    ### 5_Simulations/nbody_screen
+    ###
+    RUN apt update && apt -y install libgles2-mesa-dev
 
-    ### assign "nvidia" instead of "nvidia-367" to all UBUNTU_PKG_NAME, so that library path become -L/usr/lib/nvidia. 
-    ### you should use "mkdir /usr/lib/nvidia && ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so" to make a symbolic link of libnvcuvid.
-    RUN mkdir /usr/lib/nvidia && ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so && \
-                                 ln -s /usr/local/nvidia/lib64/libEGL.so.1 /usr/lib/nvidia/libEGL.so
 
+    ###
+    ### Also search and replace all 'UBUNTU_PKG_NAME = "nvidia-367"' to 'UBUNTU_PKG_NAME = "nvidia"' under NVIDIA_CUDA-8.0_Samples folder
+    ###
+    RUN mkdir /usr/lib/nvidia && \
+        ### solve for  /usr/bin/ld: cannot find -lnvcuvid \
+        ### 3_Imaging/cudaDecodeGL \
+        ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so && \
+        ### solve for >>> WARNING - libEGL.so not found, please install libEGL.so <<< \
+        ### 3_Imaging/EGLStreams_CUDA_Interop \
+        ln -s /usr/local/nvidia/lib64/libEGL.so.1 /usr/lib/nvidia/libEGL.so && \
+        ### solve for >>> WARNING - libGLES.so not found, please install libGLES.so <<< \
+        ### 2_Graphics/simpleGLES_EGLOutput \
+        ### 2_Graphics/simpleGLES \
+        ### 2_Graphics/simpleGLES_screen \
+        ### 5_Simulations/nbody_opengles \
+        ### 5_Simulations/fluidsGLES \
+        ### 5_Simulations/nbody_screen \
+        ln -s /usr/local/nvidia/lib64/libGLESv2_nvidia.so.2 /usr/lib/nvidia/libGLESv2.so
 
 
 

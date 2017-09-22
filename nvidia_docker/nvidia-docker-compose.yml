@@ -6,8 +6,11 @@ services:
     - /dev/nvidiactl
     - /dev/nvidia-uvm
     - /dev/nvidia-uvm-tools
+    environment:
+    - DISPLAY=$DISPLAY
     volumes:
     - ./project:/root/project
+    - /tmp/.X11-unix:/tmp/.X11-unix
     - nvidia_driver_384.69:/usr/local/nvidia:ro
 version: '2'
 volumes:

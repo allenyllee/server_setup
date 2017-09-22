@@ -5,6 +5,7 @@ services:
     build: .
     volumes: 
     - ./project:/root/project
-
-
+    - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+    environment:
+    - DISPLAY=$DISPLAY # for Xwindow GUI
 
