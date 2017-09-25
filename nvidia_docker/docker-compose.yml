@@ -2,7 +2,9 @@ version: '2'
 
 services:
   cuda:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_cuda
     container_name: cuda8.0
     volumes: 
     - ./project:/root/project
@@ -11,14 +13,15 @@ services:
     - DISPLAY=$DISPLAY # for Xwindow GUI
   
   tensorflow:
-    #build: ./Dockerfile_tensorflow
-    image: gcr.io/tensorflow/tensorflow:latest-gpu
+    build:
+      context: .
+      dockerfile: Dockerfile_tensorflow
     container_name: tensorflow
     ports:
-    - "8888"
+    - "8888:8888"
     volumes: 
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:
     - DISPLAY=$DISPLAY # for Xwindow GUI
-
+    restart: always

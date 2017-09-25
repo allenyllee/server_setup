@@ -26,5 +26,5 @@
 ##
 xhost local:root
 
-nvidia-docker-compose build
+#nvidia-docker-compose build
 nvidia-docker-compose run cuda bash -c "cd ~/project;bash"
