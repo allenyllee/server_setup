@@ -1,0 +1,4 @@
+# ignore files & folders to prevent long loading time
+
+project/*
+

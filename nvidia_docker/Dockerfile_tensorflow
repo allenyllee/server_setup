@@ -13,7 +13,3 @@
 
     RUN apt update && apt -y install vim
 
-
-    CMD    ["bash"]
-
-
