@@ -20,6 +20,7 @@ services:
     ports:
     - "8888:8888"
     volumes: 
+    - ./project/jupyter/notebooks:/notebooks
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:

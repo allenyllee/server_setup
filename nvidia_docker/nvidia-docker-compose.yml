@@ -31,6 +31,7 @@ services:
     - 8888:8888
     restart: always
     volumes:
+    - ./project/jupyter/notebooks:/notebooks
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
     - nvidia_driver_384.69:/usr/local/nvidia:ro
