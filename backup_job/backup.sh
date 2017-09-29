@@ -1,6 +1,6 @@
 SOURCEDIR=/
 BACKUPDIR=file:///media/allencat/TODS512G/server_backup
-FILEDIR=/home/allencat/docker/server_setup/backup_job
+FILEDIR=/home/allencat/Project/server_setup/backup_job
 
 INCLUDELIST=$FILEDIR/backup_list.txt
 LOGFILE=$FILEDIR/backup.log
