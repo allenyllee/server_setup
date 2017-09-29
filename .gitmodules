@@ -1,0 +1,9 @@
+[submodule "nvidia_docker/project/jupyter"]
+	path = nvidia_docker/project/jupyter
+	url = https://github.com/allenyllee/jupyter.git
+[submodule "nvidia_docker/project/CUDA_Samples_for_Linux"]
+	path = nvidia_docker/project/CUDA_Samples_for_Linux
+	url = https://github.com/allenyllee/CUDA_Samples_for_Linux.git
+[submodule "nvidia_docker/project/pix2pix-tensorflow"]
+	path = nvidia_docker/project/pix2pix-tensorflow
+	url = https://github.com/allenyllee/pix2pix-tensorflow.git
