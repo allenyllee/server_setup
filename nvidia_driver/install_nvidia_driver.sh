@@ -1,6 +1,18 @@
 #!/bin/bash
 
-sudo add-apt-repository ppa:graphics-drivers/ppa
+#
+# add ppa repository
+#
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get -y upgrade
-sudo apt-get install -y nvidia-387
+
+#
+# purge all previous version
+#
+sudo apt-get -y remove nvidia-*
+
+#
+# install latest version
+#
+sudo apt-get -y install nvidia-387
