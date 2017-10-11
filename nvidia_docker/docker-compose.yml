@@ -11,7 +11,7 @@ services:
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:
     - DISPLAY=$DISPLAY # for Xwindow GUI
-  
+    restart: always
   tensorflow:
     build:
       context: .

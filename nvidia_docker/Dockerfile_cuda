@@ -78,22 +78,22 @@
     ### for all matched files in the NVIDIA_CUDA-8.0_Samples folder to make it works.
     ###
     RUN mkdir /usr/lib/nvidia && \
-        ### solve for  /usr/bin/ld: cannot find -lnvcuvid \
-        ### 3_Imaging/cudaDecodeGL \
+        `### solve for  /usr/bin/ld: cannot find -lnvcuvid` \
+        `### 3_Imaging/cudaDecodeGL` \
         ln -s /usr/local/nvidia/lib64/libnvcuvid.so.1 /usr/lib/nvidia/libnvcuvid.so && \
-        ### solve for >>> WARNING - libEGL.so not found, please install libEGL.so <<< \
-        ### 3_Imaging/EGLStreams_CUDA_Interop \
+        `### solve for >>> WARNING - libEGL.so not found, please install libEGL.so <<<` \
+        `### 3_Imaging/EGLStreams_CUDA_Interop `\
         ln -s /usr/local/nvidia/lib64/libEGL.so.1 /usr/lib/nvidia/libEGL.so && \
-        ### solve for >>> WARNING - libGLES.so not found, please install libGLES.so <<< \
-        ### 2_Graphics/simpleGLES_EGLOutput \
-        ### 2_Graphics/simpleGLES \
-        ### 2_Graphics/simpleGLES_screen \
-        ### 5_Simulations/nbody_opengles \
-        ### 5_Simulations/fluidsGLES \
-        ### 5_Simulations/nbody_screen \
+        `### solve for >>> WARNING - libGLES.so not found, please install libGLES.so <<<` \
+        `### 2_Graphics/simpleGLES_EGLOutput` \
+        `### 2_Graphics/simpleGLES` \
+        `### 2_Graphics/simpleGLES_screen` \
+        `### 5_Simulations/nbody_opengles` \
+        `### 5_Simulations/fluidsGLES` \
+        `### 5_Simulations/nbody_screen` \
         ln -s /usr/local/nvidia/lib64/libGLESv2_nvidia.so.2 /usr/lib/nvidia/libGLESv2.so
 
 
-    CMD    ["bash"]
+    CMD    ["bash","-c","cd ~/project;bash"]
 
 

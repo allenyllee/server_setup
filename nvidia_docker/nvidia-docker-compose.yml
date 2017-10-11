@@ -11,6 +11,7 @@ services:
     - /dev/nvidia-uvm-tools
     environment:
     - DISPLAY=$DISPLAY
+    restart: always
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
