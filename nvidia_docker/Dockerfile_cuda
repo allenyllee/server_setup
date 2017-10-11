@@ -94,6 +94,26 @@
         ln -s /usr/local/nvidia/lib64/libGLESv2_nvidia.so.2 /usr/lib/nvidia/libGLESv2.so
 
 
-    CMD    ["bash","-c","cd ~/project;bash"]
+    ### install & start sshd server
+    ### for ssh login & X11 forward use
+    RUN apt update && apt -y install ssh
+
+    ### enable ssh root login
+    RUN sed -i "s/PermitRootLogin/# PermitRootLogin/g" /etc/ssh/sshd_config
+    RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
+    ### change password with username:password
+    RUN echo root:root | chpasswd
+
+    ### first start to preserve all SSH host keys
+    RUN service ssh start
+    
+    ### install vim
+    RUN apt update && apt -y install vim
+
+    EXPOSE 22
+
+    #ENTRYPOINT [ "/usr/sbin/sshd", "-d"]
+    CMD    ["bash"]
 
 

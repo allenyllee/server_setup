@@ -6,6 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile_cuda
     container_name: cuda8.0
+    ports:
+    - "88:22"
+    entrypoint: /usr/sbin/sshd -d
+    stdin_open: true
+    tty: true
     volumes: 
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI

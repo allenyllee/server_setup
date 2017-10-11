@@ -9,9 +9,14 @@ services:
     - /dev/nvidiactl
     - /dev/nvidia-uvm
     - /dev/nvidia-uvm-tools
+    entrypoint: /usr/sbin/sshd -d
     environment:
     - DISPLAY=$DISPLAY
+    ports:
+    - '88:22'
     restart: always
+    stdin_open: true
+    tty: true
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
