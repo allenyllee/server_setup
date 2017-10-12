@@ -111,6 +111,8 @@
     ### install vim
     RUN apt update && apt -y install vim
 
+    RUN apt update && apt -y install sshfs
+    
     EXPOSE 22
 
     #ENTRYPOINT [ "/usr/sbin/sshd", "-d"]

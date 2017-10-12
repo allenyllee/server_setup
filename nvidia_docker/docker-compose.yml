@@ -20,6 +20,8 @@ services:
     - SYS_ADMIN
     devices:
     - "/dev/fuse:/dev/fuse"
+    security_opt:
+    - apparmor:unconfined
     restart: always
   cuda90:
     build:
@@ -40,6 +42,8 @@ services:
     - SYS_ADMIN
     devices:
     - "/dev/fuse:/dev/fuse"
+    security_opt:
+    - apparmor:unconfined
     restart: always
   tensorflow:
     build:
