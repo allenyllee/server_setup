@@ -3,8 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_cuda80
+    cap_add:
+    - SYS_ADMIN
     container_name: cuda80
     devices:
+    - /dev/fuse:/dev/fuse
     - /dev/nvidia0
     - /dev/nvidiactl
     - /dev/nvidia-uvm
@@ -15,6 +18,8 @@ services:
     ports:
     - '88:22'
     restart: always
+    security_opt:
+    - apparmor:unconfined
     stdin_open: true
     tty: true
     volumes:
@@ -25,8 +30,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_cuda90
+    cap_add:
+    - SYS_ADMIN
     container_name: cuda90
     devices:
+    - /dev/fuse:/dev/fuse
     - /dev/nvidia0
     - /dev/nvidiactl
     - /dev/nvidia-uvm
@@ -37,6 +45,8 @@ services:
     ports:
     - '89:22'
     restart: always
+    security_opt:
+    - apparmor:unconfined
     stdin_open: true
     tty: true
     volumes:
