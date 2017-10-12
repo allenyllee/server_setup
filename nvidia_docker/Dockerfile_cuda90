@@ -112,7 +112,10 @@
     RUN apt update && apt -y install vim
 
     RUN apt update && apt -y install sshfs
-    
+
+    ### add nvcc PATH for ssh interactive
+    RUN sed '/interactively/ i export PATH=$PATH:/usr/local/cuda-8.0/bin\n' /root/.bashrc
+
     EXPOSE 22
 
     #ENTRYPOINT [ "/usr/sbin/sshd", "-d"]
