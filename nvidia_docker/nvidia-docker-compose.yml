@@ -1,9 +1,9 @@
 services:
-  cuda:
+  cuda80:
     build:
       context: .
-      dockerfile: Dockerfile_cuda
-    container_name: cuda8.0
+      dockerfile: Dockerfile_cuda80
+    container_name: cuda80
     devices:
     - /dev/nvidia0
     - /dev/nvidiactl
@@ -14,6 +14,28 @@ services:
     - DISPLAY=$DISPLAY
     ports:
     - '88:22'
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+    - ./project:/root/project
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - nvidia_driver_384.69:/usr/local/nvidia:ro
+  cuda90:
+    build:
+      context: .
+      dockerfile: Dockerfile_cuda90
+    container_name: cuda90
+    devices:
+    - /dev/nvidia0
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+    - /dev/nvidia-uvm-tools
+    entrypoint: /usr/sbin/sshd -d
+    environment:
+    - DISPLAY=$DISPLAY
+    ports:
+    - '89:22'
     restart: always
     stdin_open: true
     tty: true
