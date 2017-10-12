@@ -62,3 +62,10 @@ sudo apt-get install -y redshift-gtk
 # copy redshift config to ~/.config/redshift.conf
 #
 cp ./redshift.conf ~/.config/
+
+#
+# install ssh server
+# will generate /etc/ssh/sshd_config
+#
+sudo apt-get install -y openssh-server
+
