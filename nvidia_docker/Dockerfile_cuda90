@@ -116,6 +116,9 @@
     ### add nvcc PATH for ssh interactive
     RUN sed -i '/interactively/ i export PATH=$PATH:/usr/local/cuda-8.0/bin\n' /root/.bashrc
 
+    ### make dir for mount point use
+    RUN mkdir ~/project2
+
     EXPOSE 22
 
     #ENTRYPOINT [ "/usr/sbin/sshd", "-d"]
