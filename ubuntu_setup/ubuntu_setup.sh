@@ -69,3 +69,9 @@ cp ./redshift.conf ~/.config/
 #
 sudo apt-get install -y openssh-server
 
+#
+# install CopyQ
+#
+sudo add-apt-repository ppa:hluk/copyq
+sudo apt update
+sudo apt install copyq
