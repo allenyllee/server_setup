@@ -11,11 +11,15 @@ services:
     entrypoint: /usr/sbin/sshd -d
     stdin_open: true
     tty: true
-    volumes: 
+    volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:
     - DISPLAY=$DISPLAY # for Xwindow GUI
+    cap_add:
+    - SYS_ADMIN
+    devices:
+    - "/dev/fuse:/dev/fuse"
     restart: always
   cuda90:
     build:
@@ -32,6 +36,10 @@ services:
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:
     - DISPLAY=$DISPLAY # for Xwindow GUI
+    cap_add:
+    - SYS_ADMIN
+    devices:
+    - "/dev/fuse:/dev/fuse"
     restart: always
   tensorflow:
     build:
