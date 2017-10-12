@@ -8,7 +8,7 @@
 LOCAL_USER=$(whoami)
 REMOTE_USER="root"
 
-LOCAL_DIR="/media/$LOCAL_USER/Project/Project"
+LOCAL_DIR="/media/$LOCAL_USER/Project/Project/server_setup/nvidia_docker/project"
 REMOTE_DIR="./project2"
 
 LOCAL_ADDR="localhost"
