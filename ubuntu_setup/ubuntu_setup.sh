@@ -38,6 +38,8 @@ sudo docker run hello-world
 
 ######################
 # enable docker api for jenkins CI use
+# Enabling Docker Remote API on Ubuntu 16.04 – The Blog of Ivan Krizsan 
+# https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04/
 # test: curl http://localhost:4243/version
 # test2: curl -X GET http://192.168.5.5:4243/images/json
 ######################
