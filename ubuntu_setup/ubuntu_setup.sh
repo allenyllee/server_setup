@@ -47,7 +47,58 @@ sudo sed -i '/ExecStart=\/usr\/bin\/docker*/ c\ExecStart=\/usr\/bin\/dockerd -H 
 systemctl daemon-reload
 sudo service docker restart
 
-############
+
+######################
+# install Nvidia driver
+# How do I install the Nvidia drivers? - Ask Ubuntu 
+# https://askubuntu.com/questions/61396/how-do-i-install-the-nvidia-drivers
+######################
+
+#
+# add ppa repository
+#
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
+sudo apt-get update
+sudo apt-get upgrade -y
+
+#
+# purge all previous version
+#
+sudo apt-get remove -y nvidia-*
+
+#
+# install latest version
+#
+sudo apt-get install -y nvidia-387
+
+######################
+# install nvidia docker
+# NVIDIA/nvidia-docker: Build and run Docker containers leveraging NVIDIA GPUs 
+# https://github.com/NVIDIA/nvidia-docker
+######################
+
+# install nvidia-modprobe
+sudo apt-get install -y nvidia-modprobe
+
+# Install nvidia-docker and nvidia-docker-plugin
+wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
+sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+
+# Test nvidia-smi
+nvidia-docker run --rm nvidia/cuda nvidia-smi
+
+
+######################
+# install VSCode
+######################
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+sudo apt-get update
+sudo apt-get install -y code # or code-insiders
+
+##################################3
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -69,38 +120,6 @@ sudo apt-get install -y Baobab
 # Alternative to CrystalDiskInfo
 #
 sudo apt-get install -y gsmartcontrol
-
-#
-# install VSCode
-#
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-
-sudo apt-get update
-sudo apt-get install -y code # or code-insiders
-
-
-###
-### install Nvidia driver
-###
-
-#
-# add ppa repository
-#
-sudo add-apt-repository -y ppa:graphics-drivers/ppa
-sudo apt-get update
-sudo apt-get upgrade -y
-
-#
-# purge all previous version
-#
-sudo apt-get remove -y nvidia-*
-
-#
-# install latest version
-#
-sudo apt-get install -y nvidia-387
 
 #
 # install redshift
