@@ -43,7 +43,7 @@ sudo docker run hello-world
 # test: curl http://localhost:4243/version
 # test2: curl -X GET http://192.168.5.5:4243/images/json
 ######################
-sudo sed -i '/ExecStart=\/usr\/bin\/docker*/ c\ExecStart=\/usr\/bin\/dockerd\/ -H fd:\/\/ -H tcp:\/\/0.0.0.0:4243\/' /lib/systemd/system/docker.service
+sudo sed -i '/ExecStart=\/usr\/bin\/docker*/ c\ExecStart=\/usr\/bin\/dockerd -H fd:\/\/ -H tcp:\/\/0.0.0.0:4243' /lib/systemd/system/docker.service
 systemctl daemon-reload
 sudo service docker restart
 
