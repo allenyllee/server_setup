@@ -11,7 +11,6 @@ services:
     - /dev/nvidia0
     - /dev/nvidiactl
     - /dev/nvidia-uvm
-    - /dev/nvidia-uvm-tools
     entrypoint: /usr/sbin/sshd -d
     environment:
     - DISPLAY=$DISPLAY
@@ -25,7 +24,7 @@ services:
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
-    - nvidia_driver_384.69:/usr/local/nvidia:ro
+    - nvidia_driver_387.12:/usr/local/nvidia:ro
   cuda90:
     build:
       context: .
@@ -38,7 +37,6 @@ services:
     - /dev/nvidia0
     - /dev/nvidiactl
     - /dev/nvidia-uvm
-    - /dev/nvidia-uvm-tools
     entrypoint: /usr/sbin/sshd -d
     environment:
     - DISPLAY=$DISPLAY
@@ -52,7 +50,7 @@ services:
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
-    - nvidia_driver_384.69:/usr/local/nvidia:ro
+    - nvidia_driver_387.12:/usr/local/nvidia:ro
   tensorflow:
     build:
       context: .
@@ -62,7 +60,6 @@ services:
     - /dev/nvidia0
     - /dev/nvidiactl
     - /dev/nvidia-uvm
-    - /dev/nvidia-uvm-tools
     environment:
     - DISPLAY=$DISPLAY
     ports:
@@ -72,8 +69,8 @@ services:
     - ./project/jupyter/notebooks:/notebooks
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
-    - nvidia_driver_384.69:/usr/local/nvidia:ro
+    - nvidia_driver_387.12:/usr/local/nvidia:ro
 version: '2'
 volumes:
-  nvidia_driver_384.69:
+  nvidia_driver_387.12:
     external: true
