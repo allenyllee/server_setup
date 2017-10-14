@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+    cuda80:
+        build:
+            context: .
+            dockerfile: Dockerfile_cuda80
+        container_name: cuda80
+        ports:
+        - "88:22"
+        entrypoint: /usr/sbin/sshd -d
+        stdin_open: true
+        tty: true
+        volumes:
+        - ./project:/root/project
+        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+        environment:
+        - DISPLAY=$DISPLAY # for Xwindow GUI
+        cap_add:
+        - SYS_ADMIN
+        devices:
+        - "/dev/fuse:/dev/fuse"
+        security_opt:
+        - apparmor:unconfined
+        restart: always
+    cuda90:
+        build:
+            context: .
+            dockerfile: Dockerfile_cuda90
+        container_name: cuda90
+        ports:
+        - "89:22"
+        entrypoint: /usr/sbin/sshd -d
+        stdin_open: true
+        tty: true
+        volumes: 
+        - ./project:/root/project
+        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+        environment:
+        - DISPLAY=$DISPLAY # for Xwindow GUI
+        cap_add:
+        - SYS_ADMIN
+        devices:
+        - "/dev/fuse:/dev/fuse"
+        security_opt:
+        - apparmor:unconfined
+        restart: always
+    tensorflow:
+        build:
+            context: .
+            dockerfile: Dockerfile_tensorflow
+        container_name: tensorflow
+        ports:
+        - "8888:8888"
+        volumes: 
+        - ./project/jupyter/notebooks:/notebooks
+        - ./project:/root/project
+        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+        environment:
+        - DISPLAY=$DISPLAY # for Xwindow GUI
+        restart: always

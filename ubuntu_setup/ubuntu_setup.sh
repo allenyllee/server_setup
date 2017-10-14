@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#/*
+# * @Author: Allen_Lee 
+# * @Date: 2017-10-15 00:27:41 
+# * @Last Modified by:   Allen_Lee 
+# * @Last Modified time: 2017-10-15 00:27:41 
+# */
+
 ########################
 # install docker
 # from: Get Docker CE for Ubuntu | Docker Documentation 
@@ -8,9 +15,10 @@
 
 # Update the apt package index:
 sudo apt-get update
+sudo apt-get upgrade -y
 
 # Install packages to allow apt to use a repository over HTTPS:
-sudo apt-get install \
+sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -31,10 +39,24 @@ sudo add-apt-repository \
 
 # Install Docker CE
 sudo apt-get update
-sudo apt-get install docker-ce
+sudo apt-get install -y docker-ce
 
 # Verify that Docker CE is installed correctly by running the hello-world image.
 sudo docker run hello-world
+
+#############################
+# running docker without sudo by adding user into docker group
+# How can I use docker without sudo? - Ask Ubuntu
+# https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
+#############################
+
+# add docker group & add current ser into it
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+
+# activate the changes to groups
+newgrp docker
+docker run hello-world
 
 ######################
 # enable docker api for jenkins CI use
@@ -54,21 +76,15 @@ sudo service docker restart
 # https://askubuntu.com/questions/61396/how-do-i-install-the-nvidia-drivers
 ######################
 
-#
 # add ppa repository
-#
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get upgrade -y
 
-#
 # purge all previous version
-#
 sudo apt-get remove -y nvidia-*
 
-#
 # install latest version
-#
 sudo apt-get install -y nvidia-387
 
 ######################
@@ -87,6 +103,13 @@ sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
 # Test nvidia-smi
 nvidia-docker run --rm nvidia/cuda nvidia-smi
 
+#######################
+# install nvidia-docker-compose
+#######################
+sudo apt-get install -y python-pip
+pip install nvidia-docker-compose
+
+
 
 ######################
 # install VSCode
@@ -100,15 +123,31 @@ sudo apt-get install -y code # or code-insiders
 
 ##################################3
 
-sudo apt-get update
-sudo apt-get upgrade -y
 
+#
+# graphical front-end to su and sudo
+#
+sudo apt-get install -y gksu
+
+#
+# display graphs for monitoring hardware temperature
+#
 sudo apt-get install -y psensor
 
+#
+# GNOME partition editor
+#
 sudo apt-get install -y gparted
 
+#
+# utility for graphically configuring Logical Volumes
+#
 sudo apt-get install -y system-config-lvm
 
+
+#
+# Vi IMproved - enhanced vi editor
+#
 sudo apt-get install -y vim
 
 #
@@ -121,20 +160,18 @@ sudo apt-get install -y Baobab
 #
 sudo apt-get install -y gsmartcontrol
 
-#
+#########################
 # install redshift
-#
+#########################
 sudo apt-get install -y redshift-gtk
 
-#
-# copy redshift config to ~/.config/redshift.conf
-#
+# copy redshift settings
 cp ./redshift.conf ~/.config/
 
-#
+############################
 # install ssh server
 # will generate /etc/ssh/sshd_config
-#
+############################
 sudo apt-get install -y openssh-server
 
 #
@@ -142,6 +179,54 @@ sudo apt-get install -y openssh-server
 #
 sudo add-apt-repository ppa:hluk/copyq
 sudo apt update
-sudo apt install copyq
+sudo apt install -y copyq
 
+####################################
+# install fcitx-chewing 新酷音
+# ubuntu安裝fcitx及注音輸入法
+# https://smpsfox.blogspot.tw/2016/06/ubuntufcitx.html
+####################################
+sudo apt-get install -y fcitx fcitx-chewing
+
+# solve black window issue
+sudo apt-get install -y qtdeclarative5-qtquick2-plugin
+
+#
+# add docker-srv dir
+#
+DOCKERDIR="docker-srv"
+
+#sudo ln -s /media/allenyllee/DATA/$DOCKERDIR /mnt/$DOCKERDIR
+mkdir -p /mnt/$DOCKERDIR
+chmod 777 /mnt/$DOCKERDIR
+
+#
+# build & up all docker service
+#
+#TODO: add docker compose file
+docker-compose build
+docker-compose up
+
+
+#
+# TODO: add backup job
+#
+
+
+#
+# add hibernate option
+# How can I hibernate on Ubuntu 16.04? - Ask Ubuntu
+# https://askubuntu.com/questions/768136/how-can-i-hibernate-on-ubuntu-16-04
+#
+sudo tee -a /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla <<END
+[Re-enable hibernate by default in upower]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes
+
+[Re-enable hibernate by default in logind]
+Identity=unix-user:*
+Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
+ResultActive=yes
+END
 
