@@ -81,8 +81,8 @@ sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get upgrade -y
 
-# purge all previous version
-sudo apt-get remove -y nvidia-*
+# purge all previous version (--purge removes configuration files)
+sudo apt-get remove --purge -y nvidia-*
 
 # install latest version
 sudo apt-get install -y nvidia-387
