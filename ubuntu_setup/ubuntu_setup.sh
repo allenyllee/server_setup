@@ -172,10 +172,10 @@ cp ./redshift.conf ~/.config/
 # install ssh server
 # will generate /etc/ssh/sshd_config
 ############################
-#sudo apt-get install -y openssh-server
+sudo apt-get install -y openssh-server
 
 # install sshfs
-#sudo apt-get install -y sshfs
+sudo apt-get install -y sshfs
 
 #
 # install CopyQ
