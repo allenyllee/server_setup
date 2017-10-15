@@ -7,6 +7,8 @@
 # * @Last Modified time: 2017-10-15 00:27:41 
 # */
 
+PROJECT_DIR=$1
+
 ########################
 # install docker
 # from: Get Docker CE for Ubuntu | Docker Documentation 
@@ -109,7 +111,10 @@ nvidia-docker run --rm nvidia/cuda nvidia-smi
 sudo apt-get install -y python-pip
 pip install nvidia-docker-compose
 
-
+##########################
+# install intel microcode
+##########################
+sudo apt-get install -y intel-microcode
 
 ######################
 # install VSCode
@@ -121,43 +126,71 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt-get update
 sudo apt-get install -y code # or code-insiders
 
-##################################3
+###############################
+# system info tools
+# 5 GUI Tools to See Hardware Details in Ubuntu/Linux | TechGainer 
+# https://www.techgainer.com/5-gui-tools-to-see-hardware-information-in-ubuntulinux/
+###############################
+
+# I-Nex
+sudo add-apt-repository ppa:i-nex-development-team/stable
+sudo apt-get update
+sudo apt-get install i-nex
+
+# Hardinfo
+sudo apt-get install hardinfo
+
+# Sysinfo
+sudo apt-get install sysinfo
+
+# lshw-gtk 
+sudo apt-get install lshw-gtk
+
+# KInfoCenter
+sudo apt-get install kinfocenter
+
+###################
+# CUDA-Z 
+# http://cuda-z.sourceforge.net/
+###################
+wget http://sourceforge.net/projects/cuda-z/files/cuda-z/0.10/CUDA-Z-0.10.251-64bit.run
 
 
-#
+
+#################
 # graphical front-end to su and sudo
-#
+#################
 sudo apt-get install -y gksu
 
-#
+##################
 # display graphs for monitoring hardware temperature
-#
+##################
 sudo apt-get install -y psensor
 
-#
+################
 # GNOME partition editor
-#
+################
 sudo apt-get install -y gparted
 
-#
+################
 # utility for graphically configuring Logical Volumes
-#
+################
 sudo apt-get install -y system-config-lvm
 
 
-#
+################
 # Vi IMproved - enhanced vi editor
-#
+################
 sudo apt-get install -y vim
 
-#
+################
 # disk space analyzer
-#
+################
 sudo apt-get install -y Baobab
 
-#
+################
 # Alternative to CrystalDiskInfo
-#
+################
 sudo apt-get install -y gsmartcontrol
 
 #########################
@@ -177,9 +210,9 @@ sudo apt-get install -y openssh-server
 # install sshfs
 sudo apt-get install -y sshfs
 
-#
+#####################
 # install CopyQ
-#
+#####################
 sudo add-apt-repository ppa:hluk/copyq
 sudo apt update
 sudo apt install -y copyq
@@ -194,33 +227,11 @@ sudo apt-get install -y fcitx fcitx-chewing
 # solve black window issue
 sudo apt-get install -y qtdeclarative5-qtquick2-plugin
 
-#
-# add docker-srv dir
-#
-DOCKERDIR="docker-srv"
-
-#sudo ln -s /media/allenyllee/DATA/$DOCKERDIR /mnt/$DOCKERDIR
-mkdir -p /mnt/$DOCKERDIR
-chmod 777 /mnt/$DOCKERDIR
-
-#
-# build & up all docker service
-#
-#TODO: add docker compose file
-docker-compose build
-docker-compose up
-
-
-#
-# TODO: add backup job
-#
-
-
-#
+############################
 # add hibernate option
 # How can I hibernate on Ubuntu 16.04? - Ask Ubuntu
 # https://askubuntu.com/questions/768136/how-can-i-hibernate-on-ubuntu-16-04
-#
+############################
 sudo tee -a /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla <<END
 [Re-enable hibernate by default in upower]
 Identity=unix-user:*
@@ -233,3 +244,20 @@ Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-
 ResultActive=yes
 END
 
+#######################
+# Ubuntu 如何支援exFAT(FAT64)檔案系統(File System)？ | MagicLen
+# https://magiclen.org/ubuntu-exfat/
+#######################
+sudo apt install exfat-utils exfat-fuse
+
+
+#########################
+# TODO: build & up all docker service
+#########################
+git clone https://gitlab.com/allenyllee/xtensa_X_docker.git -b xtensa "$PROJECT_DIR"/xtensa_X_docker
+
+bash ./run_services.sh "$PROJECT_DIR"
+
+######################
+# TODO: add backup job
+######################

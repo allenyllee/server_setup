@@ -1,61 +1,149 @@
 version: '2'
 
+# 
+# tamplate
+#   service:
+#       name:
+#           build:
+#           container_name:
+#           image:
+#           ports:
+#           volumes:
+#           environment:
+#           networks:
+#           .............
+#           restart: always
+# 
+
+
+#
+# run services
+# 
 services:
-    cuda80:
-        build:
-            context: .
-            dockerfile: Dockerfile_cuda80
-        container_name: cuda80
+    gitlab:
+        container_name: gitlab
+        image: gitlab/gitlab-ce:latest
         ports:
-        - "88:22"
-        entrypoint: /usr/sbin/sshd -d
-        stdin_open: true
-        tty: true
+            - "443:443"
+            - "80:80"
+            - "44:22"
         volumes:
-        - ./project:/root/project
-        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+            - "$GITLAB_DIR/config:/etc/gitlab"
+            - "$GITLAB_DIR/logs:/var/log/gitlab"
+            - "$GITLAB_DIR/data:/var/opt/gitlab"
         environment:
-        - DISPLAY=$DISPLAY # for Xwindow GUI
-        cap_add:
-        - SYS_ADMIN
-        devices:
-        - "/dev/fuse:/dev/fuse"
-        security_opt:
-        - apparmor:unconfined
+            - GITLAB_OMNIBUS_CONFIG=" \
+            gitlab_rails['lfs_enabled'] = true; \
+            gitlab_rails['gitlab_email_enabled'] = true; \
+            gitlab_rails['gitlab_email_from'] = 'SASSD.Admin@liteon.com'; \
+            gitlab_rails['gitlab_email_display_name'] = 'Gitlab'; \
+            gitlab_rails['gitlab_email_reply_to'] = 'SASSD.Admin@liteon.com'; \
+            gitlab_rails['smtp_enable'] = true; \
+            gitlab_rails['smtp_address'] = '10.1.15.143'; \
+            gitlab_rails['smtp_port'] = 25; \
+            gitlab_rails['smtp_domain'] = 'liteon.com'; \
+            gitlab_rails['smtp_authentication'] = false; \
+            gitlab_rails['smtp_enable_starttls_auto'] = true; \
+            gitlab_rails['smtp_tls'] = false; \
+            gitlab_rails['smtp_openssl_verify_mode'] = 'peer'"
+        hostname: 10.1.53.168
         restart: always
-    cuda90:
-        build:
-            context: .
-            dockerfile: Dockerfile_cuda90
-        container_name: cuda90
+
+    jenkins:
+        container_name: jenkins
+        image: jenkins/jenkins:lts
         ports:
-        - "89:22"
-        entrypoint: /usr/sbin/sshd -d
-        stdin_open: true
-        tty: true
-        volumes: 
-        - ./project:/root/project
-        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
-        environment:
-        - DISPLAY=$DISPLAY # for Xwindow GUI
-        cap_add:
-        - SYS_ADMIN
-        devices:
-        - "/dev/fuse:/dev/fuse"
-        security_opt:
-        - apparmor:unconfined
+            - "8081:8080"
+            - "50000:50000"
+        volumes:
+            - "$JENKINS_DIR:/var/jenkins_home"
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "$(which docker):/usr/bin/docker"
+            - "/usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7"
         restart: always
-    tensorflow:
-        build:
-            context: .
-            dockerfile: Dockerfile_tensorflow
-        container_name: tensorflow
+
+    #
+    # run a docker registry backend container and link it to network bridge above
+    #
+    reg_server:
+        container_name: reg_server
+        image: registry:2
         ports:
-        - "8888:8888"
-        volumes: 
-        - ./project/jupyter/notebooks:/notebooks
-        - ./project:/root/project
-        - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
-        environment:
-        - DISPLAY=$DISPLAY # for Xwindow GUI
+            - "$REG_BACKENDPORT:5000"
+        volumes:
+            - "$REGISTRY_DIR:/var/lib/registry"
+        networks:
+            - reg_net
         restart: always
+
+    #
+    # run a docker registry frontend container and link it to network bridge above
+    #
+    reg_ui:
+        container_name: reg_ui
+        image: konradkleine/docker-registry-frontend:v2
+        ports:
+            - "8080:80"
+        environment:
+            - ENV_DOCKER_REGISTRY_HOST=reg_server
+            - ENV_DOCKER_REGISTRY_PORT=$REG_BACKENDPORT
+        networks:
+            - reg_net
+        restart: always
+
+    portainer:
+        container_name: portainer
+        image: portainer/portainer
+        ports:
+            - "9000:9000"
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+        restart: always
+
+    squid:
+        container_name: squid
+        image: sameersbn/squid:latest
+        ports:
+            - "3128:3128"
+        volumes:
+            - "$SQUID_DIR:/var/spool/squid3"
+        restart: always
+
+    samba:
+        container_name: samba
+        image: dperson/samba
+        ports:
+            - "139:139"
+            - "445:445"
+        volumes:
+            - "$SAMBA_DIR:/data"
+        environment:
+            - USERID=0
+            - GROUPID=0
+        command: -S -s "project;/data;yes;no"
+        restart: always
+
+    xtensa:
+        build:
+            context: $XTENSA_GIT
+            dockerfile: Dockerfile
+        container_name: xtensa
+        image: xtensa/xplorer:7.0.4
+        ports:
+            - "3322:22"
+        volumes:
+            - "/tmp/.X11-unix:/tmp/.X11-unix"
+            - "$XTENSA_DIR:/home/project"
+            - "xtensa:/home/xtensa"
+        environment:
+            - DISPLAY=$DISPLAY
+        command: bash -c "service sshd start;bash"
+        restart: always
+
+
+networks:
+    reg_net:
+        driver: bridge
+
+volumes:
+    xtensa:
