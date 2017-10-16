@@ -53,7 +53,7 @@ services:
             dockerfile: Dockerfile_tensorflow
         container_name: tensorflow
         ports:
-             "8888:8888"
+            - "8888:8888"
         volumes: 
             - ./project/jupyter/notebooks:/notebooks
             - ./project:/root/project
