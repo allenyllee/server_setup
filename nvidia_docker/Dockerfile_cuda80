@@ -112,8 +112,12 @@
     RUN apt update && apt -y install vim
 
     RUN apt update && apt -y install sshfs
-
+    
+    ###
     ### add nvcc PATH for ssh interactive
+    ### unix - How do I set $PATH such that `ssh user@host command` works? - Stack Overflow 
+    ### https://stackoverflow.com/questions/940533/how-do-i-set-path-such-that-ssh-userhost-command-works
+    ###
     RUN sed -i '/interactively/ i export PATH=$PATH:/usr/local/cuda-8.0/bin\n' /root/.bashrc
 
     ### make dir for mount point use
