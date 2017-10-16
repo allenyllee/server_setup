@@ -58,4 +58,5 @@ services:
     - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
     environment:
     - DISPLAY=$DISPLAY # for Xwindow GUI
+    - PASSWORD=12345678
     restart: always
