@@ -118,7 +118,12 @@
     ### unix - How do I set $PATH such that `ssh user@host command` works? - Stack Overflow 
     ### https://stackoverflow.com/questions/940533/how-do-i-set-path-such-that-ssh-userhost-command-works
     ###
-    RUN sed -i '/interactively/ i export PATH=$PATH:/usr/local/cuda-8.0/bin\n' /root/.bashrc
+    #RUN sed -i '/interactively/ i export PATH=$PATH:/usr/local/cuda-8.0/bin\n' /root/.bashrc
+
+    ### Newby question to CUDA container and ssh · Issue #36 · NVIDIA/nvidia-docker 
+    ### https://github.com/NVIDIA/nvidia-docker/issues/36
+    RUN echo "export PATH=$PATH" >> /etc/profile && \
+        echo "ldconfig" >> /etc/profile
 
     ### make dir for mount point use
     RUN mkdir ~/project2
