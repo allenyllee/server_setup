@@ -126,6 +126,66 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt-get update
 sudo apt-get install -y code # or code-insiders
 
+########################
+# install gun global
+########################
+
+# In ubuntu may reported that
+#   configure: checking "location of ncurses.h file"...
+#   configure: error: curses library is required but not found.
+# you should install ncurse lib:
+sudo apt-get install -y lib64ncurses5-dev
+
+# download latest version 
+# Getting GLOBAL 
+# https://www.gnu.org/software/global/download.html
+wget http://tamacom.com/global/global-6.5.7.tar.gz
+
+# untar
+tar zxvf global-6.5.7.tar.gz
+
+# configure
+cd global-6.5.7
+./configure
+
+# may install in /usr/local/lib/gtags
+sudo make install
+
+# remove files
+cd -
+sudo rm -rf global-6.5.7 global-6.5.7.tar.gz
+
+#############
+# enable Pygments Plug-in Parser for GNU Global
+# GLOBAL: plugin-factory/PLUGIN_HOWTO.pygments | Fossies 
+# https://fossies.org/linux/global/plugin-factory/PLUGIN_HOWTO.pygments
+#############
+
+# install python
+sudo apt-get install -y python
+
+# install exuberant-ctags
+sudo apt-get install -y exuberant-ctags
+
+# python - How to install pygments on Ubuntu? - Stack Overflow 
+# https://stackoverflow.com/questions/26215738/how-to-install-pygments-on-ubuntu
+# install python-pygments
+sudo apt-get install python-pygments
+
+# check python ctags
+type python
+type ctags
+
+#
+# The definition of Pygments plug-in parser is prepared
+# in the default configuration file. Please specify it.
+#
+# How to permanently export a variable in Linux? - Stack Overflow 
+# https://stackoverflow.com/questions/13046624/how-to-permanently-export-a-variable-in-linux
+# 
+echo GTAGSCONF=/usr/local/share/gtags/gtags.conf|sudo tee -a /etc/environment
+echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
+
 ###############################
 # system info tools
 # 5 GUI Tools to See Hardware Details in Ubuntu/Linux | TechGainer 
