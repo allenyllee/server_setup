@@ -7,3 +7,6 @@
 [submodule "nvidia_docker/project/pix2pix-tensorflow"]
 	path = nvidia_docker/project/pix2pix-tensorflow
 	url = https://github.com/allenyllee/pix2pix-tensorflow.git
+[submodule "nvidia_docker/project/CUDA-By-Example"]
+	path = nvidia_docker/project/CUDA-By-Example
+	url = https://github.com/allenyllee/CUDA-By-Example.git
