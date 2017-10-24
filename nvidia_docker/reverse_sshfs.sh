@@ -43,6 +43,6 @@ SSHFS_OPTION="-o NoHostAuthenticationForLocalhost=yes"
 ## ssh -t -p 88 root@10.1.53.168 -R 10000:localhost:22 \
 ## "source /etc/profile; sshfs  -p 10000 allenyllee@localhost:/media/allenyllee/Project/Project/server_setup/nvidia_docker/project ./project2;bash"
 ###############
-ssh -t $REMOTE_SSH -R $FORWARD_PORT:localhost:$LOCAL_PORT \
+ssh -v -X -t $REMOTE_SSH -R $FORWARD_PORT:localhost:$LOCAL_PORT \
 "source /etc/profile; sshfs $SSHFS_OPTION $LOCAL_SSH:$LOCAL_DIR $REMOTE_DIR; bash"
 
