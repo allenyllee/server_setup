@@ -10,8 +10,7 @@ sudo chmod 777 $DOCKERDIR
 #
 # gitlab data
 #
-GITLAB_DIR=$DOCKERDIR/gitlab
-export GITLAB_DIR
+export GITLAB_DIR=$DOCKERDIR/gitlab
 
 #
 # jenkins data
@@ -25,23 +24,18 @@ chown -R 1000:1000 $JENKINS_DIR
 #
 # docker registry data
 #
-REGISTRY_DIR=$DOCKERDIR/registry
-export REGISTRY_DIR
-
-REG_BACKENDPORT=5000
-export REG_BACKENDPORT
+export REGISTRY_DIR=$DOCKERDIR/registry
+export REG_BACKENDPORT=5000
 
 #
 # squid proxy data
 #
-SQUID_DIR=$DOCKERDIR/squid/cache
-export SQUID_DIR
+export SQUID_DIR=$DOCKERDIR/squid/cache
 
 #
 # samba server shared folder
 #
-SAMBA_DIR=$DOCKERDIR/samba
-export SAMBA_DIR
+export SAMBA_DIR=$DOCKERDIR/samba
 
 #
 # xtensa source
@@ -49,12 +43,10 @@ export SAMBA_DIR
 # linux - Forcing bash to expand variables in a string loaded from a file - Stack Overflow
 # https://stackoverflow.com/questions/10683349/forcing-bash-to-expand-variables-in-a-string-loaded-from-a-file
 #
-XTENSA_GIT=$(eval echo $PROJECT_DIR)/xtensa_X_docker
-export XTENSA_GIT
+export XTENSA_GIT=$(eval echo $PROJECT_DIR)/xtensa_X_docker
 
 # folder to share with samba
-XTENSA_DIR=$SAMBA_DIR/project
-export XTENSA_DIR
+export XTENSA_DIR=$SAMBA_DIR/project
 
 ###################
 # docker
