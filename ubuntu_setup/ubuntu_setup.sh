@@ -217,7 +217,12 @@ sudo apt-get install -y kinfocenter
 # CUDA-Z 
 # http://cuda-z.sourceforge.net/
 ###################
-wget http://sourceforge.net/projects/cuda-z/files/cuda-z/0.10/CUDA-Z-0.10.251-64bit.run
+#
+# linux - How to allow wget to overwrite files - Server Fault
+# https://serverfault.com/questions/171369/how-to-allow-wget-to-overwrite-files
+# -N, --timestamping don't re-retrieve files unless newer than local.
+#
+wget -N http://sourceforge.net/projects/cuda-z/files/cuda-z/0.10/CUDA-Z-0.10.251-64bit.run
 
 
 
