@@ -199,19 +199,19 @@ echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 # I-Nex
 sudo add-apt-repository ppa:i-nex-development-team/stable
 sudo apt-get update
-sudo apt-get install i-nex
+sudo apt-get install -y i-nex
 
 # Hardinfo
-sudo apt-get install hardinfo
+sudo apt-get install -y hardinfo
 
 # Sysinfo
-sudo apt-get install sysinfo
+sudo apt-get install -y sysinfo
 
 # lshw-gtk 
-sudo apt-get install lshw-gtk
+sudo apt-get install -y lshw-gtk
 
 # KInfoCenter
-sudo apt-get install kinfocenter
+sudo apt-get install -y kinfocenter
 
 ###################
 # CUDA-Z 
@@ -312,7 +312,7 @@ END
 # Ubuntu 如何支援exFAT(FAT64)檔案系統(File System)？ | MagicLen
 # https://magiclen.org/ubuntu-exfat/
 #######################
-sudo apt install exfat-utils exfat-fuse
+sudo apt install -y exfat-utils exfat-fuse
 
 
 #########################
