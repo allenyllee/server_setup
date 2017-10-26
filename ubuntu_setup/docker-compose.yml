@@ -139,6 +139,8 @@ services:
             - "xtensa:/home/xtensa"
         environment:
             - DISPLAY=$DISPLAY
+        stdin_open: true
+        tty: true
         command: bash -c "service sshd start;bash"
         restart: always
 

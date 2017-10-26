@@ -16,8 +16,11 @@ export GITLAB_DIR
 #
 # jenkins data
 #
-JENKINS_DIR=$DOCKERDIR/jenkins_home
-export JENKINS_DIR
+# security - How to give non-root user in Docker container access to a volume mounted on the host - Stack Overflow
+# https://stackoverflow.com/questions/39397548/how-to-give-non-root-user-in-docker-container-access-to-a-volume-mounted-on-the
+export JENKINS_DIR=$DOCKERDIR/jenkins_home
+mkdir -p $JENKINS_DIR
+chown -R 1000:1000 $JENKINS_DIR
 
 #
 # docker registry data
