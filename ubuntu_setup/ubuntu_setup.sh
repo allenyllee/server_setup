@@ -72,7 +72,7 @@ EOF
 # test2: curl -X GET http://192.168.5.5:4243/images/json
 ######################
 sudo sed -i '/ExecStart=\/usr\/bin\/docker*/ c\ExecStart=\/usr\/bin\/dockerd -H fd:\/\/ -H tcp:\/\/0.0.0.0:4243' /lib/systemd/system/docker.service
-systemctl daemon-reload
+sudo systemctl daemon-reload
 sudo service docker restart
 
 
@@ -277,7 +277,7 @@ sudo apt-get install -y sshfs
 #####################
 # install CopyQ
 #####################
-sudo add-apt-repository ppa:hluk/copyq
+sudo add-apt-repository -y ppa:hluk/copyq
 sudo apt update
 sudo apt install -y copyq
 
