@@ -197,7 +197,7 @@ echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 ###############################
 
 # I-Nex
-sudo add-apt-repository ppa:i-nex-development-team/stable
+sudo add-apt-repository -y ppa:i-nex-development-team/stable
 sudo apt-get update
 sudo apt-get install -y i-nex
 
