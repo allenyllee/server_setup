@@ -2,7 +2,7 @@
 
 PROJECT_DIR=$1
 DOCKERDIR="/mnt/docker-srv"
-export DOCKERBIN="${which docker}"
+export DOCKERBIN="$(which docker)"
 
 sudo mkdir -p $DOCKERDIR
 sudo chmod 777 $DOCKERDIR
