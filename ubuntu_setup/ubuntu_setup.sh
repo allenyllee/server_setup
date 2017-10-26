@@ -57,8 +57,12 @@ sudo groupadd docker
 sudo gpasswd -a $USER docker
 
 # activate the changes to groups
-newgrp docker
+# start new shell with group docker
+# scripting - Problem while running "newgrp" command in script - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/18897/problem-while-running-newgrp-command-in-script
+newgrp docker <<EOF 
 docker run hello-world
+EOF
 
 ######################
 # enable docker api for jenkins CI use
@@ -170,7 +174,7 @@ sudo apt-get install -y exuberant-ctags
 # python - How to install pygments on Ubuntu? - Stack Overflow 
 # https://stackoverflow.com/questions/26215738/how-to-install-pygments-on-ubuntu
 # install python-pygments
-sudo apt-get install python-pygments
+sudo apt-get install -y python-pygments
 
 # check python ctags
 type python
