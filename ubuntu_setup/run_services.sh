@@ -42,7 +42,10 @@ export SAMBA_DIR
 #
 # xtensa source
 #
-XTENSA_GIT=$PROJECT_DIR/xtensa_X_docker
+# linux - Forcing bash to expand variables in a string loaded from a file - Stack Overflow
+# https://stackoverflow.com/questions/10683349/forcing-bash-to-expand-variables-in-a-string-loaded-from-a-file
+#
+XTENSA_GIT=$(eval echo $PROJECT_DIR)/xtensa_X_docker
 export XTENSA_GIT
 
 # folder to share with samba
