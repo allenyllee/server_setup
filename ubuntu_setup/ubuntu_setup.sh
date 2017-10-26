@@ -340,6 +340,14 @@ sudo dpkg -i bitmeteros_*-amd64.deb
 git config --global credential.helper store
 git clone https://gitlab.com/allenyllee/xtensa_X_docker.git -b xtensa $(eval echo $PROJECT_DIR)/xtensa_X_docker
 
+cd $(eval echo $PROJECT_DIR)/xtensa_X_docker;bash<<EOF
+# version control - How do I force "git pull" to overwrite local files? - Stack Overflow
+# https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files
+echo $PWD
+git fetch --all
+git reset --hard origin/xtensa
+EOF
+
 bash ./run_services.sh "$PROJECT_DIR"
 
 ######################
