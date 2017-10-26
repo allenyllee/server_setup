@@ -44,7 +44,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce
 
 # Verify that Docker CE is installed correctly by running the hello-world image.
-sudo docker run hello-world
+sudo docker run --rm hello-world
 
 #############################
 # running docker without sudo by adding user into docker group
@@ -61,7 +61,7 @@ sudo gpasswd -a $USER docker
 # scripting - Problem while running "newgrp" command in script - Unix & Linux Stack Exchange
 # https://unix.stackexchange.com/questions/18897/problem-while-running-newgrp-command-in-script
 newgrp docker <<EOF
-docker run hello-world
+docker run --rm hello-world
 EOF
 
 ######################
