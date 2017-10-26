@@ -325,3 +325,9 @@ bash ./run_services.sh "$PROJECT_DIR"
 ######################
 # TODO: add backup job
 ######################
+
+
+##############
+# remove useless packages
+##############
+sudo apt autoremove -y
