@@ -326,6 +326,7 @@ sudo apt install -y exfat-utils exfat-fuse
 # linux - Forcing bash to expand variables in a string loaded from a file - Stack Overflow
 # https://stackoverflow.com/questions/10683349/forcing-bash-to-expand-variables-in-a-string-loaded-from-a-file
 #
+git config credential.helper store
 git clone https://gitlab.com/allenyllee/xtensa_X_docker.git -b xtensa $(eval echo $PROJECT_DIR)/xtensa_X_docker
 
 bash ./run_services.sh "$PROJECT_DIR"
