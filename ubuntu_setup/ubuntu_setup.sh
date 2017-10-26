@@ -60,7 +60,7 @@ sudo gpasswd -a $USER docker
 # start new shell with group docker
 # scripting - Problem while running "newgrp" command in script - Unix & Linux Stack Exchange
 # https://unix.stackexchange.com/questions/18897/problem-while-running-newgrp-command-in-script
-newgrp docker <<EOF 
+newgrp docker <<EOF
 docker run hello-world
 EOF
 
