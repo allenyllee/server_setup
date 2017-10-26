@@ -319,6 +319,17 @@ END
 #######################
 sudo apt install -y exfat-utils exfat-fuse
 
+####################
+# install bitmeteros
+####################
+# linux - How to wget a file with correct name when redirected? - Super User
+# https://superuser.com/questions/301044/how-to-wget-a-file-with-correct-name-when-redirected
+#
+# software installation - How do I install a .deb file via the command line? - Ask Ubuntu
+# https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line
+####################
+wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64
+sudo dpkg -i bitmeteros_*-amd64.deb
 
 #########################
 # TODO: build & up all docker service
