@@ -58,7 +58,9 @@ services:
         volumes:
             - "$JENKINS_DIR:/var/jenkins_home"
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "$(which docker):/usr/bin/docker"
+            # Invalid interpolation format for "command" option in service "node-exporter": "^/(sys|proc|dev|host|etc)($|/)" · Issue #4485 · docker/compose
+            # https://github.com/docker/compose/issues/4485
+            - "$${which docker}:/usr/bin/docker"
             - "/usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7"
         restart: always
 
