@@ -67,5 +67,5 @@ docker-compose up -d
 bash ../nvidia_docker/project/init_submodule.sh
 
 # starting nvidia docker containers in the background and leaves them running
-nvidia-docker-compose -f ../nvidia_docker/docker-compose.yml up -d
+bash -c "cd ../nvidia_docker;nvidia-docker-compose build;nvidia-docker-compose up -d"
 
