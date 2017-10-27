@@ -331,6 +331,14 @@ sudo apt install -y exfat-utils exfat-fuse
 wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64
 sudo dpkg -i bitmeteros_*-amd64.deb
 
+###############
+# install google chrome
+###############
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update 
+sudo apt-get install -y google-chrome-stable
+
 #########################
 # TODO: build & up all docker service
 #########################
