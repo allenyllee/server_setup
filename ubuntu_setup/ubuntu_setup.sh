@@ -342,6 +342,89 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-get update 
 sudo apt-get install -y google-chrome-stable
 
+#############
+# install normalized audio plugin
+#############
+# sound - Automatically adjust the volume based on content? - Ask Ubuntu 
+# https://askubuntu.com/questions/95716/automatically-adjust-the-volume-based-on-content
+#
+# Change the control parameter to reflect control=-12,1,0.5,0.99 using -12 instead of 0. 
+# This means that only sound above -12 dB will be compressed (softened), 
+# which typically includes anything louder than voices / conversation. 
+# Make this change if you're finding that, when watching movies (e.g. RED 2 on NetFlix), 
+# the vocals are still too quiet compared to the explosions.
+#
+#sudo apt-get install -y swh-plugins
+#
+#tee ~/.config/pulse/default.pa << END
+#.nofail
+#.include /etc/pulse/default.pa
+#load-module module-ladspa-sink  sink_name=ladspa_sink  plugin=dyson_compress_1403  label=dysonCompress  control=-12,1,0.5,0.99
+#load-module module-ladspa-sink  sink_name=ladspa_normalized  master=ladspa_sink  plugin=fast_lookahead_limiter_1913  label=fastLookaheadLimiter  control=10,0,0.8
+#set-default-sink ladspa_normalized
+#END
+#
+#pulseaudio -k
+
+#############
+# install pulseeffects from ppa (old version)
+#############
+# sound - Real-Time Volume Leveling & Audio Outputs - Ask Ubuntu 
+# https://askubuntu.com/questions/659582/real-time-volume-leveling-audio-outputs
+# I found the following Internet address: omgubuntu.co.uk/2017/06/install-pulse-effects-ubuntu-ppa. 
+# It is a very good software to get real time audio processing (limiter, compressor and equalizer) with PulseAudio. 
+# 
+#sudo add-apt-repository -y ppa:yunnxx/gnome3
+#sudo apt-get update
+#sudo apt-get install -y pulseeffects
+#
+#cp ./pulseeffects.desktop ~/.config/autostart/
+
+
+###############
+# install pulseeffects from flatpak
+###############
+# Getting Flatpak 
+# http://flatpak.org/getting.html
+#
+sudo add-apt-repository -y ppa:alexlarsson/flatpak
+sudo apt update
+sudo apt install -y flatpak
+#
+# wwmm/pulseeffects: Limiter, compressor, reverberation, equalizer and auto volume effects for Pulseaudio applications 
+# https://github.com/wwmm/pulseeffects
+#
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.github.wwmm.pulseeffects
+
+# Tray · Issue #5 · wwmm/pulseeffects 
+# https://github.com/wwmm/pulseeffects/issues/5
+# 
+# In any case @Ixoos there is something you can do that has a similar effect as having a daemon. 
+# Start PulseEffects with the option of hiding the interface https://github.com/wwmm/pulseeffects/wiki/Command-Line-Options. 
+# You just have to write a .desktop file that uses this command line option and copy it to ~/.config/autostart.
+# 
+cp ./com.github.wwmm.pulseeffects.desktop ~/.config/autostart/
+
+#
+# command line - Running a .desktop file in the terminal - Ask Ubuntu 
+# https://askubuntu.com/a/577819
+#
+# jceb/dex: DesktopEntry Execution 
+# https://github.com/jceb/dex
+#
+sudo apt-get install -y dex
+dex ./com.github.wwmm.pulseeffects.desktop
+
+###############
+# How To Create Menu Icon in Ubuntu for Installed Flatpak Application 
+# http://www.ubuntubuzz.com/2016/12/how-to-create-menu-icon-in-ubuntu-for-installed-flatpak-application.html
+###############
+# install alacarte (Menu Editor)
+###############
+sudo apt-get install -y alacarte
+
+
 #########################
 # TODO: build & up all docker service
 #########################
