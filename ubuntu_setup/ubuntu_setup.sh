@@ -155,7 +155,7 @@ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
 # How do I disable window move with alt + left mouse button in GNOME Shell? - Ask Ubuntu
 # https://askubuntu.com/questions/118151/how-do-i-disable-window-move-with-alt-left-mouse-button-in-gnome-shell/118179#118179
 #
-sudo apt-get install dconf-tools
+sudo apt-get install -y dconf-tools
 
 
 ########################
