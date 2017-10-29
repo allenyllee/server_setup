@@ -130,6 +130,34 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt-get update
 sudo apt-get install -y code # or code-insiders
 
+#
+# for Spell Right extension to find system dictionary
+# 
+# Spell Right - Visual Studio Marketplace 
+# https://marketplace.visualstudio.com/items?itemName=ban.spellright
+#
+ln -s /usr/share/hunspell ~/.config/Code/Dictionaries
+
+#
+# Visual Studio Code Comes to Linux · 2buntu 
+# https://2buntu.com/articles/1529/visual-studio-code-comes-to-linux/
+#
+# Multiple Cursors
+# Code lets you edit a file in multiple places at the same time 
+# (something that Sublime users are also familiar with). 
+# However, Ubuntu users will quickly run into a problem. 
+# The keyboard shortcut for doing this is Alt+Click, which by default will move the window instead of adding another cursor. 
+# To fix this, we need to change a setting:
+#
+gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
+
+#
+# How do I disable window move with alt + left mouse button in GNOME Shell? - Ask Ubuntu
+# https://askubuntu.com/questions/118151/how-do-i-disable-window-move-with-alt-left-mouse-button-in-gnome-shell/118179#118179
+#
+sudo apt-get install dconf-tools
+
+
 ########################
 # install gun global
 ########################
