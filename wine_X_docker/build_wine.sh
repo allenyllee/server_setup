@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t wine_x_docker .
+nvidia-docker build -t wine_x_docker .

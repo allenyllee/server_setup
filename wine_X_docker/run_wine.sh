@@ -60,7 +60,7 @@
 #        twlsw/wine \
 #        -c "wine wineboot --init;wine notepad.exe;bash#
 
-docker run \
+nvidia-docker run \
         -ti \
         --rm \
         -e DISPLAY=$DISPLAY \
