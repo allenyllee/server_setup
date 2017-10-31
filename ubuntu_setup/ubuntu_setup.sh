@@ -157,6 +157,8 @@ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
 #
 sudo apt-get install -y dconf-tools
 
+# install bash debug
+sudo apt-get install -y bashdb
 
 ########################
 # install gun global
