@@ -453,6 +453,28 @@ dex ./com.github.wwmm.pulseeffects.desktop
 sudo apt-get install -y alacarte
 
 
+###################
+# How to enable numlock at boot time for login screen? - Ask Ubuntu 
+# https://askubuntu.com/questions/155679/how-to-enable-numlock-at-boot-time-for-login-screen
+###################
+sudo apt-get update
+sudo apt-get -y install numlockx
+
+# first remove previous numlock command
+sudo sed -i 's|^.*[Nn]umlock.*||' /etc/rc.local 
+# second remove previous newline character
+# https://stackoverflow.com/a/8997314/1851492
+#
+# 1. Use tr to swap the newline with another character.
+# NULL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
+# 2. Use sed to match the NULL
+# 3. Use tr to swap back extra newlines if you need them
+tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+sudo sed -i 's|\x00\x00\x00\x00exit|\x00exit|' /etc/rc.local >/dev/null
+tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+# third add new numlock command
+sudo sed -i 's|^exit 0.*$|# Numlock enable\n[ -x /usr/bin/numlockx ] \&\& numlockx on\n\nexit 0|' /etc/rc.local
+
 #########################
 # TODO: build & up all docker service
 #########################
