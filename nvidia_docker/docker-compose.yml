@@ -62,3 +62,20 @@ services:
             - DISPLAY=$DISPLAY # for Xwindow GUI
             - PASSWORD=12345678
         restart: always
+
+    anaconda:
+        container_name: anaconda3
+        image: continuumio/anaconda3 
+        ports:
+            - "8889:8888"
+        volumes: 
+            - ./project/jupyter/notebooks:/opt/notebooks
+            - ./project:/root/project
+            - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+        environment:
+            - DISPLAY=$DISPLAY # for Xwindow GUI
+            - PASSWORD=$PSWD
+        stdin_open: true # docker run -i
+        tty: true # docker run -t
+        command: /opt/notebooks/jupyter_init.sh
+        restart: always

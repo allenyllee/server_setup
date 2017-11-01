@@ -1,4 +1,25 @@
 services:
+  anaconda:
+    command: /opt/notebooks/jupyter_init.sh
+    container_name: anaconda3
+    devices:
+    - /dev/nvidia0
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+    environment:
+    - DISPLAY=$DISPLAY
+    - PASSWORD=$PSWD
+    image: continuumio/anaconda3
+    ports:
+    - 8889:8888
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+    - ./project/jupyter/notebooks:/opt/notebooks
+    - ./project:/root/project
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - nvidia_driver_387.12:/usr/local/nvidia:ro
   cuda80:
     build:
       context: .
