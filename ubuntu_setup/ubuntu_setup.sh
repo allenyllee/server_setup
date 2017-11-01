@@ -462,20 +462,38 @@ sudo apt-get install -y alacarte
 sudo apt-get update
 sudo apt-get -y install numlockx
 
-# first remove previous numlock command
-sudo sed -i 's|^.*[Nn]umlock.*||' /etc/rc.local 
-# second remove previous newline character
-# https://stackoverflow.com/a/8997314/1851492
+# ################################
+# # Just turn on numlock after user login
+# ################################
+# # first remove previous numlock command
+# sudo sed -i 's|^.*[Nn]umlock.*||' /etc/rc.local 
+# # second remove previous newline character
+# # https://stackoverflow.com/a/8997314/1851492
+# #
+# # 1. Use tr to swap the newline with another character.
+# # NULL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
+# # 2. Use sed to match the NULL
+# # 3. Use tr to swap back extra newlines if you need them
+# tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+# sudo sed -i 's|\x00\x00\x00\x00exit|\x00exit|' /etc/rc.local >/dev/null
+# tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+# # third add new numlock command
+# sudo sed -i 's|^exit 0.*$|# Numlock enable\n[ -x /usr/bin/numlockx ] \&\& numlockx on\n\nexit 0|' /etc/rc.local
+# ################################
+
+
+#####################################
+# turn on numlock before & after login
+#####################################
+# Turn on NumLock Automatically When Ubuntu 14.04 Boots Up | UbuntuHandbook 
+# http://ubuntuhandbook.org/index.php/2014/06/turn-on-numlock-ubuntu-14-04/
 #
-# 1. Use tr to swap the newline with another character.
-# NULL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
-# 2. Use sed to match the NULL
-# 3. Use tr to swap back extra newlines if you need them
-tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
-sudo sed -i 's|\x00\x00\x00\x00exit|\x00exit|' /etc/rc.local >/dev/null
-tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
-# third add new numlock command
-sudo sed -i 's|^exit 0.*$|# Numlock enable\n[ -x /usr/bin/numlockx ] \&\& numlockx on\n\nexit 0|' /etc/rc.local
+sudo sed -i 's|^.*numlockx.*||' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+tr '\n' '@' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+sudo sed -i 's|@@$|@|' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+tr '@' '\n' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee -a /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+
 
 #########################
 # TODO: build & up all docker service
