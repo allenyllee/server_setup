@@ -14,8 +14,10 @@ services:
         volumes:
             - ./project:/root/project
             - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+            - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
         environment:
             - DISPLAY=$DISPLAY # for Xwindow GUI
+            - XAUTHORITY=/tmp/.docker.xauth
         cap_add:
             - SYS_ADMIN
         devices:

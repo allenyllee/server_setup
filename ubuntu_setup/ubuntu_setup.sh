@@ -76,6 +76,26 @@ sudo systemctl daemon-reload
 sudo service docker restart
 
 
+#
+# run GUI app in docker with Xauthority file (without using xhost +local:root)
+# https://stackoverflow.com/a/25280523/1851492
+#
+# docker/Tutorials/GUI - ROS Wiki 
+# http://wiki.ros.org/docker/Tutorials/GUI
+#
+# you need to mount volume /tmp/.docker.xauth and 
+# set environment vaiable XAUTHORITY=/tmp/.docker.xauth 
+# in your docker run command
+# 
+# --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw
+# --env="XAUTHORITY=/tmp/.docker.xauth"
+#
+XAUTH=/tmp/.docker.xauth
+touch $XAUTH
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+
+
 ######################
 # install Nvidia driver
 # How do I install the Nvidia drivers? - Ask Ubuntu 

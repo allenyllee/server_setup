@@ -35,6 +35,7 @@ services:
     entrypoint: /usr/sbin/sshd -d
     environment:
     - DISPLAY=$DISPLAY
+    - XAUTHORITY=/tmp/.docker.xauth
     ports:
     - '88:22'
     restart: always
@@ -45,6 +46,7 @@ services:
     volumes:
     - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
+    - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
     - nvidia_driver_387.12:/usr/local/nvidia:ro
   cuda90:
     build:
