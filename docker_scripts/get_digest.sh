@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #
-# Get digest & imageId from dockerhub
+# Get digest & imageId & all tags from dockerhub
 #
 # usage:
-#       ./get_digest.sh [username] [password] [image]
+#       ./get_digest.sh [username] [password] [image] [tag]
 #
 # before use this script, you need to install jq
 # in ubuntu:
@@ -112,6 +112,8 @@ curl -s \
 # I need to add "Accept: application/vnd.docker.distribution.manifest.v2+json" as an HTTP header:
 # curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET -vvv -k http://registry-server:5000/v2/good_image/manifests/latest
 #
+
+# get header
 HEADER=\
 $(
 curl -s -v -I \
@@ -121,6 +123,7 @@ https://registry-1.docker.io/v2/$REPOSITORY/manifests/$TAG \
 2>/dev/null
 )
 
+# get json body
 BODY=\
 $(
 curl -s -v \
@@ -130,16 +133,20 @@ https://registry-1.docker.io/v2/$REPOSITORY/manifests/$TAG \
 2>/dev/null
 )
 
+# get digest
 DIGEST=$(echo "$HEADER" | grep Docker-Content-Digest | cut -d ':' -f3)
-IMAGEID=$(echo "$BODY" | jq -r '.config.digest' | cut -d ':' -f2)
-
 echo "The digest of $REPOSITORY is:"
 echo "$DIGEST"
 echo
+
+# get imageId
+IMAGEID=$(echo "$BODY" | jq -r '.config.digest' | cut -d ':' -f2)
 echo "The imageId of $REPOSITORY is:"
 echo "$IMAGEID"
 echo
 
 # get all tags
-#curl -s -H "Authorization: Bearer $DT" https://index.docker.io/v2/$REPOSITORY/tags/list
-
+ALL_TAGS=$(curl -s -H "Authorization: Bearer $DT" https://index.docker.io/v2/$REPOSITORY/tags/list)
+echo "All tags of $REPOSITORY is:"
+echo "$ALL_TAGS"
+echo
