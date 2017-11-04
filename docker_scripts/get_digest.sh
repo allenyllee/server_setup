@@ -128,7 +128,12 @@ curl -s \
 # I need to add "Accept: application/vnd.docker.distribution.manifest.v2+json" as an HTTP header:
 # curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET -vvv -k http://registry-server:5000/v2/good_image/manifests/latest
 #
-
+# Is that possible to get image ID from Docker Registry V2? - Stack Overflow
+# https://stackoverflow.com/questions/37758258/is-that-possible-to-get-image-id-from-docker-registry-v2
+# From my research, you can obtain the image ID from the registry(2.3.0+) with
+# curl -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' http://$server/v2/$repo/manifests/$tag
+# and the config.digest field in the response represents imageID,that what you want!
+#
 case $OPTION in
 
 digest)
