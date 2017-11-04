@@ -344,7 +344,7 @@ sudo apt install -y copyq
 
 ####################################
 # install fcitx-chewing 新酷音
-# ubuntu安裝fcitx坊注音輸入法
+# ubuntu安裝fcitx及注音輸入法
 # https://smpsfox.blogspot.tw/2016/06/ubuntufcitx.html
 ####################################
 sudo apt-get install -y fcitx fcitx-chewing
@@ -370,7 +370,7 @@ ResultActive=yes
 END
 
 #######################
-# Ubuntu 如何支杴exFAT(FAT64)檔案系統(File System)？ | MagicLen
+# Ubuntu 如何支援exFAT(FAT64)檔案系統(File System)？ | MagicLen
 # https://magiclen.org/ubuntu-exfat/
 #######################
 sudo apt install -y exfat-utils exfat-fuse
