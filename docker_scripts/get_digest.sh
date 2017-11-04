@@ -134,6 +134,20 @@ curl -s \
 # curl -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' http://$server/v2/$repo/manifests/$tag
 # and the config.digest field in the response represents imageID,that what you want!
 #
+# jq Manual (development version) 
+# https://stedolan.github.io/jq/manual/
+#
+#  Array/Object Value Iterator: .[]
+# If you use the .[index] syntax, but omit the index entirely, it will return all of the elements of an array. 
+# Running .[] with the input [1,2,3] will produce the numbers as three separate results, rather than as a single array.
+#
+#  Pipe: |
+# The | operator combines two filters by feeding the output(s) of the one on the left into the input of the one on the right. 
+# It’s pretty much the same as the Unix shell’s pipe, if you’re used to that.
+# If the one on the left produces multiple results, the one on the right will be run for each of those results. 
+# So, the expression .[] | .foo retrieves the “foo” field of each element of the input array.
+#
+
 case $OPTION in
 
 digest)
