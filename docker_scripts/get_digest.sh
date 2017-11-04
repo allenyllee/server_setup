@@ -1,26 +1,40 @@
 #!/bin/bash
 
 #
-# Get digest & imageId & all tags from dockerhub
+# Get digest & imageid & tags from dockerhub
 #
 # usage:
-#       ./get_digest.sh [username] [password] [image] [tag]
+#       ./get_digest.sh [username] [password] [image] [tag] [option] [registry]
+# option:
+#       digest, imageid, tags
+#
+# registry:
+#       registry-1.docker.io, index.docker.io
 #
 # before use this script, you need to install jq
 # in ubuntu:
 #       sudo apt-get install jq
 #
 
-USERNAME=$1         # reset USERNAME
-PASSWORD=$2         # reset PASSWORD
-REPOSITORY=$3       # get repositry name from argument1
-TAG=""
+USERNAME=$1         # user name
+PASSWORD=$2         # pasword
+REPOSITORY=$3       # repositry name
+TAG=""              # specify image tag
+OPTION=$5           # digest, imageid, tags
+REGISTRY=$6         # which registry
 
 if [ -z $4 ]
 then
     TAG=latest #default tag
 else
     TAG=$4
+fi
+
+if [ -z $6 ]
+then
+    REGISTRY=registry-1.docker.io #default registry
+else
+    REGISTRY=$6
 fi
 
 #echo "$USERNAME:$PASSWORD"
@@ -31,7 +45,7 @@ fi
 # echo -n 'scottlinux.com rocks' | base64
 # use “echo -n” to prevent the newline from echo being encoded in the result as well.
 #
-USERNAME_PASSWORD_BASE64=$(echo -n "$USERNAME:$PASSWORD" | base64)
+#USERNAME_PASSWORD_BASE64=$(echo -n "$USERNAME:$PASSWORD" | base64)
 
 #echo "$USERNAME_PASSWORD_BASE64"
 
@@ -79,6 +93,8 @@ USERNAME_PASSWORD_BASE64=$(echo -n "$USERNAME:$PASSWORD" | base64)
 # your registry user credentials, and the additional scope parameter 'account='
 # (see http://www.cakesolutions.net/teamblogs/docker-registry-api-calls-as-an-authenticated-user)
 # curl -u $UNAME:$UPASS "https://auth.docker.io/token?service=registry.docker.io&sco‌​pe=repository:$REPOS‌​ITORY:pull&account=$‌​UNAME"
+
+# get access token
 DT=\
 $(
 curl -s \
@@ -113,40 +129,62 @@ curl -s \
 # curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET -vvv -k http://registry-server:5000/v2/good_image/manifests/latest
 #
 
+case $OPTION in
+
+digest)
 # get header
 HEADER=\
 $(
 curl -s -v -I \
 -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
 -H "Authorization: Bearer $DT" \
-https://registry-1.docker.io/v2/$REPOSITORY/manifests/$TAG \
+https://$REGISTRY/v2/$REPOSITORY/manifests/$TAG \
 2>/dev/null
 )
+# get digest
+DIGEST=$(echo "$HEADER" | grep Docker-Content-Digest | cut -d ':' -f3)
+#echo "The digest of $REPOSITORY is:"
+echo "$DIGEST"
+#echo
+;;
 
+imageid)
 # get json body
 BODY=\
 $(
 curl -s -v \
 -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
 -H "Authorization: Bearer $DT" \
-https://registry-1.docker.io/v2/$REPOSITORY/manifests/$TAG \
+https://$REGISTRY/v2/$REPOSITORY/manifests/$TAG \
 2>/dev/null
 )
-
-# get digest
-DIGEST=$(echo "$HEADER" | grep Docker-Content-Digest | cut -d ':' -f3)
-echo "The digest of $REPOSITORY is:"
-echo "$DIGEST"
-echo
-
 # get imageId
 IMAGEID=$(echo "$BODY" | jq -r '.config.digest' | cut -d ':' -f2)
-echo "The imageId of $REPOSITORY is:"
+#echo "The imageId of $REPOSITORY is:"
 echo "$IMAGEID"
-echo
+#echo
+;;
 
+tags)
+# get tag list in json form
+LIST=\
+$(
+curl -s \
+-H "Authorization: Bearer $DT" \
+https://$REGISTRY/v2/$REPOSITORY/tags/list \
+2>/dev/null
+)
 # get all tags
-ALL_TAGS=$(curl -s -H "Authorization: Bearer $DT" https://index.docker.io/v2/$REPOSITORY/tags/list)
-echo "All tags of $REPOSITORY is:"
+ALL_TAGS=$(echo "$LIST" | jq -r '.tags | .[]' | tr '\n' '@' | sed 's|@|, |g')
+#echo "All tags of $REPOSITORY is:"
 echo "$ALL_TAGS"
-echo
+#echo
+;;
+
+*)
+echo don\'t know
+;;
+esac
+
+
+
