@@ -186,6 +186,19 @@ sudo apt-get install -y dconf-tools
 # install bash debug
 sudo apt-get install -y bashdb
 
+################
+# build pdf
+################
+# install PhantomJS
+sudo apt install -y phantomjs
+phantomjs --version
+
+# install pandoc
+export VERSION=2.0.1.1
+wget https://github.com/jgm/pandoc/releases/download/$VERSION/pandoc-$VERSION-1-amd64.deb
+sudo dpkg -i pandoc-$VERSION-1-amd64.deb
+
+
 ########################
 # install gun global
 ########################
