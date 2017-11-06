@@ -2,8 +2,8 @@
 
 #
 # x11 - Can you run GUI apps in a docker container? - Stack Overflow 
-# https://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container/25280523#25280523
-#
+# https://stackoverflow.com/a/25280523/1851492
+# 
 docker build -t xeyes - << EOF
 FROM debian
 RUN apt-get update
