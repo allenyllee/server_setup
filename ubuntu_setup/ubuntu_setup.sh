@@ -193,11 +193,14 @@ sudo apt-get install -y bashdb
 sudo apt install -y phantomjs
 phantomjs --version
 
+
 # install pandoc
 export VERSION=2.0.1.1
 wget https://github.com/jgm/pandoc/releases/download/$VERSION/pandoc-$VERSION-1-amd64.deb
 sudo dpkg -i pandoc-$VERSION-1-amd64.deb
 
+# install xelatex for chinese support
+sudo apt install -y texlive-xetex 
 
 ########################
 # install gun global
