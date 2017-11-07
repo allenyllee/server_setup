@@ -100,7 +100,7 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 # jq is like sed for JSON data - you can use it to slice and filter and 
 # map and transform structured data with the same ease that sed, awk, 
 # grep and friends let you play with text.
-sudo apt-get install jq
+sudo apt-get install -y jq
 
 ######################
 # install Nvidia driver
@@ -544,7 +544,7 @@ sudo apt-get install -y alacarte
 # https://askubuntu.com/questions/155679/how-to-enable-numlock-at-boot-time-for-login-screen
 ###################
 sudo apt-get update
-sudo apt-get -y install numlockx
+sudo apt-get install -y numlockx
 
 # ################################
 # # Just turn on numlock after user login
