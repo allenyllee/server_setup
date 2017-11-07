@@ -1,6 +1,6 @@
 services:
   anaconda:
-    command: /opt/notebooks/jupyter_init.sh
+    command: /opt/notebooks/init_jupyter/jupyter_init.sh
     container_name: anaconda3
     devices:
     - /dev/nvidia0
@@ -8,6 +8,7 @@ services:
     - /dev/nvidia-uvm
     environment:
     - DISPLAY=$DISPLAY
+    - XAUTHORITY=/tmp/.docker.xauth
     - PASSWORD=$PSWD
     image: continuumio/anaconda3
     ports:
@@ -16,9 +17,9 @@ services:
     stdin_open: true
     tty: true
     volumes:
-    - ./project/jupyter/notebooks:/opt/notebooks
-    - ./project:/root/project
     - /tmp/.X11-unix:/tmp/.X11-unix
+    - /tmp/.docker.xauth:/tmp/.docker.xauth
+    - ./project/jupyter/notebooks:/opt/notebooks
     - nvidia_driver_387.12:/usr/local/nvidia:ro
   cuda80:
     build:

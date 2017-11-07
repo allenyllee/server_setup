@@ -17,7 +17,7 @@ else
     COMMAND="PSWD=$1 nvidia-docker-compose up anaconda"
 fi
 
-xhost local:root
+#xhost local:root
 
 # create new terminal window to run COMMAND
 echo $COMMAND

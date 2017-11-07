@@ -71,13 +71,14 @@ services:
         ports:
             - "8889:8888"
         volumes: 
-            - ./project/jupyter/notebooks:/opt/notebooks
-            - ./project:/root/project
-            - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+            - /tmp/.X11-unix:/tmp/.X11-unix                     # XSCOKS
+            - /tmp/.docker.xauth:/tmp/.docker.xauth             # XAUTH
+            - ./project/jupyter/notebooks:/opt/notebooks        # notebook
         environment:
-            - DISPLAY=$DISPLAY # for Xwindow GUI
-            - PASSWORD=$PSWD
-        stdin_open: true # docker run -i
-        tty: true # docker run -t
-        command: /opt/notebooks/jupyter_init.sh
+            - DISPLAY=$DISPLAY                                  # X Window Display
+            - XAUTHORITY=/tmp/.docker.xauth                     # XAUTH
+            - PASSWORD=$PSWD                                    # password
+        stdin_open: true                                        # docker run -i
+        tty: true                                               # docker run -t
+        command: /opt/notebooks/init_jupyter/jupyter_init.sh    # init script
         restart: always
