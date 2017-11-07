@@ -202,6 +202,48 @@ sudo dpkg -i pandoc-$VERSION-1-amd64.deb
 # install xelatex for chinese support
 sudo apt install -y texlive-xetex 
 
+######################
+# install nodejs
+# nodesource/distributions: NodeSource Node.js Binary Distributions 
+# https://github.com/nodesource/distributions
+######################
+curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v # print version
+
+# add module search path NODE_PATH
+# npm - node.js modules path - Stack Overflow 
+# https://stackoverflow.com/questions/13465829/node-js-modules-path
+sed -i 's|^.*NODE_PATH.*||' ~/.bash_profile
+tr '\n' '\000' < ~/.bash_profile | sudo tee ~/.bash_profile >/dev/null
+sed -i 's|\x00||' ~/.bash_profile
+tr '\000' '\n' < ~/.bash_profile | sudo tee ~/.bash_profile >/dev/null
+echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.bash_profile && . ~/.bash_profile
+
+# install puppeteer
+# npm install -g puppeteer fails · Issue #375 · GoogleChrome/puppeteer 
+# https://github.com/GoogleChrome/puppeteer/issues/375
+#
+# 03 - Fixing npm permissions | npm Documentation 
+# https://docs.npmjs.com/getting-started/fixing-npm-permissions
+#
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+sed -i 's|\x00export.*npm-global.*\x00|\x00|' ~/.profile
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+echo 'export PATH="~/.npm-global/bin:$PATH"' >> ~/.profile
+source ~/.profile
+
+npm install -g puppeteer
+
+#
+# install fast-cli
+# sindresorhus/fast-cli: Test your download speed using fast.com
+# https://github.com/sindresorhus/fast-cli
+#
+npm install --global fast-cli
+
 ########################
 # install gun global
 ########################
