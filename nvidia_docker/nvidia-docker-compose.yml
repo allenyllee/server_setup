@@ -1,7 +1,9 @@
 services:
   anaconda:
-    command: /opt/notebooks/init_jupyter/jupyter_init.sh
-    container_name: anaconda3
+    build:
+      context: .
+      dockerfile: Dockerfile_anaconda
+    container_name: anaconda
     devices:
     - /dev/nvidia0
     - /dev/nvidiactl
@@ -10,7 +12,6 @@ services:
     - DISPLAY=$DISPLAY
     - XAUTHORITY=/tmp/.docker.xauth
     - PASSWORD=$PSWD
-    image: continuumio/anaconda3
     ports:
     - 8889:8888
     restart: always

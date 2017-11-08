@@ -66,8 +66,10 @@ services:
         restart: always
 
     anaconda:
-        container_name: anaconda3
-        image: continuumio/anaconda3 
+        build:
+            context: .
+            dockerfile: Dockerfile_anaconda
+        container_name: anaconda
         ports:
             - "8889:8888"
         volumes: 
@@ -80,5 +82,4 @@ services:
             - PASSWORD=$PSWD                                    # password
         stdin_open: true                                        # docker run -i
         tty: true                                               # docker run -t
-        command: /opt/notebooks/init_jupyter/jupyter_init.sh    # init script
         restart: always
