@@ -101,9 +101,16 @@ sudo service docker restart
 # --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw
 # --env="XAUTHORITY=/tmp/.docker.xauth"
 #
-XAUTH=/tmp/.docker.xauth
-touch $XAUTH
-xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+# set .docker.xauth after login, becasue /tmp will be deleted everytime system startup
+# filesystem - How is the /tmp directory cleaned up? - Ask Ubuntu 
+# https://askubuntu.com/questions/20783/how-is-the-tmp-directory-cleaned-up
+# 
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+sed -i 's|\x00XAUTH=.*-\x00|\x00|' ~/.profile
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+echo "XAUTH=/tmp/.docker.xauth; touch $XAUTH; xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -" >> ~/.profile
+source ~/.profile
 
 #
 # install jq
@@ -236,6 +243,18 @@ sudo dpkg -i pandoc-$VERSION-1-amd64.deb
 # install xelatex for chinese support
 sudo apt install -y texlive-xetex 
 
+
+# ________   ________  ________  _______         ___  ________
+#|\   ___  \|\   __  \|\   ___ \|\  ___ \       |\  \|\   ____\
+#\ \  \\ \  \ \  \|\  \ \  \_|\ \ \   __/|      \ \  \ \  \___|_
+# \ \  \\ \  \ \  \\\  \ \  \ \\ \ \  \_|/__  __ \ \  \ \_____  \
+#  \ \  \\ \  \ \  \\\  \ \  \_\\ \ \  \_|\ \|\  \\_\  \|____|\  \
+#   \ \__\\ \__\ \_______\ \_______\ \_______\ \________\____\_\  \
+#    \|__| \|__|\|_______|\|_______|\|_______|\|________|\_________\
+#                                                       \|_________|
+#
+#
+
 ######################
 # install nodejs
 # nodesource/distributions: NodeSource Node.js Binary Distributions 
@@ -245,16 +264,6 @@ curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
 node -v # print version
 
-# add module search path NODE_PATH
-# npm - node.js modules path - Stack Overflow 
-# https://stackoverflow.com/questions/13465829/node-js-modules-path
-sed -i 's|^.*NODE_PATH.*||' ~/.bash_profile
-tr '\n' '\000' < ~/.bash_profile | sudo tee ~/.bash_profile >/dev/null
-sed -i 's|\x00||' ~/.bash_profile
-tr '\000' '\n' < ~/.bash_profile | sudo tee ~/.bash_profile >/dev/null
-echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.bash_profile && . ~/.bash_profile
-
-# install puppeteer
 # npm install -g puppeteer fails · Issue #375 · GoogleChrome/puppeteer 
 # https://github.com/GoogleChrome/puppeteer/issues/375
 #
@@ -263,12 +272,27 @@ echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.bash_profile && . ~/.bash_profi
 #
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
+
+# set PATH
 tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
-sed -i 's|\x00export.*npm-global.*\x00|\x00|' ~/.profile
+sed -i 's|\x00export PATH=".*npm-global.*"\x00|\x00|' ~/.profile
 tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
 echo 'export PATH="~/.npm-global/bin:$PATH"' >> ~/.profile
 source ~/.profile
 
+# add module search path NODE_PATH
+# npm - node.js modules path - Stack Overflow 
+# https://stackoverflow.com/questions/13465829/node-js-modules-path
+
+# set NODE_PATH
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+sed -i 's|\x00export NODE_PATH=".*node_modules"\x00|\x00|' ~/.profile
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.profile
+source ~/.profile
+
+
+# install puppeteer
 npm install -g puppeteer
 
 #
@@ -455,7 +479,7 @@ sudo apt install -y copyq
 
 ####################################
 # install fcitx-chewing 新酷音
-# ubuntu安裝fcitx及注音輸入法
+# ubuntu安裝fcitx坊注音輸入法
 # https://smpsfox.blogspot.tw/2016/06/ubuntufcitx.html
 ####################################
 sudo apt-get install -y fcitx fcitx-chewing
@@ -481,7 +505,7 @@ ResultActive=yes
 END
 
 #######################
-# Ubuntu 如何支援exFAT(FAT64)檔案系統(File System)？ | MagicLen
+# Ubuntu 如何支杴exFAT(FAT64)檔案系統(File System)？ | MagicLen
 # https://magiclen.org/ubuntu-exfat/
 #######################
 sudo apt install -y exfat-utils exfat-fuse
