@@ -17,11 +17,11 @@ apt-get install -y libatlas-base-dev libgtk-3-dev
 # build dlib
 # davisking/dlib: A toolkit for making real world machine learning and data analysis applications in C++ 
 # https://github.com/davisking/dlib
-bash <<EOF
-cd /root/project
-git clone https://github.com/davisking/dlib.git
-cd dlib/
-python setup.py install
-# python setup.py install --yes USE_AVX_INSTRUCTIONS
-EOF
+#bash <<EOF
+#cd /root/project
+#git clone https://github.com/davisking/dlib.git
+#cd dlib/
+#python setup.py install
+## python setup.py install --yes USE_AVX_INSTRUCTIONS
+#EOF
 
