@@ -487,6 +487,20 @@ sudo apt-get install -y fcitx fcitx-chewing
 # solve black window issue
 sudo apt-get install -y qtdeclarative5-qtquick2-plugin
 
+# install 7-zip
+# How to install 7zip in Ubuntu | Ubuntu 12.04 Tips and Tricks | Ubuntu | Tips and Tricks 
+# https://www.computernetworkingnotes.com/ubuntu-12-04-tips-and-tricks/how-to-install-7zip-in-ubuntu.html
+# p7zip available in two packages.
+#     p7zip-full
+#     p7zip
+# Difference between p7zip-full and p7zip are following.
+# p7zip-full" contains "7z" and "7za" archives while "p7zip" contains "p7r" archive. 
+# So p7zip provides 7zr (liter version of 7za/7z) and documentation whereas p7zip-full provides 7z (with 7z.so), 
+# 7za, 7zCon.sfx (to make auto extractible archive), and documentation.
+# If you want to create/extract only 7z archive (without password) take p7zip (7zr) else p7zip-full (with p7zip-rar)
+sudo apt-get install p7zip-full
+
+
 ############################
 # add hibernate option
 # How can I hibernate on Ubuntu 16.04? - Ask Ubuntu
