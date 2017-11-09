@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "Dockerfile/condaD"
+		},
+		{
+			"path": "nvidia_docker/project/jupyter"
+		}
+	],
+	"settings": {}
+}
