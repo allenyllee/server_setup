@@ -106,10 +106,30 @@ sudo service docker restart
 # filesystem - How is the /tmp directory cleaned up? - Ask Ubuntu 
 # https://askubuntu.com/questions/20783/how-is-the-tmp-directory-cleaned-up
 # 
+
+# workflow:
+#       1. To avoid docker daemon automatically allocate .docker.xauth as a directory, 
+#           insert item into /etc/rc.local to create a placeholder file .docker.xauth and change owner to 1000 (default user)
+#           Because /etc/rc.local will execute at the end of runlevel, before system service start, 
+#           this is a good point to create this file.
+#       2. After docker daemon start, it will mount .docker.xauth if needed. 
+#       3. After login, system will execute ~/.profile to setup .docker.xauth file
+
+# 1. Use tr to swap the newline character to NUL character.
+#       NUL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
+# 2. Use sed to match the string
+# 3. Use tr to swap back.
+# 4. insert a string into /etc/rc.local before exit 0
+tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+sudo sed -i 's|\x00XAUTH=.*\x00\x00|\x00|' /etc/rc.local >/dev/null
+tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+sudo sed -i 's|^exit 0.*$|XAUTH=/tmp/.docker.xauth; if [ -d $XAUTH ]; then rm -rf $XAUTH; fi; touch $XAUTH; chown 1000 $XAUTH\n\nexit 0|' /etc/rc.local
+
+# append string in ~/.profile
 tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
 sed -i 's|\x00XAUTH=.*-\x00|\x00|' ~/.profile
 tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
-echo "XAUTH=/tmp/.docker.xauth; touch $XAUTH; xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -" >> ~/.profile
+echo "XAUTH=/tmp/.docker.xauth; touch \$XAUTH; xauth nlist \$DISPLAY | sed -e 's/^..../ffff/' | xauth -f \$XAUTH nmerge -" >> ~/.profile
 source ~/.profile
 
 #
