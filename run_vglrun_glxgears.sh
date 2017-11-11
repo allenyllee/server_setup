@@ -12,7 +12,10 @@
 #
 
 XSOCK=/tmp/.X11-unix
-XAUTH=/tmp/.docker.xauth
+XAUTH_DIR=/tmp/.docker.xauth
+XAUTH=$XAUTH_DIR/.xauth
+
+mkdir -p $XAUTH_DIR && touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 #xhost +local:root
@@ -20,7 +23,7 @@ nvidia-docker run -ti --rm \
     --env="DISPLAY=${DISPLAY}" \
     --env="XAUTHORITY=${XAUTH}" \
     --volume=${XSOCK}:${XSOCK} \
-    --volume=${XAUTH}:${XAUTH} \
+    --volume=${XAUTH_DIR}:${XAUTH_DIR} \
     --volume="/usr/lib/x86_64-linux-gnu/libXv.so.1:/usr/lib/x86_64-linux-gnu/libXv.so.1" \
     plumbee/nvidia-virtualgl:2.5.2 vglrun glxgears
 #xhost -local:root # resetting permissions
