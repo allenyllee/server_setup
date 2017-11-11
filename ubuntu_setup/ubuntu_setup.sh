@@ -87,7 +87,7 @@ sudo systemctl daemon-reload
 sudo service docker restart
 
 
-#
+##############################
 # run GUI app in docker with Xauthority file (without using xhost +local:root)
 # https://stackoverflow.com/a/25280523/1851492
 #
@@ -100,7 +100,7 @@ sudo service docker restart
 # 
 # --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw
 # --env="XAUTHORITY=/tmp/.docker.xauth"
-#
+###############################
 
 # set .docker.xauth after login, becasue /tmp will be deleted everytime system startup
 # filesystem - How is the /tmp directory cleaned up? - Ask Ubuntu 
