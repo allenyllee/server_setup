@@ -17,5 +17,5 @@ XAUTH=$XAUTH_DIR/.xauth
 
 mkdir -p $XAUTH_DIR && touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-docker run -ti -v $XSOCK:$XSOCK -v $XAUTH_DIR:$XAUTH_DIR -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH xeyes
+docker run -ti --rm -v $XSOCK:$XSOCK -v $XAUTH_DIR:$XAUTH_DIR -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH xeyes
 
