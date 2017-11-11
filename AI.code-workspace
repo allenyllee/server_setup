@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "nvidia_docker/project/jupyter"
+		},
+		{
+			"path": "nvidia_docker/project/jupyter/notebooks/ImageProcessig/Emotion_Recognition_python"
+		},
+		{
+			"path": "nvidia_docker/project/jupyter/notebooks/ImageProcessig/Face_SWAP_python"
 		}
 	],
 	"settings": {}
