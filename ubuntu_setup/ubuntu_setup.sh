@@ -502,6 +502,31 @@ sudo add-apt-repository -y ppa:hluk/copyq
 sudo apt update
 sudo apt install -y copyq
 
+############################
+# install pdfsam
+############################
+# How to download the latest release from Github 
+# http://www.starkandwayne.com/blog/how-to-download-the-latest-release-from-github/
+############################
+
+# iinstall openjfx
+sudo apt install -y openjfx
+
+# get latest release file list (all version) from github
+curl -s https://api.github.com/repos/torakiki/pdfsam/releases/latest | jq -r ".assets[].name"
+
+# get latest release URL from github
+pdfsam_type=-1_all.deb
+URL=$(curl -s https://api.github.com/repos/torakiki/pdfsam/releases/latest | jq -r ".assets[] | select(.name | test(\"${pdfsam_type}\")) | .browser_download_url")
+
+# download latest file
+wget --content-disposition $URL
+
+# install package
+sudo dpkg -i pdfsam_*-1_all.deb
+
+
+
 ####################################
 # install fcitx-chewing 新酷音
 # ubuntu安裝fcitx及注音輸入法
