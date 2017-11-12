@@ -508,6 +508,9 @@ sudo apt install -y copyq
 # How to download the latest release from Github 
 # http://www.starkandwayne.com/blog/how-to-download-the-latest-release-from-github/
 ############################
+# PDFsam Basic on Linux with OpenJDK 
+# http://pdfsam.org/run-on-linux-with-openjdk/
+############################
 
 # iinstall openjfx
 sudo apt install -y openjfx
@@ -524,7 +527,6 @@ wget --content-disposition $URL
 
 # install package
 sudo dpkg -i pdfsam_*-1_all.deb
-
 
 
 ####################################
