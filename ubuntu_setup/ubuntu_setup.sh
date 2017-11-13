@@ -652,7 +652,7 @@ sudo apt install -y flatpak
 # https://github.com/wwmm/pulseeffects
 #
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub com.github.wwmm.pulseeffects
+flatpak install -y flathub com.github.wwmm.pulseeffects
 
 # Tray · Issue #5 · wwmm/pulseeffects 
 # https://github.com/wwmm/pulseeffects/issues/5
