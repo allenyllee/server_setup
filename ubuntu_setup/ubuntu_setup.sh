@@ -661,6 +661,7 @@ flatpak install -y flathub com.github.wwmm.pulseeffects
 # Start PulseEffects with the option of hiding the interface https://github.com/wwmm/pulseeffects/wiki/Command-Line-Options. 
 # You just have to write a .desktop file that uses this command line option and copy it to ~/.config/autostart.
 # 
+mkdir -p ~/.config/autostart/
 cp ./com.github.wwmm.pulseeffects.desktop ~/.config/autostart/
 
 #
