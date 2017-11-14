@@ -264,6 +264,7 @@ phantomjs --version
 export VERSION=2.0.1.1
 wget https://github.com/jgm/pandoc/releases/download/$VERSION/pandoc-$VERSION-1-amd64.deb
 sudo dpkg -i pandoc-$VERSION-1-amd64.deb
+sudo rm -rf pandoc-*-1-amd64.deb*
 
 # install xelatex for chinese support
 sudo apt install -y texlive-xetex 
@@ -527,6 +528,7 @@ wget --content-disposition $URL
 
 # install package
 sudo dpkg -i pdfsam_*-1_all.deb
+sudo rm -rf pdfsam_*-1_all.deb*
 
 
 ####################################
@@ -587,6 +589,7 @@ sudo apt install -y exfat-utils exfat-fuse
 ####################
 wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64
 sudo dpkg -i bitmeteros_*-amd64.deb
+sudo rm -rf bitmeteros_*-amd64.deb*
 
 ###############
 # install google chrome
@@ -751,4 +754,6 @@ bash ./run_services.sh "$PROJECT_DIR"
 ##############
 # remove useless packages
 ##############
+sudo apt list --upgradable
+sudo apt upgrade -y
 sudo apt autoremove -y
