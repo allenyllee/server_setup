@@ -392,8 +392,8 @@ echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 # python - Installing Pylint for Python3 on Ubuntu - Ask Ubuntu 
 # https://askubuntu.com/questions/340940/installing-pylint-for-python3-on-ubuntu
 # 
-sudo apt-get install python3-pip
-sudo pip-3.3 install pylint
+sudo apt-get install -y python3-pip
+sudo pip-3.3 install -y pylint
 
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___
 #|\   ____\     |\  \  /  /|\   ____\|\___   ___\\  ___ \ |\   _ \  _   \        |\  \|\   ___  \|\  _____\\   __  \        |\___   ___\\   __  \|\   __  \|\  \
