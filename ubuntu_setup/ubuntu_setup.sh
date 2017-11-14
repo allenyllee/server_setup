@@ -591,6 +591,13 @@ wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64
 sudo dpkg -i bitmeteros_*-amd64.deb
 sudo rm -rf bitmeteros_*-amd64.deb*
 
+# HOW TO USE BITMETEROS:-
+# BitMeter comprises of two items; a 'daemon' that runs continuously in the background, monitoring which ever network interface you're connected to, and a web interface, by means of which you view the information collected. This makes sense, in fact, since most data usage tends to be incurred in your browser anyway. It's set to auto-start at boot by default.
+# When it's installed, go into your browser, and enter the following into the address bar:-
+# 
+# http://localhost:2605/index.html
+
+
 ###############
 # install google chrome
 ###############
