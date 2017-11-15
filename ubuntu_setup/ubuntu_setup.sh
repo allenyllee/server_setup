@@ -496,6 +496,13 @@ sudo apt-get install -y openssh-server
 # install sshfs
 sudo apt-get install -y sshfs
 
+# download & install VirtualGL
+VIRTUALGL_VERSION=2.5.2
+curl -sSL https://downloads.sourceforge.net/project/virtualgl/"${VIRTUALGL_VERSION}"/virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb -o virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb && \
+    dpkg -i virtualgl_*_amd64.deb && \
+    rm virtualgl_*_amd64.deb
+
+
 #####################
 # install CopyQ
 #####################
