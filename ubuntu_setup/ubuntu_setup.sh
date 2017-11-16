@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #/*
-# * @Author: Allen_Lee 
-# * @Date: 2017-10-15 00:27:41 
-# * @Last Modified by:   Allen_Lee 
-# * @Last Modified time: 2017-10-15 00:27:41 
+# * @Author: Allen_Lee
+# * @Date: 2017-10-15 00:27:41
+# * @Last Modified by:   Allen_Lee
+# * @Last Modified time: 2017-10-15 00:27:41
 # */
 
 PROJECT_DIR=$1
@@ -22,7 +22,7 @@ PROJECT_DIR=$1
 
 ########################
 # install docker
-# from: Get Docker CE for Ubuntu | Docker Documentation 
+# from: Get Docker CE for Ubuntu | Docker Documentation
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#recommended-extra-packages-for-trusty-1404
 ########################
 
@@ -43,7 +43,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
 sudo apt-key fingerprint 0EBFCD88
 
-# Use the following command to set up the stable repository. 
+# Use the following command to set up the stable repository.
 # amd64
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -77,7 +77,7 @@ EOF
 
 ######################
 # enable docker api for jenkins CI use
-# Enabling Docker Remote API on Ubuntu 16.04 – The Blog of Ivan Krizsan 
+# Enabling Docker Remote API on Ubuntu 16.04 – The Blog of Ivan Krizsan
 # https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04/
 # test: curl http://localhost:4243/version
 # test2: curl -X GET http://192.168.5.5:4243/images/json
@@ -91,29 +91,29 @@ sudo service docker restart
 # run GUI app in docker with Xauthority file (without using xhost +local:root)
 # https://stackoverflow.com/a/25280523/1851492
 #
-# docker/Tutorials/GUI - ROS Wiki 
+# docker/Tutorials/GUI - ROS Wiki
 # http://wiki.ros.org/docker/Tutorials/GUI
 #
-# you need to mount volume /tmp/.docker.xauth and 
-# set environment vaiable XAUTHORITY=/tmp/.docker.xauth 
+# you need to mount volume /tmp/.docker.xauth and
+# set environment vaiable XAUTHORITY=/tmp/.docker.xauth
 # in your docker run command
-# 
+#
 # --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw
 # --env="XAUTHORITY=/tmp/.docker.xauth"
 ###############################
 
 # set .docker.xauth after login, becasue /tmp will be deleted everytime system startup
-# filesystem - How is the /tmp directory cleaned up? - Ask Ubuntu 
+# filesystem - How is the /tmp directory cleaned up? - Ask Ubuntu
 # https://askubuntu.com/questions/20783/how-is-the-tmp-directory-cleaned-up
-# 
+#
 
 # workflow:
-#       1. To avoid docker automatically create a $XAUTH_DIR directory before it mount, 
-#           insert a command which is to create $XAUTH_DIR directory 
+#       1. To avoid docker automatically create a $XAUTH_DIR directory before it mount,
+#           insert a command which is to create $XAUTH_DIR directory
 #           with mod 777 (read/write for all user) into /etc/rc.local.
-#           Because /etc/rc.local will execute at the end of runlevel which before docker service start, 
+#           Because /etc/rc.local will execute at the end of runlevel which before docker service start,
 #           this is a good point to place it.
-#       2. After docker daemon start, it will mount $XAUTH_DIR if needed. 
+#       2. After docker daemon start, it will mount $XAUTH_DIR if needed.
 #       3. After system login, it will execute ~/.profile to setup $XAUTH_DIR/.xauth file
 
 # 1. Use tr to swap the newline character to NUL character.
@@ -140,8 +140,8 @@ source ~/.profile
 
 # install jq
 # https://stedolan.github.io/jq/
-# jq is like sed for JSON data - you can use it to slice and filter and 
-# map and transform structured data with the same ease that sed, awk, 
+# jq is like sed for JSON data - you can use it to slice and filter and
+# map and transform structured data with the same ease that sed, awk,
 # grep and friends let you play with text.
 sudo apt-get install -y jq
 
@@ -158,7 +158,7 @@ sudo apt-get install -y jq
 
 ######################
 # install Nvidia driver
-# How do I install the Nvidia drivers? - Ask Ubuntu 
+# How do I install the Nvidia drivers? - Ask Ubuntu
 # https://askubuntu.com/questions/61396/how-do-i-install-the-nvidia-drivers
 ######################
 
@@ -175,7 +175,7 @@ sudo apt-get install -y nvidia-387
 
 ######################
 # install nvidia docker
-# NVIDIA/nvidia-docker: Build and run Docker containers leveraging NVIDIA GPUs 
+# NVIDIA/nvidia-docker: Build and run Docker containers leveraging NVIDIA GPUs
 # https://github.com/NVIDIA/nvidia-docker
 ######################
 
@@ -224,21 +224,21 @@ sudo apt-get install -y code # or code-insiders
 
 #
 # for Spell Right extension to find system dictionary
-# 
-# Spell Right - Visual Studio Marketplace 
+#
+# Spell Right - Visual Studio Marketplace
 # https://marketplace.visualstudio.com/items?itemName=ban.spellright
 #
 ln -s /usr/share/hunspell ~/.config/Code/Dictionaries
 
 #
-# Visual Studio Code Comes to Linux · 2buntu 
+# Visual Studio Code Comes to Linux · 2buntu
 # https://2buntu.com/articles/1529/visual-studio-code-comes-to-linux/
 #
 # Multiple Cursors
-# Code lets you edit a file in multiple places at the same time 
-# (something that Sublime users are also familiar with). 
-# However, Ubuntu users will quickly run into a problem. 
-# The keyboard shortcut for doing this is Alt+Click, which by default will move the window instead of adding another cursor. 
+# Code lets you edit a file in multiple places at the same time
+# (something that Sublime users are also familiar with).
+# However, Ubuntu users will quickly run into a problem.
+# The keyboard shortcut for doing this is Alt+Click, which by default will move the window instead of adding another cursor.
 # To fix this, we need to change a setting:
 #
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
@@ -267,7 +267,7 @@ sudo dpkg -i pandoc-$VERSION-1-amd64.deb
 sudo rm -rf pandoc-*-1-amd64.deb*
 
 # install xelatex for chinese support
-sudo apt install -y texlive-xetex 
+sudo apt install -y texlive-xetex
 
 
 # ________   ________  ________  _______         ___  ________
@@ -283,17 +283,17 @@ sudo apt install -y texlive-xetex
 
 ######################
 # install nodejs
-# nodesource/distributions: NodeSource Node.js Binary Distributions 
+# nodesource/distributions: NodeSource Node.js Binary Distributions
 # https://github.com/nodesource/distributions
 ######################
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
 node -v # print version
 
-# npm install -g puppeteer fails · Issue #375 · GoogleChrome/puppeteer 
+# npm install -g puppeteer fails · Issue #375 · GoogleChrome/puppeteer
 # https://github.com/GoogleChrome/puppeteer/issues/375
 #
-# 03 - Fixing npm permissions | npm Documentation 
+# 03 - Fixing npm permissions | npm Documentation
 # https://docs.npmjs.com/getting-started/fixing-npm-permissions
 #
 mkdir ~/.npm-global
@@ -307,7 +307,7 @@ echo 'export PATH="~/.npm-global/bin:$PATH"' >> ~/.profile
 source ~/.profile
 
 # add module search path NODE_PATH
-# npm - node.js modules path - Stack Overflow 
+# npm - node.js modules path - Stack Overflow
 # https://stackoverflow.com/questions/13465829/node-js-modules-path
 
 # set NODE_PATH
@@ -338,8 +338,8 @@ npm install --global fast-cli
 # you should install ncurse lib:
 sudo apt-get install -y lib64ncurses5-dev
 
-# download latest version 
-# Getting GLOBAL 
+# download latest version
+# Getting GLOBAL
 # https://www.gnu.org/software/global/download.html
 wget http://tamacom.com/global/global-6.5.7.tar.gz
 
@@ -359,7 +359,7 @@ sudo rm -rf global-6.5.7 global-6.5.7.tar.gz
 
 #############
 # enable Pygments Plug-in Parser for GNU Global
-# GLOBAL: plugin-factory/PLUGIN_HOWTO.pygments | Fossies 
+# GLOBAL: plugin-factory/PLUGIN_HOWTO.pygments | Fossies
 # https://fossies.org/linux/global/plugin-factory/PLUGIN_HOWTO.pygments
 #############
 
@@ -369,7 +369,7 @@ sudo apt-get install -y python
 # install exuberant-ctags
 sudo apt-get install -y exuberant-ctags
 
-# python - How to install pygments on Ubuntu? - Stack Overflow 
+# python - How to install pygments on Ubuntu? - Stack Overflow
 # https://stackoverflow.com/questions/26215738/how-to-install-pygments-on-ubuntu
 # install python-pygments
 sudo apt-get install -y python-pygments
@@ -382,17 +382,17 @@ type ctags
 # The definition of Pygments plug-in parser is prepared
 # in the default configuration file. Please specify it.
 #
-# How to permanently export a variable in Linux? - Stack Overflow 
+# How to permanently export a variable in Linux? - Stack Overflow
 # https://stackoverflow.com/questions/13046624/how-to-permanently-export-a-variable-in-linux
-# 
+#
 echo GTAGSCONF=/usr/local/share/gtags/gtags.conf|sudo tee -a /etc/environment
 echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 
-# 
+#
 # install pylint for python3
-# python - Installing Pylint for Python3 on Ubuntu - Ask Ubuntu 
+# python - Installing Pylint for Python3 on Ubuntu - Ask Ubuntu
 # https://askubuntu.com/questions/340940/installing-pylint-for-python3-on-ubuntu
-# 
+#
 sudo apt-get install -y python3-pip
 sudo pip-3.3 install -y pylint
 
@@ -409,7 +409,7 @@ sudo pip-3.3 install -y pylint
 
 ###############################
 # system info tools
-# 5 GUI Tools to See Hardware Details in Ubuntu/Linux | TechGainer 
+# 5 GUI Tools to See Hardware Details in Ubuntu/Linux | TechGainer
 # https://www.techgainer.com/5-gui-tools-to-see-hardware-information-in-ubuntulinux/
 ###############################
 
@@ -424,14 +424,14 @@ sudo apt-get install -y hardinfo
 # Sysinfo
 sudo apt-get install -y sysinfo
 
-# lshw-gtk 
+# lshw-gtk
 sudo apt-get install -y lshw-gtk
 
 # KInfoCenter
 sudo apt-get install -y kinfocenter
 
 ###################
-# CUDA-Z 
+# CUDA-Z
 # http://cuda-z.sourceforge.net/
 ###################
 #
@@ -513,10 +513,10 @@ sudo apt install -y copyq
 ############################
 # install pdfsam
 ############################
-# How to download the latest release from Github 
+# How to download the latest release from Github
 # http://www.starkandwayne.com/blog/how-to-download-the-latest-release-from-github/
 ############################
-# PDFsam Basic on Linux with OpenJDK 
+# PDFsam Basic on Linux with OpenJDK
 # http://pdfsam.org/run-on-linux-with-openjdk/
 ############################
 
@@ -549,14 +549,14 @@ sudo apt-get install -y fcitx fcitx-chewing
 sudo apt-get install -y qtdeclarative5-qtquick2-plugin
 
 # install 7-zip
-# How to install 7zip in Ubuntu | Ubuntu 12.04 Tips and Tricks | Ubuntu | Tips and Tricks 
+# How to install 7zip in Ubuntu | Ubuntu 12.04 Tips and Tricks | Ubuntu | Tips and Tricks
 # https://www.computernetworkingnotes.com/ubuntu-12-04-tips-and-tricks/how-to-install-7zip-in-ubuntu.html
 # p7zip available in two packages.
 #     p7zip-full
 #     p7zip
 # Difference between p7zip-full and p7zip are following.
-# p7zip-full" contains "7z" and "7za" archives while "p7zip" contains "p7r" archive. 
-# So p7zip provides 7zr (liter version of 7za/7z) and documentation whereas p7zip-full provides 7z (with 7z.so), 
+# p7zip-full" contains "7z" and "7za" archives while "p7zip" contains "p7r" archive.
+# So p7zip provides 7zr (liter version of 7za/7z) and documentation whereas p7zip-full provides 7z (with 7z.so),
 # 7za, 7zCon.sfx (to make auto extractible archive), and documentation.
 # If you want to create/extract only 7z archive (without password) take p7zip (7zr) else p7zip-full (with p7zip-rar)
 sudo apt-get install p7zip-full
@@ -601,31 +601,31 @@ sudo rm -rf bitmeteros_*-amd64.deb*
 # HOW TO USE BITMETEROS:-
 # BitMeter comprises of two items; a 'daemon' that runs continuously in the background, monitoring which ever network interface you're connected to, and a web interface, by means of which you view the information collected. This makes sense, in fact, since most data usage tends to be incurred in your browser anyway. It's set to auto-start at boot by default.
 # When it's installed, go into your browser, and enter the following into the address bar:-
-# 
+#
 # http://localhost:2605/index.html
 
 
 ###############
 # install google chrome
 ###############
-# UbuntuUpdates - PPA: Google Chrome 
+# UbuntuUpdates - PPA: Google Chrome
 # https://www.ubuntuupdates.org/ppa/google_chrome
 #
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 #sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get install -y google-chrome-stable
 
 #############
 # install normalized audio plugin
 #############
-# sound - Automatically adjust the volume based on content? - Ask Ubuntu 
+# sound - Automatically adjust the volume based on content? - Ask Ubuntu
 # https://askubuntu.com/questions/95716/automatically-adjust-the-volume-based-on-content
 #
-# Change the control parameter to reflect control=-12,1,0.5,0.99 using -12 instead of 0. 
-# This means that only sound above -12 dB will be compressed (softened), 
-# which typically includes anything louder than voices / conversation. 
-# Make this change if you're finding that, when watching movies (e.g. RED 2 on NetFlix), 
+# Change the control parameter to reflect control=-12,1,0.5,0.99 using -12 instead of 0.
+# This means that only sound above -12 dB will be compressed (softened),
+# which typically includes anything louder than voices / conversation.
+# Make this change if you're finding that, when watching movies (e.g. RED 2 on NetFlix),
 # the vocals are still too quiet compared to the explosions.
 #
 #sudo apt-get install -y swh-plugins
@@ -643,11 +643,11 @@ sudo apt-get install -y google-chrome-stable
 #############
 # install pulseeffects from ppa (old version)
 #############
-# sound - Real-Time Volume Leveling & Audio Outputs - Ask Ubuntu 
+# sound - Real-Time Volume Leveling & Audio Outputs - Ask Ubuntu
 # https://askubuntu.com/questions/659582/real-time-volume-leveling-audio-outputs
-# I found the following Internet address: omgubuntu.co.uk/2017/06/install-pulse-effects-ubuntu-ppa. 
-# It is a very good software to get real time audio processing (limiter, compressor and equalizer) with PulseAudio. 
-# 
+# I found the following Internet address: omgubuntu.co.uk/2017/06/install-pulse-effects-ubuntu-ppa.
+# It is a very good software to get real time audio processing (limiter, compressor and equalizer) with PulseAudio.
+#
 #sudo add-apt-repository -y ppa:yunnxx/gnome3
 #sudo apt-get update
 #sudo apt-get install -y pulseeffects
@@ -658,41 +658,52 @@ sudo apt-get install -y google-chrome-stable
 ###############
 # install pulseeffects from flatpak
 ###############
-# Getting Flatpak 
+# Getting Flatpak
 # http://flatpak.org/getting.html
 #
 sudo add-apt-repository -y ppa:alexlarsson/flatpak
 sudo apt update
 sudo apt install -y flatpak
 #
-# wwmm/pulseeffects: Limiter, compressor, reverberation, equalizer and auto volume effects for Pulseaudio applications 
+# wwmm/pulseeffects: Limiter, compressor, reverberation, equalizer and auto volume effects for Pulseaudio applications
 # https://github.com/wwmm/pulseeffects
 #
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.github.wwmm.pulseeffects
 
-# Tray · Issue #5 · wwmm/pulseeffects 
+# Tray · Issue #5 · wwmm/pulseeffects
 # https://github.com/wwmm/pulseeffects/issues/5
-# 
-# In any case @Ixoos there is something you can do that has a similar effect as having a daemon. 
-# Start PulseEffects with the option of hiding the interface https://github.com/wwmm/pulseeffects/wiki/Command-Line-Options. 
+#
+# In any case @Ixoos there is something you can do that has a similar effect as having a daemon.
+# Start PulseEffects with the option of hiding the interface https://github.com/wwmm/pulseeffects/wiki/Command-Line-Options.
 # You just have to write a .desktop file that uses this command line option and copy it to ~/.config/autostart.
-# 
+#
 mkdir -p ~/.config/autostart/
 cp ./com.github.wwmm.pulseeffects.desktop ~/.config/autostart/
 
 #
-# command line - Running a .desktop file in the terminal - Ask Ubuntu 
+# command line - Running a .desktop file in the terminal - Ask Ubuntu
 # https://askubuntu.com/a/577819
 #
-# jceb/dex: DesktopEntry Execution 
+# jceb/dex: DesktopEntry Execution
 # https://github.com/jceb/dex
 #
 sudo apt-get install -y dex
 dex ./com.github.wwmm.pulseeffects.desktop
 
+#
+# install GUVCView for webcam recode
+#
+# webcam - Anything better than Cheese for video capture? - Ask Ubuntu
+# https://askubuntu.com/questions/186003/anything-better-than-cheese-for-video-capture
+#
+sudo add-apt-repository -y ppa:pj-assis/ppa
+sudo apt-get update -y
+sudo apt-get install -y guvcview
+
+
 ###############
-# How To Create Menu Icon in Ubuntu for Installed Flatpak Application 
+# How To Create Menu Icon in Ubuntu for Installed Flatpak Application
 # http://www.ubuntubuzz.com/2016/12/how-to-create-menu-icon-in-ubuntu-for-installed-flatpak-application.html
 ###############
 # install alacarte (Menu Editor)
@@ -701,7 +712,7 @@ sudo apt-get install -y alacarte
 
 
 ###################
-# How to enable numlock at boot time for login screen? - Ask Ubuntu 
+# How to enable numlock at boot time for login screen? - Ask Ubuntu
 # https://askubuntu.com/questions/155679/how-to-enable-numlock-at-boot-time-for-login-screen
 ###################
 sudo apt-get update
@@ -711,7 +722,7 @@ sudo apt-get install -y numlockx
 # # Just turn on numlock after user login
 # ################################
 # # first remove previous numlock command
-# sudo sed -i 's|^.*[Nn]umlock.*||' /etc/rc.local 
+# sudo sed -i 's|^.*[Nn]umlock.*||' /etc/rc.local
 # # second remove previous newline character
 # # https://stackoverflow.com/a/8997314/1851492
 # #
@@ -730,7 +741,7 @@ sudo apt-get install -y numlockx
 #####################################
 # turn on numlock before & after login
 #####################################
-# Turn on NumLock Automatically When Ubuntu 14.04 Boots Up | UbuntuHandbook 
+# Turn on NumLock Automatically When Ubuntu 14.04 Boots Up | UbuntuHandbook
 # http://ubuntuhandbook.org/index.php/2014/06/turn-on-numlock-ubuntu-14-04/
 #
 sudo sed -i 's|^.*numlockx.*||' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
