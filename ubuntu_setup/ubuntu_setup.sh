@@ -692,7 +692,7 @@ sudo apt-get install -y dex
 dex ./com.github.wwmm.pulseeffects.desktop
 
 #
-# install GUVCView for webcam recode
+# install GUVCView for webcam record
 #
 # webcam - Anything better than Cheese for video capture? - Ask Ubuntu
 # https://askubuntu.com/questions/186003/anything-better-than-cheese-for-video-capture
@@ -701,6 +701,14 @@ sudo add-apt-repository -y ppa:pj-assis/ppa
 sudo apt-get update -y
 sudo apt-get install -y guvcview
 
+#
+# install v4l-utils in order to get list of all camara (webcam)
+#
+# v4l-utils
+# https://stackoverflow.com/questions/4290834/how-to-get-a-list-of-video-capture-devices-web-cameras-on-linux-ubuntu-c
+#
+sudo apt-get install v4l-utils
+v4l2-ctl --list-devices
 
 ###############
 # How To Create Menu Icon in Ubuntu for Installed Flatpak Application
