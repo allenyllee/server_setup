@@ -81,6 +81,7 @@ if [ "${ACTION}" = add -a -d "/sys${DEVPATH}" ]; then
         # get camera settings (v4l2-ctl --all will get all settings)
         v4l2-ctl -C power_line_frequency 2>&1 | tee -a $LOGPATH
         v4l2-ctl -C exposure_auto_priority 2>&1 | tee -a $LOGPATH
+        v4l2-ctl -d /dev/video1 --all | grep "Width/Height" 2>&1 | awk '{print $1 $2, $3}' | tee -a $LOGPATH
 
         echo "" >>$LOGPATH
     fi
