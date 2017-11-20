@@ -2,7 +2,7 @@
 #
 # VERSION               0.0.1
 
-FROM      ubuntu/ubuntu:16.04
+FROM      ubuntu:16.04
 LABEL     maintainer="allen7575@gmail.com"
 
 ############
@@ -21,8 +21,20 @@ RUN apt install -y vim
 ############
 
 
+############
+# add, change username,password,group here
+############
+# change root password
+# RUN echo root:root | chpasswd
 
+# add guest user
+# useradd - Ubuntu 14.04: New user created from command line has missing features - Ask Ubuntu
+# https://askubuntu.com/questions/643411/ubuntu-14-04-new-user-created-from-command-line-has-missing-features
+# RUN useradd -m guest -s /bin/bash && \
+#     echo guest:guest | chpasswd
 
+# grant access for guest to video device
+# RUN usermod -a -G video guest `# grant access to video device`
 
 ##############
 # upgrade
@@ -46,8 +58,12 @@ RUN apt-get autoremove && \
 # init script
 #################
 
+ADD ./scripts/* /scripts/
 
+# starting container process caused "exec: \"./extra/service_startup.sh\": permission denied" · Issue #431 · facebook/fbctf
+# https://github.com/facebook/fbctf/issues/431
+RUN chmod +x /scripts/*
 
-ENTRYPOINT ["/script/init.sh"]
+ENTRYPOINT ["/scripts/init.sh"]
 
 CMD ["bash"]
