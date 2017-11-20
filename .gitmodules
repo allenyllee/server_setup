@@ -13,3 +13,6 @@
 [submodule "Dockerfile/condaD"]
 	path = Dockerfile/condaD
 	url = https://github.com/allenyllee/condaD.git
+[submodule "Dockerfile/motion-webcam-server"]
+	path = Dockerfile/motion-webcam-server
+	url = https://github.com/allenyllee/motion-webcam-server.git
