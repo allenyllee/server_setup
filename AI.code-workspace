@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "nvidia_docker/project/jupyter/notebooks/ImageProcessig/Face_SWAP_python"
+		},
+		{
+			"path": "Dockerfile/motion-webcam-server"
 		}
 	],
 	"settings": {}
