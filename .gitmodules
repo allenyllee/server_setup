@@ -16,3 +16,9 @@
 [submodule "Dockerfile/motion-webcam-server"]
 	path = Dockerfile/motion-webcam-server
 	url = https://github.com/allenyllee/motion-webcam-server.git
+[submodule "nvidia_docker/cuda80"]
+	path = nvidia_docker/cuda80
+	url = https://github.com/allenyllee/cuda80.git
+[submodule "nvidia_docker/cuda90"]
+	path = nvidia_docker/cuda90
+	url = https://github.com/allenyllee/cuda90.git
