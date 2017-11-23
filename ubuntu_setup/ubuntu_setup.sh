@@ -759,6 +759,13 @@ tr '@' '\n' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee
 echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee -a /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
 
 
+###################
+# install grub-customizer
+###################
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
+sudo apt-get update
+sudo apt-get install -y grub-customizer
+
 #########################
 # TODO: build & up all docker service
 #########################
