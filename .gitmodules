@@ -22,3 +22,6 @@
 [submodule "nvidia_docker/cuda80-fix"]
 	path = nvidia_docker/cuda80-fix
 	url = https://github.com/allenyllee/cuda80-fix.git
+[submodule "Dockerfile/wine-base"]
+	path = Dockerfile/wine-base
+	url = https://github.com/allenyllee/wine-base.git
