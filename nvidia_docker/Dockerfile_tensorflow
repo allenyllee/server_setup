@@ -2,7 +2,7 @@
     #
     # VERSION               0.0.1
 
-    FROM      gcr.io/tensorflow/tensorflow:latest-gpu
+    FROM      gcr.io/tensorflow/tensorflow:1.4.0-gpu
     LABEL     maintainer="allen7575@gmail.com"
 
     ##
