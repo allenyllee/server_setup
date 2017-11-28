@@ -510,6 +510,15 @@ sudo add-apt-repository -y ppa:hluk/copyq
 sudo apt update
 sudo apt install -y copyq
 
+
+#################
+# install telegram
+#################
+sudo add-apt-repository -yppa:atareao/telegram
+sudo apt-get update
+sudo apt-get install -y telegram
+ln -s /opt/telegram/telegram /usr/local/bin
+
 ############################
 # install pdfsam
 ############################
