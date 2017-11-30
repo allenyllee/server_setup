@@ -28,3 +28,6 @@
 [submodule "gist/import_json_appsscript"]
 	path = gist/import_json_appsscript
 	url = https://gist.github.com/c764c86ed722417948fc256b7a5077c4.git
+[submodule "gist/my_investment"]
+	path = gist/my_investment
+	url = https://gist.github.com/43dc25a18ac687cfea7f5a64707b9a83.git
