@@ -31,3 +31,9 @@
 [submodule "gist/my_investment"]
 	path = gist/my_investment
 	url = https://gist.github.com/43dc25a18ac687cfea7f5a64707b9a83.git
+[submodule "gist/ppt2pdf"]
+	path = gist/ppt2pdf
+	url = https://gist.github.com/5d7c4a16ae0e33375e4a6d25acaeeda2.git
+[submodule "gist/fetch_gdrive_file"]
+	path = gist/fetch_gdrive_file
+	url = https://gist.github.com/ac42730e9c756e0aeb9b2f07424b68dd.git
