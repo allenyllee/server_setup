@@ -25,3 +25,6 @@
 [submodule "Dockerfile/wine-base"]
 	path = Dockerfile/wine-base
 	url = https://github.com/allenyllee/wine-base.git
+[submodule "gist/import_json_appsscript"]
+	path = gist/import_json_appsscript
+	url = https://gist.github.com/c764c86ed722417948fc256b7a5077c4.git
