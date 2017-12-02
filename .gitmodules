@@ -43,3 +43,6 @@
 [submodule "gist/ubuntu_setup_from_git"]
 	path = gist/ubuntu_setup_from_git
 	url = https://gist.github.com/27e780b7ce7bd1248a754dff1ea3b011.git
+[submodule "repo/Machine-Learning-Foundations"]
+	path = repo/Machine-Learning-Foundations
+	url = https://github.com/allenyllee/Machine-Learning-Foundations.git
