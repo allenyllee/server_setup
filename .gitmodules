@@ -49,3 +49,7 @@
 [submodule "repo/AllenYL_Coding_Exercises"]
 	path = repo/AllenYL_Coding_Exercises
 	url = https://github.com/allenyllee/AllenYL_Coding_Exercises.git
+[submodule "repo/pciutils"]
+	path = repo/pciutils
+	url = https://github.com/allenyllee/pciutils.git
+	branch = windows-build
