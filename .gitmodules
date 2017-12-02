@@ -68,3 +68,7 @@
 [submodule "repo-liteon/LiteonSSDFramework"]
 	path = repo-liteon/LiteonSSDFramework
 	url = https://gitlab.com/allenyllee/LiteonSSDFramework.git
+[submodule "repo-liteon/xtensa_X_docker"]
+	path = repo-liteon/xtensa_X_docker
+	url = https://gitlab.com/allenyllee/xtensa_X_docker.git
+	branch = xtensa
