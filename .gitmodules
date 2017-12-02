@@ -62,3 +62,9 @@
 [submodule "repo-liteon/BELMAR"]
 	path = repo-liteon/BELMAR
 	url = https://gitlab.com/allenyllee/BELMAR.git
+[submodule "repo-liteon/EP3_TPE"]
+	path = repo-liteon/EP3_TPE
+	url = https://gitlab.com/allenyllee/EP3_TPE.git
+[submodule "repo-liteon/LiteonSSDFramework"]
+	path = repo-liteon/LiteonSSDFramework
+	url = https://gitlab.com/allenyllee/LiteonSSDFramework.git
