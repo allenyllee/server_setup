@@ -72,3 +72,6 @@
 	path = repo-liteon/xtensa_X_docker
 	url = https://gitlab.com/allenyllee/xtensa_X_docker.git
 	branch = xtensa
+[submodule "repo-uefi/uefi-simple"]
+	path = repo-uefi/uefi-simple
+	url = https://github.com/allenyllee/uefi-simple.git
