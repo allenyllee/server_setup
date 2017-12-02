@@ -75,3 +75,6 @@
 [submodule "repo-uefi/uefi-simple"]
 	path = repo-uefi/uefi-simple
 	url = https://github.com/allenyllee/uefi-simple.git
+[submodule "repo-uefi/UEFITool"]
+	path = repo-uefi/UEFITool
+	url = https://github.com/allenyllee/UEFITool.git
