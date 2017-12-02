@@ -19,9 +19,6 @@
 [submodule "nvidia_docker/cuda90"]
 	path = nvidia_docker/cuda90
 	url = https://github.com/allenyllee/cuda90.git
-[submodule "nvidia_docker/cuda80-fix"]
-	path = nvidia_docker/cuda80-fix
-	url = https://github.com/allenyllee/cuda80-fix.git
 [submodule "Dockerfile/wine-base"]
 	path = Dockerfile/wine-base
 	url = https://github.com/allenyllee/wine-base.git
@@ -59,3 +56,6 @@
 [submodule "gist/Linux_Driver_Coding_Notes"]
 	path = gist/Linux_Driver_Coding_Notes
 	url = https://gist.github.com/d7431053780f469b30bfd4a073ebf711.git
+[submodule "Dockerfile/cuda80-fix"]
+	path = Dockerfile/cuda80-fix
+	url = https://github.com/allenyllee/cuda80-fix.git
