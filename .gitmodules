@@ -53,3 +53,9 @@
 	path = repo/pciutils
 	url = https://github.com/allenyllee/pciutils.git
 	branch = windows-build
+[submodule "gist/Pega_BIOS_Bring-Up"]
+	path = gist/Pega_BIOS_Bring-Up
+	url = https://gist.github.com/f7b0abce312ad210fbe6f9ad0061f1a3.git
+[submodule "gist/Linux_Driver_Coding_Notes"]
+	path = gist/Linux_Driver_Coding_Notes
+	url = https://gist.github.com/d7431053780f469b30bfd4a073ebf711.git
