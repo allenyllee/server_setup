@@ -59,3 +59,6 @@
 [submodule "Dockerfile/cuda80-fix"]
 	path = Dockerfile/cuda80-fix
 	url = https://github.com/allenyllee/cuda80-fix.git
+[submodule "repo-liteon/BELMAR"]
+	path = repo-liteon/BELMAR
+	url = https://gitlab.com/allenyllee/BELMAR.git
