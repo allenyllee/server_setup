@@ -270,6 +270,47 @@ sudo rm -rf pandoc-*-1-amd64.deb*
 sudo apt install -y texlive-xetex
 
 
+#############
+# compare tool
+#############
+
+#
+# install kdiff3
+#
+sudo apt install -y kdiff3
+
+#
+# install meld
+#
+sudo apt install -y meld
+
+
+#########
+# git tool
+#########
+
+#
+# install gitkarken
+#
+#wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+#sudo dpkg -i gitkraken-amd64.deb
+#sudo rm -rf gitkraken-amd64.deb
+
+#
+# install smartgit
+#
+sudo add-apt-repository -y ppa:eugenesan/ppa
+sudo apt-get update
+sudo apt-get install -y smartgit
+
+
+# Download Git Client SmartGit
+# https://www.syntevo.com/smartgit/download
+wget https://www.syntevo.com/smartgit/download?file=smartgit/smartgit-17_1_2.deb
+sudo dpkg -i smartgit-*.deb
+sudo rm -rf smartgit-*.deb
+
+
 # ________   ________  ________  _______         ___  ________
 #|\   ___  \|\   __  \|\   ___ \|\  ___ \       |\  \|\   ____\
 #\ \  \\ \  \ \  \|\  \ \  \_|\ \ \   __/|      \ \  \ \  \___|_
