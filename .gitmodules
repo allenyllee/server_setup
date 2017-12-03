@@ -109,3 +109,6 @@
 [submodule "repo-uefi/ezmake2"]
 	path = repo-uefi/ezmake2
 	url = https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
+[submodule "repo-crypto/GenRsa"]
+	path = repo-crypto/GenRsa
+	url = https://github.com/allenyllee/GenRsa.git
