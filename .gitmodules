@@ -100,3 +100,6 @@
 [submodule "repo/GitBackupBundle"]
 	path = repo/GitBackupBundle
 	url = https://github.com/allenyllee/GitBackupBundle.git
+[submodule "repo-arm/arm-tutorial-rpi"]
+	path = repo-arm/arm-tutorial-rpi
+	url = https://github.com/allenyllee/arm-tutorial-rpi.git
