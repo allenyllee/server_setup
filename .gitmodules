@@ -112,3 +112,6 @@
 [submodule "repo-crypto/GenRsa"]
 	path = repo-crypto/GenRsa
 	url = https://github.com/allenyllee/GenRsa.git
+[submodule "gist/Timer-bat"]
+	path = gist/Timer-bat
+	url = https://gist.github.com/9b692bb8e4d7f35d7848e78a28c8946c.git
