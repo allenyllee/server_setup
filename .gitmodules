@@ -88,3 +88,9 @@
 	path = repo-js/learn-js
 	url = https://github.com/allenyllee/learn-js.git
 	branch = tutorial
+[submodule "repo-dll/DLLtutorial"]
+	path = repo-dll/DLLtutorial
+	url = https://github.com/allenyllee/DLLtutorial.git
+[submodule "repo-uefi/edk2"]
+	path = repo-uefi/edk2
+	url = https://github.com/allenyllee/edk2.git
