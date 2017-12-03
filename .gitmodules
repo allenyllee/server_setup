@@ -127,3 +127,6 @@
 [submodule "repo-crypto/RSA-exercise"]
 	path = repo-crypto/RSA-exercise
 	url = https://github.com/allenyllee/RSA-exercise.git
+[submodule "repo-pega/pega-plog-parser"]
+	path = repo-pega/pega-plog-parser
+	url = https://allenyllee@bitbucket.org/allenyllee/pega-plog-parser.git
