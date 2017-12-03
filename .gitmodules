@@ -78,3 +78,9 @@
 [submodule "repo-uefi/UEFITool"]
 	path = repo-uefi/UEFITool
 	url = https://github.com/allenyllee/UEFITool.git
+[submodule "repo-parser/lex_yacc"]
+	path = repo-parser/lex_yacc
+	url = https://github.com/allenyllee/lex_yacc.git
+[submodule "repo-uefi/SmmBackdoor"]
+	path = repo-uefi/SmmBackdoor
+	url = https://github.com/allenyllee/SmmBackdoor.git
