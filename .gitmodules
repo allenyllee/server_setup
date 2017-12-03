@@ -84,3 +84,7 @@
 [submodule "repo-uefi/SmmBackdoor"]
 	path = repo-uefi/SmmBackdoor
 	url = https://github.com/allenyllee/SmmBackdoor.git
+[submodule "repo-js/learn-js"]
+	path = repo-js/learn-js
+	url = https://github.com/allenyllee/learn-js.git
+	branch = tutorial
