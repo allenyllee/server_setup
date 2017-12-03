@@ -94,3 +94,6 @@
 [submodule "repo-uefi/edk2"]
 	path = repo-uefi/edk2
 	url = https://github.com/allenyllee/edk2.git
+[submodule "repo-uefi/BasicInputOutput"]
+	path = repo-uefi/BasicInputOutput
+	url = https://github.com/allenyllee/BasicInputOutput.git
