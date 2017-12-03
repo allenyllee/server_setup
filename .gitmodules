@@ -97,3 +97,6 @@
 [submodule "repo-uefi/BasicInputOutput"]
 	path = repo-uefi/BasicInputOutput
 	url = https://github.com/allenyllee/BasicInputOutput.git
+[submodule "repo/GitBackupBundle"]
+	path = repo/GitBackupBundle
+	url = https://github.com/allenyllee/GitBackupBundle.git
