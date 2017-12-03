@@ -118,3 +118,6 @@
 [submodule "repo-press/allenyllee.github.io"]
 	path = repo-press/allenyllee.github.io
 	url = https://github.com/allenyllee/allenyllee.github.io.git
+[submodule "repo-pega/pega-homework"]
+	path = repo-pega/pega-homework
+	url = https://github.com/allenyllee/pega-homework.git
