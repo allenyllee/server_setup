@@ -46,10 +46,6 @@
 [submodule "repo/AllenYL_Coding_Exercises"]
 	path = repo/AllenYL_Coding_Exercises
 	url = https://github.com/allenyllee/AllenYL_Coding_Exercises.git
-[submodule "repo/pciutils"]
-	path = repo/pciutils
-	url = https://github.com/allenyllee/pciutils.git
-	branch = windows-build
 [submodule "gist/Pega_BIOS_Bring-Up"]
 	path = gist/Pega_BIOS_Bring-Up
 	url = https://gist.github.com/f7b0abce312ad210fbe6f9ad0061f1a3.git
@@ -130,3 +126,7 @@
 [submodule "repo-pega/pega-plog-parser"]
 	path = repo-pega/pega-plog-parser
 	url = https://allenyllee@bitbucket.org/allenyllee/pega-plog-parser.git
+[submodule "repo-pci/pciutils"]
+	path = repo-pci/pciutils
+	url = https://github.com/allenyllee/pciutils.git
+	branch = windows-build
