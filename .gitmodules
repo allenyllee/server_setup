@@ -121,3 +121,9 @@
 [submodule "repo-pega/pega-homework"]
 	path = repo-pega/pega-homework
 	url = https://github.com/allenyllee/pega-homework.git
+[submodule "repo-cpu/The-CPUID-Explorer"]
+	path = repo-cpu/The-CPUID-Explorer
+	url = https://github.com/allenyllee/The-CPUID-Explorer.git
+[submodule "repo-crypto/RSA-exercise"]
+	path = repo-crypto/RSA-exercise
+	url = https://github.com/allenyllee/RSA-exercise.git
