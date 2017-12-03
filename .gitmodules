@@ -103,3 +103,9 @@
 [submodule "repo-arm/arm-tutorial-rpi"]
 	path = repo-arm/arm-tutorial-rpi
 	url = https://github.com/allenyllee/arm-tutorial-rpi.git
+[submodule "repo-asm/learn-assembly"]
+	path = repo-asm/learn-assembly
+	url = https://github.com/allenyllee/learn-assembly.git
+[submodule "repo-uefi/ezmake2"]
+	path = repo-uefi/ezmake2
+	url = https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
