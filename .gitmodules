@@ -175,3 +175,6 @@
 [submodule "repo-student-project/assembler-for-sic-xe"]
 	path = repo-student-project/assembler-for-sic-xe
 	url = https://github.com/allenyllee/assembler-for-sic-xe.git
+[submodule "repo-gpgpu/opencl-book-samples"]
+	path = repo-gpgpu/opencl-book-samples
+	url = https://github.com/allenyllee/opencl-book-samples.git
