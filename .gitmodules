@@ -157,3 +157,6 @@
 [submodule "repo-csharp/learn-c-sharp"]
 	path = repo-csharp/learn-c-sharp
 	url = https://github.com/allenyllee/learn-c-sharp.git
+[submodule "repo-csharp/display-brightness-console"]
+	path = repo-csharp/display-brightness-console
+	url = https://github.com/allenyllee/display-brightness-console.git
