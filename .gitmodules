@@ -148,3 +148,6 @@
 [submodule "repo-igs/master-server"]
 	path = repo-igs/master-server
 	url = https://allenyllee@bitbucket.org/allenyllee/master-server.git
+[submodule "repo-igs/rigidbody-constraint-demo1"]
+	path = repo-igs/rigidbody-constraint-demo1
+	url = https://allenyllee@bitbucket.org/allenyllee/rigidbody-constraint-demo1.git
