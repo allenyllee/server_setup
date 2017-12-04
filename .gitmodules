@@ -102,9 +102,6 @@
 [submodule "repo-asm/learn-assembly"]
 	path = repo-asm/learn-assembly
 	url = https://github.com/allenyllee/learn-assembly.git
-[submodule "repo-uefi/ezmake2"]
-	path = repo-uefi/ezmake2
-	url = https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
 [submodule "repo-crypto/GenRsa"]
 	path = repo-crypto/GenRsa
 	url = https://github.com/allenyllee/GenRsa.git
@@ -202,3 +199,6 @@
 [submodule "repo-physical-simulation/newton-dynamics"]
 	path = repo-physical-simulation/newton-dynamics
 	url = https://github.com/allenyllee/newton-dynamics.git
+[submodule "repo-pega/ezmake2"]
+	path = repo-pega/ezmake2
+	url = https://allenyllee@bitbucket.org/allenyllee/ezmake2.git

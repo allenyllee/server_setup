@@ -5,5 +5,5 @@
 #
 git submodule add https://github.com/allenyllee/pega-homework.git
 git submodule add https://allenyllee@bitbucket.org/allenyllee/pega-plog-parser.git
-
+git submodule add https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
 

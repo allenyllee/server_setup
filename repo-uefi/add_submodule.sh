@@ -8,4 +8,4 @@ git submodule add https://github.com/allenyllee/UEFITool.git
 git submodule add https://github.com/allenyllee/SmmBackdoor.git
 git submodule add https://github.com/allenyllee/edk2.git
 git submodule add https://github.com/allenyllee/BasicInputOutput.git
-git submodule add https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
+
