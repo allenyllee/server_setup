@@ -133,3 +133,6 @@
 [submodule "repo-ai/neural-networks-and-deep-learning"]
 	path = repo-ai/neural-networks-and-deep-learning
 	url = https://github.com/allenyllee/neural-networks-and-deep-learning.git
+[submodule "repo-parallel/tbb"]
+	path = repo-parallel/tbb
+	url = https://github.com/allenyllee/tbb.git
