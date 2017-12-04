@@ -172,3 +172,6 @@
 [submodule "repo-physical-simulation/mjg-intel-fluid-demo"]
 	path = repo-physical-simulation/mjg-intel-fluid-demo
 	url = https://github.com/allenyllee/mjg-intel-fluid-demo.git
+[submodule "repo-student-project/assembler-for-sic-xe"]
+	path = repo-student-project/assembler-for-sic-xe
+	url = https://github.com/allenyllee/assembler-for-sic-xe.git
