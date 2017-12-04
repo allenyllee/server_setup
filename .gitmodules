@@ -154,3 +154,6 @@
 [submodule "repo-igs/rigidbody-constraint-demo2"]
 	path = repo-igs/rigidbody-constraint-demo2
 	url = https://allenyllee@bitbucket.org/allenyllee/rigidbody-constraint-demo2.git
+[submodule "repo-csharp/learn-c-sharp"]
+	path = repo-csharp/learn-c-sharp
+	url = https://github.com/allenyllee/learn-c-sharp.git
