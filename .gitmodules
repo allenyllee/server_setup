@@ -187,3 +187,6 @@
 [submodule "repo-networking/sending-and-receiving-packets"]
 	path = repo-networking/sending-and-receiving-packets
 	url = https://github.com/allenyllee/sending-and-receiving-packets.git
+[submodule "repo-networking/zen-of-networked-physics"]
+	path = repo-networking/zen-of-networked-physics
+	url = https://github.com/allenyllee/zen-of-networked-physics.git
