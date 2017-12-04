@@ -136,3 +136,6 @@
 [submodule "repo-parallel/tbb"]
 	path = repo-parallel/tbb
 	url = https://github.com/allenyllee/tbb.git
+[submodule "repo-python/learn-python"]
+	path = repo-python/learn-python
+	url = https://github.com/allenyllee/learn-python.git
