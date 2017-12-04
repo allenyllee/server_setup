@@ -193,3 +193,6 @@
 [submodule "repo-physical-simulation/test-of-physx"]
 	path = repo-physical-simulation/test-of-physx
 	url = https://github.com/allenyllee/test-of-physx.git
+[submodule "repo-physical-simulation/Box2D"]
+	path = repo-physical-simulation/Box2D
+	url = https://github.com/allenyllee/Box2D.git
