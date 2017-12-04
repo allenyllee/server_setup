@@ -166,3 +166,6 @@
 [submodule "repo-physical-simulation/fiedlers-cubes"]
 	path = repo-physical-simulation/fiedlers-cubes
 	url = https://github.com/allenyllee/fiedlers-cubes.git
+[submodule "repo-opengl/gpu_course"]
+	path = repo-opengl/gpu_course
+	url = https://github.com/allenyllee/gpu_course.git
