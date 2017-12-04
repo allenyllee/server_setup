@@ -9,3 +9,4 @@ git submodule add https://github.com/allenyllee/mjg-intel-fluid-demo.git
 git submodule add https://github.com/allenyllee/test-of-physx.git
 git submodule add https://github.com/allenyllee/Box2D.git
 git submodule add https://github.com/allenyllee/bullet3.git
+git submodule add https://github.com/allenyllee/newton-dynamics.git

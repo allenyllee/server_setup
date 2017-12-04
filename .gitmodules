@@ -199,3 +199,6 @@
 [submodule "repo-physical-simulation/bullet3"]
 	path = repo-physical-simulation/bullet3
 	url = https://github.com/allenyllee/bullet3.git
+[submodule "repo-physical-simulation/newton-dynamics"]
+	path = repo-physical-simulation/newton-dynamics
+	url = https://github.com/allenyllee/newton-dynamics.git
