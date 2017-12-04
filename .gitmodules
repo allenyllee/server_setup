@@ -139,3 +139,6 @@
 [submodule "repo-python/learn-python"]
 	path = repo-python/learn-python
 	url = https://github.com/allenyllee/learn-python.git
+[submodule "repo-unity/Unity-GUI-Study"]
+	path = repo-unity/Unity-GUI-Study
+	url = https://github.com/allenyllee/Unity-GUI-Study.git
