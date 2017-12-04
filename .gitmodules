@@ -160,3 +160,6 @@
 [submodule "repo-csharp/display-brightness-console"]
 	path = repo-csharp/display-brightness-console
 	url = https://github.com/allenyllee/display-brightness-console.git
+[submodule "repo-physical-simulation/cloth-physics"]
+	path = repo-physical-simulation/cloth-physics
+	url = https://github.com/allenyllee/cloth-physics.git
