@@ -169,3 +169,6 @@
 [submodule "repo-opengl/gpu_course"]
 	path = repo-opengl/gpu_course
 	url = https://github.com/allenyllee/gpu_course.git
+[submodule "repo-physical-simulation/mjg-intel-fluid-demo"]
+	path = repo-physical-simulation/mjg-intel-fluid-demo
+	url = https://github.com/allenyllee/mjg-intel-fluid-demo.git
