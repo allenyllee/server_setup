@@ -142,3 +142,6 @@
 [submodule "repo-unity/Unity-GUI-Study"]
 	path = repo-unity/Unity-GUI-Study
 	url = https://github.com/allenyllee/Unity-GUI-Study.git
+[submodule "repo-igs/cube-network-physics"]
+	path = repo-igs/cube-network-physics
+	url = https://allenyllee@bitbucket.org/allenyllee/cube-network-physics.git
