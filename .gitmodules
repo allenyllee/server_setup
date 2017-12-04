@@ -166,9 +166,6 @@
 [submodule "repo-physical-simulation/fiedlers-cubes"]
 	path = repo-physical-simulation/fiedlers-cubes
 	url = https://github.com/allenyllee/fiedlers-cubes.git
-[submodule "repo-opengl/gpu_course"]
-	path = repo-opengl/gpu_course
-	url = https://github.com/allenyllee/gpu_course.git
 [submodule "repo-physical-simulation/mjg-intel-fluid-demo"]
 	path = repo-physical-simulation/mjg-intel-fluid-demo
 	url = https://github.com/allenyllee/mjg-intel-fluid-demo.git
@@ -181,3 +178,6 @@
 [submodule "repo-computer-graphics/quaternion-powers"]
 	path = repo-computer-graphics/quaternion-powers
 	url = https://github.com/allenyllee/quaternion-powers.git
+[submodule "repo-computer-graphics/gpu_course"]
+	path = repo-computer-graphics/gpu_course
+	url = https://github.com/allenyllee/gpu_course.git
