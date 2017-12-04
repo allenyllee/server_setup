@@ -181,3 +181,6 @@
 [submodule "repo-computer-graphics/gpu_course"]
 	path = repo-computer-graphics/gpu_course
 	url = https://github.com/allenyllee/gpu_course.git
+[submodule "repo-networking/reliability-and-flow-control"]
+	path = repo-networking/reliability-and-flow-control
+	url = https://github.com/allenyllee/reliability-and-flow-control.git
