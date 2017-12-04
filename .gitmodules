@@ -196,3 +196,6 @@
 [submodule "repo-physical-simulation/Box2D"]
 	path = repo-physical-simulation/Box2D
 	url = https://github.com/allenyllee/Box2D.git
+[submodule "repo-physical-simulation/bullet3"]
+	path = repo-physical-simulation/bullet3
+	url = https://github.com/allenyllee/bullet3.git
