@@ -151,3 +151,6 @@
 [submodule "repo-igs/rigidbody-constraint-demo1"]
 	path = repo-igs/rigidbody-constraint-demo1
 	url = https://allenyllee@bitbucket.org/allenyllee/rigidbody-constraint-demo1.git
+[submodule "repo-igs/rigidbody-constraint-demo2"]
+	path = repo-igs/rigidbody-constraint-demo2
+	url = https://allenyllee@bitbucket.org/allenyllee/rigidbody-constraint-demo2.git
