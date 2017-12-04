@@ -190,3 +190,6 @@
 [submodule "repo-networking/zen-of-networked-physics"]
 	path = repo-networking/zen-of-networked-physics
 	url = https://github.com/allenyllee/zen-of-networked-physics.git
+[submodule "repo-physical-simulation/test-of-physx"]
+	path = repo-physical-simulation/test-of-physx
+	url = https://github.com/allenyllee/test-of-physx.git
