@@ -178,3 +178,6 @@
 [submodule "repo-gpgpu/opencl-book-samples"]
 	path = repo-gpgpu/opencl-book-samples
 	url = https://github.com/allenyllee/opencl-book-samples.git
+[submodule "repo-computer-graphics/quaternion-powers"]
+	path = repo-computer-graphics/quaternion-powers
+	url = https://github.com/allenyllee/quaternion-powers.git
