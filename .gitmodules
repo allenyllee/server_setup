@@ -163,3 +163,6 @@
 [submodule "repo-physical-simulation/cloth-physics"]
 	path = repo-physical-simulation/cloth-physics
 	url = https://github.com/allenyllee/cloth-physics.git
+[submodule "repo-physical-simulation/fiedlers-cubes"]
+	path = repo-physical-simulation/fiedlers-cubes
+	url = https://github.com/allenyllee/fiedlers-cubes.git
