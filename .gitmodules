@@ -202,3 +202,6 @@
 [submodule "repo-pega/ezmake2"]
 	path = repo-pega/ezmake2
 	url = https://allenyllee@bitbucket.org/allenyllee/ezmake2.git
+[submodule "repo-pega/pega-bios"]
+	path = repo-pega/pega-bios
+	url = https://gitlab.com/allenyllee/pega-bios.git
