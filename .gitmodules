@@ -205,3 +205,6 @@
 [submodule "repo-pega/pega-bios"]
 	path = repo-pega/pega-bios
 	url = https://gitlab.com/allenyllee/pega-bios.git
+[submodule "gist/git-helper-script"]
+	path = gist/git-helper-script
+	url = https://github.com/allenyllee/git-helper-script.git
