@@ -208,3 +208,6 @@
 [submodule "gist/git-helper-script"]
 	path = gist/git-helper-script
 	url = https://github.com/allenyllee/git-helper-script.git
+[submodule "repo-pega/efi-shell-app"]
+	path = repo-pega/efi-shell-app
+	url = https://github.com/allenyllee/efi-shell-app.git
