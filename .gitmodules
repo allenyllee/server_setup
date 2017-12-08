@@ -211,3 +211,6 @@
 [submodule "repo-pega/efi-shell-app"]
 	path = repo-pega/efi-shell-app
 	url = https://github.com/allenyllee/efi-shell-app.git
+[submodule "repo-linux-driver/linux_driver_training"]
+	path = repo-linux-driver/linux_driver_training
+	url = https://allenyllee@bitbucket.org/allenyllee/linux_driver_training.git
