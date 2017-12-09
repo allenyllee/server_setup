@@ -253,3 +253,6 @@
 [submodule "repo-uefi/ThinkPwn"]
 	path = repo-uefi/ThinkPwn
 	url = https://github.com/allenyllee/ThinkPwn.git
+[submodule "repo-c-cpp/checkedc"]
+	path = repo-c-cpp/checkedc
+	url = https://github.com/allenyllee/checkedc.git
