@@ -280,3 +280,6 @@
 [submodule "repo-computer-graphics/glContext"]
 	path = repo-computer-graphics/glContext
 	url = https://github.com/allenyllee/glContext.git
+[submodule "repo-physical-simulation/gravit"]
+	path = repo-physical-simulation/gravit
+	url = https://github.com/allenyllee/gravit.git
