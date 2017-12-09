@@ -220,3 +220,6 @@
 [submodule "repo-cuda/CompPhys"]
 	path = repo-cuda/CompPhys
 	url = https://github.com/allenyllee/CompPhys.git
+[submodule "repo-cuda/CUDA_Samples_for_Windows"]
+	path = repo-cuda/CUDA_Samples_for_Windows
+	url = https://github.com/allenyllee/CUDA_Samples_for_Windows.git
