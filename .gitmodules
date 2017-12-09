@@ -226,3 +226,6 @@
 [submodule "repo-ai/ganhacks"]
 	path = repo-ai/ganhacks
 	url = https://github.com/allenyllee/ganhacks.git
+[submodule "repo-firmware-tool/edid-rw"]
+	path = repo-firmware-tool/edid-rw
+	url = https://github.com/allenyllee/edid-rw.git
