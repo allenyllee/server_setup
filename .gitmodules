@@ -262,3 +262,6 @@
 [submodule "repo-bitcoin/bitcoin-tool"]
 	path = repo-bitcoin/bitcoin-tool
 	url = https://github.com/allenyllee/bitcoin-tool.git
+[submodule "repo-book/OOSE"]
+	path = repo-book/OOSE
+	url = https://github.com/allenyllee/OOSE.git
