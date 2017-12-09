@@ -223,3 +223,6 @@
 [submodule "repo-cuda/CUDA_Samples_for_Windows"]
 	path = repo-cuda/CUDA_Samples_for_Windows
 	url = https://github.com/allenyllee/CUDA_Samples_for_Windows.git
+[submodule "repo-ai/ganhacks"]
+	path = repo-ai/ganhacks
+	url = https://github.com/allenyllee/ganhacks.git
