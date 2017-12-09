@@ -268,3 +268,6 @@
 [submodule "repo-tutorial/learnGitBranching"]
 	path = repo-tutorial/learnGitBranching
 	url = https://github.com/allenyllee/learnGitBranching.git
+[submodule "repo-book/node-wiki-gitbook"]
+	path = repo-book/node-wiki-gitbook
+	url = https://github.com/allenyllee/node-wiki-gitbook.git
