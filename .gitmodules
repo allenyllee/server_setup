@@ -232,3 +232,6 @@
 [submodule "repo-linux-tool/libfaketime"]
 	path = repo-linux-tool/libfaketime
 	url = https://github.com/allenyllee/libfaketime.git
+[submodule "repo-vscode-ext/code-gnu-global"]
+	path = repo-vscode-ext/code-gnu-global
+	url = https://github.com/allenyllee/code-gnu-global.git
