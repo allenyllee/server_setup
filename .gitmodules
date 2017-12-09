@@ -289,3 +289,6 @@
 [submodule "repo-physical-simulation/EnjaParticles"]
 	path = repo-physical-simulation/EnjaParticles
 	url = https://github.com/allenyllee/EnjaParticles.git
+[submodule "repo-physical-simulation/ode"]
+	path = repo-physical-simulation/ode
+	url = https://github.com/allenyllee/ode.git
