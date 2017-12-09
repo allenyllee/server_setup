@@ -265,3 +265,6 @@
 [submodule "repo-book/OOSE"]
 	path = repo-book/OOSE
 	url = https://github.com/allenyllee/OOSE.git
+[submodule "repo-tutorial/learnGitBranching"]
+	path = repo-tutorial/learnGitBranching
+	url = https://github.com/allenyllee/learnGitBranching.git
