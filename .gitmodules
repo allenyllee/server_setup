@@ -283,3 +283,6 @@
 [submodule "repo-physical-simulation/gravit"]
 	path = repo-physical-simulation/gravit
 	url = https://github.com/allenyllee/gravit.git
+[submodule "repo-linux-driver/exfat-nofuse"]
+	path = repo-linux-driver/exfat-nofuse
+	url = https://github.com/allenyllee/exfat-nofuse.git
