@@ -259,3 +259,6 @@
 [submodule "Dockerfile/docker-compassxport"]
 	path = Dockerfile/docker-compassxport
 	url = https://github.com/allenyllee/docker-compassxport.git
+[submodule "repo-bitcoin/bitcoin-tool"]
+	path = repo-bitcoin/bitcoin-tool
+	url = https://github.com/allenyllee/bitcoin-tool.git
