@@ -256,3 +256,6 @@
 [submodule "repo-c-cpp/checkedc"]
 	path = repo-c-cpp/checkedc
 	url = https://github.com/allenyllee/checkedc.git
+[submodule "Dockerfile/docker-compassxport"]
+	path = Dockerfile/docker-compassxport
+	url = https://github.com/allenyllee/docker-compassxport.git
