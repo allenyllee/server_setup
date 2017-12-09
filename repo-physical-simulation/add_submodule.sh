@@ -11,3 +11,4 @@ git submodule add https://github.com/allenyllee/Box2D.git
 git submodule add https://github.com/allenyllee/bullet3.git
 git submodule add https://github.com/allenyllee/newton-dynamics.git
 git submodule add https://github.com/allenyllee/gravit.git
+git submodule add https://github.com/allenyllee/EnjaParticles.git

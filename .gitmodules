@@ -286,3 +286,6 @@
 [submodule "repo-linux-driver/exfat-nofuse"]
 	path = repo-linux-driver/exfat-nofuse
 	url = https://github.com/allenyllee/exfat-nofuse.git
+[submodule "repo-physical-simulation/EnjaParticles"]
+	path = repo-physical-simulation/EnjaParticles
+	url = https://github.com/allenyllee/EnjaParticles.git
