@@ -214,3 +214,6 @@
 [submodule "repo-linux-driver/linux_driver_training"]
 	path = repo-linux-driver/linux_driver_training
 	url = https://allenyllee@bitbucket.org/allenyllee/linux_driver_training.git
+[submodule "repo-ai/AIIA-Level1-Aug"]
+	path = repo-ai/AIIA-Level1-Aug
+	url = https://github.com/allenyllee/AIIA-Level1-Aug.git
