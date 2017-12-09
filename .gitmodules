@@ -238,3 +238,6 @@
 [submodule "repo-arm/raspberrypi"]
 	path = repo-arm/raspberrypi
 	url = https://github.com/allenyllee/raspberrypi.git
+[submodule "repo-arm/rpi-open-firmware"]
+	path = repo-arm/rpi-open-firmware
+	url = https://github.com/allenyllee/rpi-open-firmware.git
