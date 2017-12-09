@@ -274,3 +274,6 @@
 [submodule "repo-arm/multipi"]
 	path = repo-arm/multipi
 	url = https://github.com/allenyllee/multipi.git
+[submodule "repo-arm/thumbulator"]
+	path = repo-arm/thumbulator
+	url = https://github.com/allenyllee/thumbulator.git
