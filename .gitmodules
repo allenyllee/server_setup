@@ -241,3 +241,6 @@
 [submodule "repo-arm/rpi-open-firmware"]
 	path = repo-arm/rpi-open-firmware
 	url = https://github.com/allenyllee/rpi-open-firmware.git
+[submodule "repo-press/zJiaJun.github.io"]
+	path = repo-press/zJiaJun.github.io
+	url = https://github.com/allenyllee/zJiaJun.github.io.git
