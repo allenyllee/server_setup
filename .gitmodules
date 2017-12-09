@@ -271,3 +271,6 @@
 [submodule "repo-book/node-wiki-gitbook"]
 	path = repo-book/node-wiki-gitbook
 	url = https://github.com/allenyllee/node-wiki-gitbook.git
+[submodule "repo-arm/multipi"]
+	path = repo-arm/multipi
+	url = https://github.com/allenyllee/multipi.git
