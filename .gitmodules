@@ -217,3 +217,6 @@
 [submodule "repo-ai/AIIA-Level1-Aug"]
 	path = repo-ai/AIIA-Level1-Aug
 	url = https://github.com/allenyllee/AIIA-Level1-Aug.git
+[submodule "repo-cuda/CompPhys"]
+	path = repo-cuda/CompPhys
+	url = https://github.com/allenyllee/CompPhys.git
