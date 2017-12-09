@@ -250,3 +250,6 @@
 [submodule "repo-os/IncludeOS"]
 	path = repo-os/IncludeOS
 	url = https://github.com/allenyllee/IncludeOS.git
+[submodule "repo-uefi/ThinkPwn"]
+	path = repo-uefi/ThinkPwn
+	url = https://github.com/allenyllee/ThinkPwn.git
