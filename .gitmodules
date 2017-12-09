@@ -235,3 +235,6 @@
 [submodule "repo-vscode-ext/code-gnu-global"]
 	path = repo-vscode-ext/code-gnu-global
 	url = https://github.com/allenyllee/code-gnu-global.git
+[submodule "repo-arm/raspberrypi"]
+	path = repo-arm/raspberrypi
+	url = https://github.com/allenyllee/raspberrypi.git
