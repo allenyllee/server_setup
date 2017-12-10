@@ -292,3 +292,6 @@
 [submodule "repo-physical-simulation/ode"]
 	path = repo-physical-simulation/ode
 	url = https://github.com/allenyllee/ode.git
+[submodule "repo-pci/directio"]
+	path = repo-pci/directio
+	url = https://github.com/allenyllee/directio.git
