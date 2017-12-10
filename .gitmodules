@@ -298,3 +298,6 @@
 [submodule "repo-pci/winio"]
 	path = repo-pci/winio
 	url = https://github.com/allenyllee/winio.git
+[submodule "repo-pega/pega-training-video"]
+	path = repo-pega/pega-training-video
+	url = https://gitlab.com/allenyllee/pega-training-video.git
