@@ -295,3 +295,6 @@
 [submodule "repo-pci/directio"]
 	path = repo-pci/directio
 	url = https://github.com/allenyllee/directio.git
+[submodule "repo-pci/winio"]
+	path = repo-pci/winio
+	url = https://github.com/allenyllee/winio.git
