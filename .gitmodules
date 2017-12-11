@@ -313,3 +313,6 @@
 [submodule "repo-crypto/cryptlib"]
 	path = repo-crypto/cryptlib
 	url = https://github.com/allenyllee/cryptlib.git
+[submodule "repo-igs/igs-works"]
+	path = repo-igs/igs-works
+	url = https://gitlab.com/allenyllee/igs-works.git
