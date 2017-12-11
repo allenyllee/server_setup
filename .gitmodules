@@ -307,3 +307,6 @@
 [submodule "repo-book/books-n-articles"]
 	path = repo-book/books-n-articles
 	url = https://gitlab.com/allenyllee/books-n-articles.git
+[submodule "repo-book/sheet-music"]
+	path = repo-book/sheet-music
+	url = https://gitlab.com/allenyllee/sheet-music.git

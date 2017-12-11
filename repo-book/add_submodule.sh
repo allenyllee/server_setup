@@ -7,3 +7,4 @@ git submodule add https://github.com/allenyllee/OOSE.git
 git submodule add https://github.com/allenyllee/node-wiki-gitbook.git
 git submodule add https://gitlab.com/allenyllee/calibre-books.git
 git submodule add https://gitlab.com/allenyllee/books-n-articles.git
+git submodule add https://gitlab.com/allenyllee/sheet-music.git
