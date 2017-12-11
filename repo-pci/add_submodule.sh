@@ -6,3 +6,4 @@
 git submodule add -b windows-build https://github.com/allenyllee/pciutils.git
 git submodule add https://github.com/allenyllee/directio.git
 git submodule add https://github.com/allenyllee/winio.git
+git submodule add https://gitlab.com/allenyllee/rw-script.git

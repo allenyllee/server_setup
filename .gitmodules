@@ -316,3 +316,9 @@
 [submodule "repo-igs/igs-works"]
 	path = repo-igs/igs-works
 	url = https://gitlab.com/allenyllee/igs-works.git
+[submodule "repo-pci/rw-script"]
+	path = repo-pci/rw-script
+	url = https://gitlab.com/allenyllee/rw-script.git
+[submodule "repo-student-project/high-school-project"]
+	path = repo-student-project/high-school-project
+	url = https://github.com/allenyllee/high-school-project.git
