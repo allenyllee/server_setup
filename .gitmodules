@@ -322,3 +322,6 @@
 [submodule "repo-student-project/high-school-project"]
 	path = repo-student-project/high-school-project
 	url = https://github.com/allenyllee/high-school-project.git
+[submodule "repo-book/scrapbook"]
+	path = repo-book/scrapbook
+	url = https://gitlab.com/allenyllee/scrapbook.git
