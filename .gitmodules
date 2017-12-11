@@ -325,3 +325,6 @@
 [submodule "repo-book/scrapbook"]
 	path = repo-book/scrapbook
 	url = https://gitlab.com/allenyllee/scrapbook.git
+[submodule "repo-liteon/liteon-ssd"]
+	path = repo-liteon/liteon-ssd
+	url = https://gitlab.com/allenyllee/liteon-ssd.git
