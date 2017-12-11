@@ -301,3 +301,9 @@
 [submodule "repo-pega/pega-training-video"]
 	path = repo-pega/pega-training-video
 	url = https://gitlab.com/allenyllee/pega-training-video.git
+[submodule "repo-book/calibre-books"]
+	path = repo-book/calibre-books
+	url = https://gitlab.com/allenyllee/calibre-books.git
+[submodule "repo-book/books-n-articles"]
+	path = repo-book/books-n-articles
+	url = https://gitlab.com/allenyllee/books-n-articles.git
