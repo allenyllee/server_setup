@@ -310,3 +310,6 @@
 [submodule "repo-book/sheet-music"]
 	path = repo-book/sheet-music
 	url = https://gitlab.com/allenyllee/sheet-music.git
+[submodule "repo-crypto/cryptlib"]
+	path = repo-crypto/cryptlib
+	url = https://github.com/allenyllee/cryptlib.git

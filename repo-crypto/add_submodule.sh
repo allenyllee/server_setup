@@ -5,3 +5,4 @@
 #
 git submodule add https://github.com/allenyllee/GenRsa.git
 git submodule add https://github.com/allenyllee/RSA-exercise.git
+git submodule add https://github.com/allenyllee/cryptlib.git
