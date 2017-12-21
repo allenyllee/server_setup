@@ -13,3 +13,4 @@ git submodule add https://gist.github.com/f7b0abce312ad210fbe6f9ad0061f1a3.git .
 git submodule add https://gist.github.com/d7431053780f469b30bfd4a073ebf711.git ./Linux_Driver_Coding_Notes
 git submodule add https://gist.github.com/9b692bb8e4d7f35d7848e78a28c8946c.git ./Timer-bat
 git submodule add https://github.com/allenyllee/git-helper-script.git
+git submodule add https://gist.github.com/85f6fe42166c382ff0df126cc3df3666.git ./cloudSettings

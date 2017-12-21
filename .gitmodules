@@ -334,3 +334,6 @@
 [submodule "repo-ai/Convolutional_Arithmetic"]
 	path = repo-ai/Convolutional_Arithmetic
 	url = https://gist.github.com/5bc27291d554d152e3f4aa1bd8008618.git
+[submodule "gist/cloudSettings"]
+	path = gist/cloudSettings
+	url = https://gist.github.com/85f6fe42166c382ff0df126cc3df3666.git
