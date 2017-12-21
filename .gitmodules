@@ -337,3 +337,6 @@
 [submodule "gist/cloudSettings"]
 	path = gist/cloudSettings
 	url = https://gist.github.com/85f6fe42166c382ff0df126cc3df3666.git
+[submodule "repo-ai/neural-nets"]
+	path = repo-ai/neural-nets
+	url = https://github.com/allenyllee/neural-nets.git
