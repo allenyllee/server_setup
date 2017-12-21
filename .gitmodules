@@ -328,3 +328,9 @@
 [submodule "repo-liteon/liteon-ssd"]
 	path = repo-liteon/liteon-ssd
 	url = https://gitlab.com/allenyllee/liteon-ssd.git
+[submodule "repo-ai/conv_arithmetic"]
+	path = repo-ai/conv_arithmetic
+	url = https://github.com/allenyllee/conv_arithmetic.git
+[submodule "repo-ai/Convolutional_Arithmetic"]
+	path = repo-ai/Convolutional_Arithmetic
+	url = https://gist.github.com/5bc27291d554d152e3f4aa1bd8008618.git
