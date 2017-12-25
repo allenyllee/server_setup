@@ -340,3 +340,6 @@
 [submodule "repo-ai/neural-nets"]
 	path = repo-ai/neural-nets
 	url = https://github.com/allenyllee/neural-nets.git
+[submodule "repo-dapp/sonm"]
+	path = repo-dapp/sonm
+	url = https://gitlab.com/allenyllee/sonm.git
