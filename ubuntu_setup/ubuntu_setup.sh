@@ -310,6 +310,14 @@ wget https://www.syntevo.com/smartgit/download?file=smartgit/smartgit-17_1_2.deb
 sudo dpkg -i smartgit-*.deb
 sudo rm -rf smartgit-*.deb
 
+#
+# install git-secret
+# http://git-secret.io/
+#
+echo "deb https://dl.bintray.com/sobolevn/deb git-secret main" | sudo tee -a /etc/apt/sources.list
+wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt-key add -
+sudo apt-get update && sudo apt-get install git-secret
+
 
 # ________   ________  ________  _______         ___  ________
 #|\   ___  \|\   __  \|\   ___ \|\  ___ \       |\  \|\   ____\
