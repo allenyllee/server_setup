@@ -259,9 +259,6 @@
 [submodule "Dockerfile/docker-compassxport"]
 	path = Dockerfile/docker-compassxport
 	url = https://github.com/allenyllee/docker-compassxport.git
-[submodule "repo-bitcoin/bitcoin-tool"]
-	path = repo-bitcoin/bitcoin-tool
-	url = https://github.com/allenyllee/bitcoin-tool.git
 [submodule "repo-book/OOSE"]
 	path = repo-book/OOSE
 	url = https://github.com/allenyllee/OOSE.git
@@ -340,6 +337,9 @@
 [submodule "repo-ai/neural-nets"]
 	path = repo-ai/neural-nets
 	url = https://github.com/allenyllee/neural-nets.git
-[submodule "repo-dapp/sonm"]
-	path = repo-dapp/sonm
+[submodule "repo-blockchain/sonm"]
+	path = repo-blockchain/sonm
 	url = https://gitlab.com/allenyllee/sonm.git
+[submodule "repo-blockchain/bitcoin-tool"]
+	path = repo-blockchain/bitcoin-tool
+	url = https://github.com/allenyllee/bitcoin-tool.git
