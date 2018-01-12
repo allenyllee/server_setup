@@ -343,3 +343,6 @@
 [submodule "repo-blockchain/bitcoin-tool"]
 	path = repo-blockchain/bitcoin-tool
 	url = https://github.com/allenyllee/bitcoin-tool.git
+[submodule "repo-blockchain/sonm-wallet.io"]
+	path = repo-blockchain/sonm-wallet.io
+	url = https://gitlab.com/allenyllee/sonm-wallet.io.git
