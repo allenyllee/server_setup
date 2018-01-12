@@ -346,3 +346,15 @@
 [submodule "repo-blockchain/sonm-wallet.io"]
 	path = repo-blockchain/sonm-wallet.io
 	url = https://gitlab.com/allenyllee/sonm-wallet.io.git
+[submodule "repo-press/allenyllee.gitlab.io"]
+	path = repo-press/allenyllee.gitlab.io
+	url = https://gitlab.com/allenyllee/allenyllee.gitlab.io.git
+[submodule "repo-press/karpathy.github.io"]
+	path = repo-press/karpathy.github.io
+	url = https://github.com/allenyllee/karpathy.github.io.git
+[submodule "repo-press/jekyllpostgen"]
+	path = repo-press/jekyllpostgen
+	url = https://github.com/allenyllee/jekyllpostgen.git
+[submodule "gist/uuid"]
+	path = gist/uuid
+	url = https://gist.github.com/bc7975f787ef83604e3ca262fa5e6fc0.git
