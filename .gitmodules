@@ -358,3 +358,6 @@
 [submodule "gist/uuid"]
 	path = gist/uuid
 	url = https://gist.github.com/bc7975f787ef83604e3ca262fa5e6fc0.git
+[submodule "repo-ai/AIacademy"]
+	path = repo-ai/AIacademy
+	url = https://github.com/allenyllee/AIacademy.git
