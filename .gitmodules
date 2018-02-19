@@ -361,3 +361,6 @@
 [submodule "repo-ai/AIacademy"]
 	path = repo-ai/AIacademy
 	url = https://github.com/allenyllee/AIacademy.git
+[submodule "repo-book/AllenYL-Notebook"]
+	path = repo-book/AllenYL-Notebook
+	url = https://github.com/allenyllee/AllenYL-Notebook.git
