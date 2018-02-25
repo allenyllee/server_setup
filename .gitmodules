@@ -364,3 +364,9 @@
 [submodule "repo-book/AllenYL-Notebook"]
 	path = repo-book/AllenYL-Notebook
 	url = https://github.com/allenyllee/AllenYL-Notebook.git
+[submodule "repo-nvme/ssd-gpu-dma"]
+	path = repo-nvme/ssd-gpu-dma
+	url = https://github.com/allenyllee/ssd-gpu-dma.git
+[submodule "repo-nvme/nvme-kmod"]
+	path = repo-nvme/nvme-kmod
+	url = https://github.com/allenyllee/nvme-kmod.git
