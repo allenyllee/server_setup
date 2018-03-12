@@ -376,3 +376,6 @@
 [submodule "repo-book/HackMD-Book-Exporter-JS"]
 	path = repo-book/HackMD-Book-Exporter-JS
 	url = https://github.com/allenyllee/HackMD-Book-Exporter-JS.git
+[submodule "repo-devopts/literate-ops"]
+	path = repo-devopts/literate-ops
+	url = https://github.com/allenyllee/literate-ops.git
