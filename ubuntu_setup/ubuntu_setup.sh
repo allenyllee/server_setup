@@ -162,6 +162,9 @@ sudo apt-get install -y jq
 # https://askubuntu.com/questions/61396/how-do-i-install-the-nvidia-drivers
 ######################
 
+# Proprietary GPU Drivers : "Graphics Drivers" team
+# https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa
+#
 # add ppa repository
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt-get update
@@ -170,8 +173,17 @@ sudo apt-get upgrade -y
 # purge all previous version (--purge removes configuration files)
 sudo apt-get remove --purge -y nvidia-*
 
+# bash - How do I delete the first n lines of an ascii file using shell commands? - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/37790/how-do-i-delete-the-first-n-lines-of-an-ascii-file-using-shell-commands
+#
+# apt - How do I search for available packages from the command-line? - Ask Ubuntu
+# https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line
+#
+# get latest version
+NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+
 # install latest version
-sudo apt-get install -y nvidia-387
+sudo apt-get install -y $NVIDIA_VERSION
 
 ######################
 # install nvidia docker
