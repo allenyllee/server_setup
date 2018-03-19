@@ -22,8 +22,8 @@ PROJECT_DIR=$1
 
 ########################
 # install docker
-# from: Get Docker CE for Ubuntu | Docker Documentation
-# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#recommended-extra-packages-for-trusty-1404
+# Get Docker CE for Ubuntu | Docker Documentation
+# https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 ########################
 
 # Update the apt package index:
