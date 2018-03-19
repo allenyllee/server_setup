@@ -191,15 +191,44 @@ sudo apt-get install -y $NVIDIA_VERSION
 # https://github.com/NVIDIA/nvidia-docker
 ######################
 
-# install nvidia-modprobe
-sudo apt-get install -y nvidia-modprobe
+# stop and remove all containers started with nvidia-docker 1.0.
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+sudo apt-get purge nvidia-docker
 
-# Install nvidia-docker and nvidia-docker-plugin
-wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
-sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+# Repository configuration | nvidia-docker
+# https://nvidia.github.io/nvidia-docker/
+#
+# setup the nvidia-docker repository
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
 
-# Test nvidia-smi
-nvidia-docker run --rm nvidia/cuda nvidia-smi
+# Installation (version 2.0) · NVIDIA/nvidia-docker Wiki
+# https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
+#
+# Install the nvidia-docker2 package and reload the Docker daemon configuration:
+sudo apt-get install nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+# test nvidia-smi
+docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+
+
+# nvidia-docker 1.0 was deprecated
+#
+# # install nvidia-modprobe
+# sudo apt-get install -y nvidia-modprobe
+
+# # Install nvidia-docker and nvidia-docker-plugin
+# wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
+# sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+
+# # Test nvidia-smi
+# nvidia-docker run --rm nvidia/cuda nvidia-smi
+
 
 #######################
 # install nvidia-docker-compose
