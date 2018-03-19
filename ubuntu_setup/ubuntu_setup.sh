@@ -233,8 +233,38 @@ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 #######################
 # install nvidia-docker-compose
 #######################
-sudo apt-get install -y python-pip
-pip install nvidia-docker-compose
+
+# Nvidia-docker2 · Issue #23 · eywalker/nvidia-docker-compose
+# https://github.com/eywalker/nvidia-docker-compose/issues/23
+#
+# using native docker-compose with default runtime: nvidia
+#
+# the specific runtime can be set in /etc/docker/daemon.json
+# 
+# {
+#     "default-runtime": "nvidia",
+#     "runtimes": {
+#         "nvidia": {
+#             "path": "/usr/bin/nvidia-container-runtime",
+#             "runtimeArgs": [ ]
+#         }
+#     }
+# }
+# 
+# by using this the docker-compose started to work again, because eliminates the necessity of pass this argument all the time.
+#
+# Example of nvidia-docker2 with docker-compose · Issue #568 · NVIDIA/nvidia-docker
+# https://github.com/NVIDIA/nvidia-docker/issues/568
+# 
+# Add "default-runtime": "nvidia",
+#
+sed 's/    \"runtimes\":/    \"default-runtime\": \"nvidia\",\n    \"runtimes\":/' /etc/docker/daemon.json
+
+
+# nvidia-docker 1.0 was deprecated
+#
+# sudo apt-get install -y python-pip
+# pip install nvidia-docker-compose
 
 ##########################
 # install intel microcode
