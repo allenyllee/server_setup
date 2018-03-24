@@ -5,21 +5,40 @@
 FROM      ubuntu:16.04
 LABEL     maintainer="allen7575@gmail.com"
 
+##
+## Ubuntu - Packages - Search
+## https://packages.ubuntu.com/search?suite=xenial&section=all&arch=amd64&searchon=contents&keywords=Search
+##
+
 ############
 # update package list
 ############
 RUN apt update
+
+##############################
+#########################
+## install packages
+#########################
+##############################
+
+############
+# put something here...
+############
 
 ##########
 # install vim
 ##########
 RUN apt install -y vim
 
+##############################
+#########################
+## modify configuration
+#########################
+##############################
 
 ############
 # put something here...
 ############
-
 
 ############
 # add, change username,password,group here
@@ -35,6 +54,12 @@ RUN apt install -y vim
 
 # grant access for guest to video device
 # RUN usermod -a -G video guest `# grant access to video device`
+
+##############################
+#########################
+## cleanup image
+#########################
+##############################
 
 ##############
 # upgrade
@@ -54,8 +79,14 @@ RUN apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+##############################
+#########################
+## run commands when image start
+#########################
+##############################
+
 #################
-# init script
+# initial script
 #################
 
 ADD ./scripts/* /scripts/
