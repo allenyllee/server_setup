@@ -379,3 +379,6 @@
 [submodule "repo-devopts/literate-ops"]
 	path = repo-devopts/literate-ops
 	url = https://github.com/allenyllee/literate-ops.git
+[submodule "repo-devopts/mesos-compose"]
+	path = repo-devopts/mesos-compose
+	url = https://github.com/allenyllee/mesos-compose.git
