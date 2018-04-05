@@ -63,7 +63,7 @@ sudo docker run --rm hello-world
 # https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
 #############################
 
-# add docker group & add current ser into it
+# add docker group & add current user into it
 sudo groupadd docker
 sudo gpasswd -a $USER docker
 
