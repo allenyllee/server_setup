@@ -382,3 +382,9 @@
 [submodule "repo-devopts/mesos-compose"]
 	path = repo-devopts/mesos-compose
 	url = https://github.com/allenyllee/mesos-compose.git
+[submodule "repo-book/Parallel-Computing-Book"]
+	path = repo-book/Parallel-Computing-Book
+	url = https://github.com/allenyllee/Parallel-Computing-Book.git
+[submodule "repo-book/HPC-book-and-course"]
+	path = repo-book/HPC-book-and-course
+	url = https://github.com/allenyllee/HPC-book-and-course.git
