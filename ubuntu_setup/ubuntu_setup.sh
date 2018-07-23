@@ -836,7 +836,7 @@ sudo apt-get install -y guvcview
 # v4l-utils
 # https://stackoverflow.com/questions/4290834/how-to-get-a-list-of-video-capture-devices-web-cameras-on-linux-ubuntu-c
 #
-sudo apt-get install v4l-utils
+sudo apt-get install -y v4l-utils
 v4l2-ctl --list-devices
 
 ###############
