@@ -688,7 +688,7 @@ sudo apt-get install -y qtdeclarative5-qtquick2-plugin
 # So p7zip provides 7zr (liter version of 7za/7z) and documentation whereas p7zip-full provides 7z (with 7z.so),
 # 7za, 7zCon.sfx (to make auto extractible archive), and documentation.
 # If you want to create/extract only 7z archive (without password) take p7zip (7zr) else p7zip-full (with p7zip-rar)
-sudo apt-get install p7zip-full
+sudo apt-get install -y p7zip-full
 
 
 ############################
