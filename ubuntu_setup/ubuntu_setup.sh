@@ -210,7 +210,7 @@ sudo apt-get update
 # https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
 #
 # Install the nvidia-docker2 package and reload the Docker daemon configuration:
-sudo apt-get install nvidia-docker2
+sudo apt-get install -y nvidia-docker2
 sudo pkill -SIGHUP dockerd
 
 # test nvidia-smi
