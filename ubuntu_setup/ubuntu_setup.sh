@@ -9,6 +9,23 @@
 
 PROJECT_DIR=$1
 
+###################
+# shell - How to check OS and version using a Linux command - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/88644/how-to-check-os-and-version-using-a-linux-command
+###########
+# bash search for string in each line of file - Stack Overflow
+# https://stackoverflow.com/questions/5695916/bash-search-for-string-in-each-line-of-file
+###########
+# How to define 'tab' delimiter with 'cut' in BASH? - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/35369/how-to-define-tab-delimiter-with-cut-in-bash
+###################
+
+# 1. "lsb_release -a" get the distribution information
+# 2. "grep" get the line contains "Codename"
+# 3. "cut" get the second column of tab delimiter line
+CODENAME=$(lsb_release -a | grep "Codename" | cut -d$'\t' -f2)
+
+
 # ________  ________  ________  ___  __    _______   ________
 #|\   ___ \|\   __  \|\   ____\|\  \|\  \ |\  ___ \ |\   __  \
 #\ \  \_|\ \ \  \|\  \ \  \___|\ \  \/  /|\ \   __/|\ \  \|\  \
@@ -116,6 +133,36 @@ sudo service docker restart
 #       2. After docker daemon start, it will mount $XAUTH_DIR if needed.
 #       3. After system login, it will execute ~/.profile to setup $XAUTH_DIR/.xauth file
 
+########
+# Codename:
+# Releases - Ubuntu Wiki
+# https://wiki.ubuntu.com/Releases
+########
+# If Statements - Bash Scripting Tutorial
+# https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+########
+# How to append tee to a file in Bash? - Ask Ubuntu
+# https://askubuntu.com/questions/808539/how-to-append-tee-to-a-file-in-bash
+########
+# How can I replace a newline (\n) using sed? - Stack Overflow
+# https://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed
+########
+# Echo newline in Bash prints literal \n - Stack Overflow
+# https://stackoverflow.com/questions/8467424/echo-newline-in-bash-prints-literal-n
+########
+
+if [ $CODENAME == "bionic" ]
+then
+    echo "hello" $CODENAME
+    sudo ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+    sudo touch /etc/rc.local
+    sudo chmod 755 /etc/rc.local
+    tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+    sudo sed -i 's|\x00exit 0.*$||' /etc/rc.local
+    tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+    printf "\nexit 0" | sudo tee -a /etc/rc.local >>/dev/null
+fi
+
 # 1. Use tr to swap the newline character to NUL character.
 #       NUL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
 # 2. Use sed to match the string
@@ -125,6 +172,7 @@ tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
 sudo sed -i 's|\x00XAUTH_DIR=.*\x00\x00|\x00|' /etc/rc.local >/dev/null
 tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
 sudo sed -i 's|^exit 0.*$|XAUTH_DIR=/tmp/.docker.xauth; rm -rf $XAUTH_DIR; install -m 777 -d $XAUTH_DIR\n\nexit 0|' /etc/rc.local
+
 
 # create a folder with mod 777 that can allow all other user read/write
 XAUTH_DIR=/tmp/.docker.xauth; sudo rm -rf $XAUTH_DIR; install -m 777 -d $XAUTH_DIR
