@@ -168,6 +168,16 @@ then
     # 新增 /etc/rc.local
     sudo touch /etc/rc.local
     sudo chmod 755 /etc/rc.local
+    
+    # 第一行插入 #!/bin/bash
+    # Add a line to a specific position in a file using Linux sed
+    # https://www.garron.me/en/linux/add-line-to-specific-position-in-file-linux.html
+    tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+    sudo sed -i 's|^#!/bin/bash\x00||' /etc/rc.local
+    tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+    sudo sed -i '1i#!/bin/bash' /etc/rc.local
+    
+    # 最後一行插入exit 0
     tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
     sudo sed -i 's|\x00exit 0.*$||' /etc/rc.local
     tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
