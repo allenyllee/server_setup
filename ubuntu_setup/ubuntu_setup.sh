@@ -157,7 +157,15 @@ sudo service docker restart
 if [ $CODENAME == "bionic" ]
 then
     echo "hello" $CODENAME
-    sudo ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+    sudo ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc.local.service
+    
+    # 在rc.local.service 新增 [Install] 区块，定义如何安装这个配置文件，即怎样做到开机启动。
+    tr '\n' '\000' < /etc/systemd/system/rc.local.service | sudo tee /etc/systemd/system/rc.local.service >/dev/null
+    sudo sed -i 's|\x00\[Install\]\x00WantedBy=multi-user.target\x00Alias=rc.local.service||' /etc/systemd/system/rc.local.service
+    tr '\000' '\n' < /etc/systemd/system/rc.local.service | sudo tee /etc/systemd/system/rc.local.service >/dev/null
+    printf "[Install]\nWantedBy=multi-user.target\nAlias=rc.local.service\n" | sudo tee -a /etc/systemd/system/rc.local.service >>/dev/null
+    
+    # 新增 /etc/rc.local
     sudo touch /etc/rc.local
     sudo chmod 755 /etc/rc.local
     tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
