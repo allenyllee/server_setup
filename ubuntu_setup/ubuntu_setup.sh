@@ -134,6 +134,9 @@ sudo service docker restart
 #       3. After system login, it will execute ~/.profile to setup $XAUTH_DIR/.xauth file
 
 ########
+# Ubuntu 18.04 rc.local systemd设置 - CSDN博客
+# https://blog.csdn.net/zhengchaooo/article/details/80202599
+########
 # Codename:
 # Releases - Ubuntu Wiki
 # https://wiki.ubuntu.com/Releases
