@@ -1,38 +1,39 @@
-version: '2'
+version: '2.3'
 
 services:
-    cuda80:
-        build:
-            context: .
-            dockerfile: Dockerfile_cuda80
-        container_name: cuda80
-        ports:
-            - "88:22"
-        entrypoint: /usr/sbin/sshd -d
-        stdin_open: true
-        tty: true
-        volumes:
-            - ./project:/root/project
-            - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
-            - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
-        environment:
-            - DISPLAY=$DISPLAY # for Xwindow GUI
-            - XAUTHORITY=/tmp/.docker.xauth
-        cap_add:
-            - SYS_ADMIN
-        devices:
-            - "/dev/fuse:/dev/fuse"
-        security_opt:
-            - apparmor:unconfined
-        restart: always
+    # cuda80:
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile_cuda80
+    #     container_name: cuda80
+    #     ports:
+    #         - "88:22"
+    #     entrypoint: /usr/sbin/sshd -d
+    #     stdin_open: true
+    #     tty: true
+    #     volumes:
+    #         - ./project:/root/project
+    #         - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+    #         - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+    #     environment:
+    #         - DISPLAY=$DISPLAY # for Xwindow GUI
+    #         - XAUTHORITY=/tmp/.docker.xauth
+    #     cap_add:
+    #         - SYS_ADMIN
+    #     devices:
+    #         - "/dev/fuse:/dev/fuse"
+    #     security_opt:
+    #         - apparmor:unconfined
+    #     restart: always
 
     cuda90:
         build:
             context: .
-            dockerfile: Dockerfile_cuda90
+            dockerfile: cuda90/Dockerfile
         container_name: cuda90
         ports:
             - "89:22"
+        runtime: nvidia # only for Compose format 2.3
         entrypoint: /usr/sbin/sshd -d
         stdin_open: true
         tty: true
@@ -49,37 +50,37 @@ services:
             - apparmor:unconfined
         restart: always
 
-    tensorflow:
-        build:
-            context: .
-            dockerfile: Dockerfile_tensorflow
-        container_name: tensorflow
-        ports:
-            - "8888:8888"
-        volumes: 
-            - ./project/jupyter/notebooks:/notebooks
-            - ./project:/root/project
-            - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
-        environment:
-            - DISPLAY=$DISPLAY # for Xwindow GUI
-            - PASSWORD=12345678
-        restart: always
+    # tensorflow:
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile_tensorflow
+    #     container_name: tensorflow
+    #     ports:
+    #         - "8888:8888"
+    #     volumes: 
+    #         - ./project/jupyter/notebooks:/notebooks
+    #         - ./project:/root/project
+    #         - /tmp/.X11-unix:/tmp/.X11-unix # for X window GUI
+    #     environment:
+    #         - DISPLAY=$DISPLAY # for Xwindow GUI
+    #         - PASSWORD=12345678
+    #     restart: always
 
-    anaconda:
-        build:
-            context: .
-            dockerfile: Dockerfile_anaconda
-        container_name: anaconda
-        ports:
-            - "8889:8888"
-        volumes: 
-            - /tmp/.X11-unix:/tmp/.X11-unix                     # XSCOKS
-            - /tmp/.docker.xauth:/tmp/.docker.xauth             # XAUTH
-            - ./project/jupyter/notebooks:/opt/notebooks        # notebook
-        environment:
-            - DISPLAY=$DISPLAY                                  # X Window Display
-            - XAUTHORITY=/tmp/.docker.xauth                     # XAUTH
-            - PASSWORD=$PSWD                                    # password
-        stdin_open: true                                        # docker run -i
-        tty: true                                               # docker run -t
-        restart: always
+    # anaconda:
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile_anaconda
+    #     container_name: anaconda
+    #     ports:
+    #         - "8889:8888"
+    #     volumes: 
+    #         - /tmp/.X11-unix:/tmp/.X11-unix                     # XSCOKS
+    #         - /tmp/.docker.xauth:/tmp/.docker.xauth             # XAUTH
+    #         - ./project/jupyter/notebooks:/opt/notebooks        # notebook
+    #     environment:
+    #         - DISPLAY=$DISPLAY                                  # X Window Display
+    #         - XAUTHORITY=/tmp/.docker.xauth                     # XAUTH
+    #         - PASSWORD=$PSWD                                    # password
+    #     stdin_open: true                                        # docker run -i
+    #     tty: true                                               # docker run -t
+    #     restart: always

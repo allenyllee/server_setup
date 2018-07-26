@@ -288,8 +288,15 @@ sudo apt-get remove --purge -y nvidia-*
 # apt - How do I search for available packages from the command-line? - Ask Ubuntu
 # https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line
 #
-# get latest version
-NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+# # get latest version
+# old version before nvidia-390
+# NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+# new version after nvidia-driver-390
+# Trying to install nvidia driver for ubuntu Desktop 18.04 LTS - Ask Ubuntu
+# https://askubuntu.com/questions/1032938/trying-to-install-nvidia-driver-for-ubuntu-desktop-18-04-lts
+#
+NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-driver-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+
 
 # install latest version
 sudo apt-get install -y $NVIDIA_VERSION
@@ -367,7 +374,7 @@ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 # 
 # Add "default-runtime": "nvidia",
 #
-sed 's/    \"runtimes\":/    \"default-runtime\": \"nvidia\",\n    \"runtimes\":/' /etc/docker/daemon.json
+sudo sed -i 's/    \"runtimes\":/    \"default-runtime\": \"nvidia\",\n    \"runtimes\":/' /etc/docker/daemon.json
 
 
 # nvidia-docker 1.0 was deprecated

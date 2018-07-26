@@ -62,6 +62,9 @@ docker-compose up -d
 # clone submodules
 bash ../nvidia_docker/project/init_submodule.sh
 
+# for nvidia-docker 1.0(deprecated)
 # starting nvidia docker containers in the background and leaves them running
-bash -c "cd ../nvidia_docker;nvidia-docker-compose build;nvidia-docker-compose up -d"
+#bash -c "cd ../nvidia_docker;nvidia-docker-compose build;nvidia-docker-compose up -d"
 
+# nvidia-docker2
+bash -c "cd ../nvidia_docker;docker-compose build;docker-compose up -d"
