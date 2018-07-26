@@ -214,6 +214,46 @@ source ~/.profile
 # grep and friends let you play with text.
 sudo apt-get install -y jq
 
+
+#######
+# Install Docker Compose | Docker Documentation
+# https://docs.docker.com/compose/install/#install-compose
+#######
+# Shell - Get latest release from GitHub
+# https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
+# it needs jq to parse json from github API, and get the download url.
+#######
+# jq Manual (development version)
+# https://stedolan.github.io/jq/manual/
+# 
+# --arg name value:
+# This option passes a value to the jq program as a predefined variable. 
+# If you run jq with --arg foo bar, then $foo is available in the program and has the value "bar". 
+# Note that value will be treated as a string, so --arg foo 123 will bind $foo to "123".
+# 
+# --raw-output / -r:
+# With this option, if the filter’s result is a string then it will be written directly to standard 
+# output rather than being formatted as a JSON string with quotes. This can be useful for making jq 
+# filters talk to non-JSON-based systems.
+#
+#  select(boolean_expression)
+# The function select(foo) produces its input unchanged if foo returns true for that input, 
+# and produces no output otherwise.
+# It’s useful for filtering lists: [1,2,3] | map(select(. >= 2)) will give you [2,3].
+# 
+#  endswith(str)
+# Outputs true if . ends with the given string argument.
+#######
+# curl - How To Use
+# https://curl.haxx.se/docs/manpage.html
+# 
+# --url <url>
+# Specify a URL to fetch. This option is mostly handy when you want to specify URL(s) in a config file. 
+#######
+curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
+sudo chmod +x /usr/local/bin/docker-compose
+
+
 # ________   ___      ___ ___  ________  ___  ________          ________  ________  ___  ___      ___ _______   ________
 #|\   ___  \|\  \    /  /|\  \|\   ___ \|\  \|\   __  \        |\   ___ \|\   __  \|\  \|\  \    /  /|\  ___ \ |\   __  \
 #\ \  \\ \  \ \  \  /  / | \  \ \  \_|\ \ \  \ \  \|\  \       \ \  \_|\ \ \  \|\  \ \  \ \  \  /  / | \   __/|\ \  \|\  \
