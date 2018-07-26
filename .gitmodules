@@ -211,9 +211,9 @@
 [submodule "repo-pega/efi-shell-app"]
 	path = repo-pega/efi-shell-app
 	url = https://github.com/allenyllee/efi-shell-app.git
-[submodule "repo-linux-driver/linux_driver_training"]
-	path = repo-linux-driver/linux_driver_training
-	url = https://allenyllee@bitbucket.org/allenyllee/linux_driver_training.git
+[submodule "repo-linux-driver/Linux_Driver_Training"]
+	path = repo-linux-driver/Linux_Driver_Training
+	url = https://gitlab.com/allenyllee/Linux_Driver_Training.git
 [submodule "repo-ai/AIIA-Level1-Aug"]
 	path = repo-ai/AIIA-Level1-Aug
 	url = https://github.com/allenyllee/AIIA-Level1-Aug.git
