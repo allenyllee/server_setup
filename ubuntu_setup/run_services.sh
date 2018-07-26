@@ -2,6 +2,7 @@
 
 PROJECT_DIR=$1
 DOCKERDIR="/mnt/docker-srv"
+DOCKERDIR2="$PROJECT_DIR/docker-srv"
 export DOCKERBIN="$(which docker)"
 
 sudo mkdir -p $DOCKERDIR
@@ -10,7 +11,7 @@ sudo chmod 777 $DOCKERDIR
 #
 # gitlab data
 #
-export GITLAB_DIR=$DOCKERDIR/gitlab
+export GITLAB_DIR=$DOCKERDIR2/gitlab
 
 #
 # jenkins data
@@ -35,7 +36,7 @@ export SQUID_DIR=$DOCKERDIR/squid/cache
 #
 # samba server shared folder
 #
-export SAMBA_DIR=$DOCKERDIR/samba
+export SAMBA_DIR=$DOCKERDIR2/samba
 
 #
 # xtensa source
@@ -46,7 +47,7 @@ export SAMBA_DIR=$DOCKERDIR/samba
 export XTENSA_GIT=$(eval echo $PROJECT_DIR)/xtensa_X_docker
 
 # folder to share with samba
-export XTENSA_DIR=$SAMBA_DIR/project
+export XTENSA_DIR=$SAMBA_DIR/xtensa_dir
 
 ###################
 # docker

@@ -122,7 +122,7 @@ services:
         environment:
             - USERID=0
             - GROUPID=0
-        command: -S -s "project;/data;yes;no"
+        command: -S -s "project_data;/data;yes;no"
         restart: always
 
     xtensa:
