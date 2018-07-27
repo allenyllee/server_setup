@@ -388,3 +388,6 @@
 [submodule "repo-book/HPC-book-and-course"]
 	path = repo-book/HPC-book-and-course
 	url = https://github.com/allenyllee/HPC-book-and-course.git
+[submodule "repo-ai/NLP-AI-in-Law"]
+	path = repo-ai/NLP-AI-in-Law
+	url = https://gitlab.com/allenyllee/NLP-AI-in-Law.git
