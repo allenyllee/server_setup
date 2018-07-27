@@ -409,6 +409,50 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt-get update
 sudo apt-get install -y code # or code-insiders
 
+######
+# install context menu open in VSCode
+######
+# How to add Open with VS Code context menu in Nautilus · Issue #873 · Microsoft/vscode-docs
+# https://github.com/Microsoft/vscode-docs/issues/873
+######
+# VSCode extension for Nautilus
+# https://gist.github.com/cra0zy/f8ec780e16201f81ccd5234856546414
+######
+
+# install python-nautilus package
+sudo apt-get install -y python-nautilus
+# add extension
+mkdir -p ~/.local/share/nautilus-python/extensions && cp -f VSCodeExtension.py ~/.local/share/nautilus-python/extensions/VSCodeExtension.py && nautilus -q
+
+####
+# Setting VS Code as the default text editor
+####
+# Running Visual Studio Code on Linux
+# https://code.visualstudio.com/docs/setup/linux#_setting-vs-code-as-the-default-text-editor
+####
+# Set default application using `xdg-mime` | Guy Rutenberg
+# https://www.guyrutenberg.com/2018/01/20/set-default-application-using-xdg-mime/
+# 
+# 1. Query the default mime-type associations,
+#    Will return the .desktop file associated with the default app to open mp4 files.
+# 
+#       xdg-mime query default video/mp4
+# 
+# 2. To change the default association, you need to specify the desktop
+#    file to open files of the specified mime type.
+# 
+#       xdg-mime default vlc.desktop video/mp4
+# 
+# 3. To check the mime-type of a given file, use
+# 
+#       file -ib filename
+# 
+####
+xdg-mime default code.desktop text/plain
+
+
+
+
 #
 # for Spell Right extension to find system dictionary
 #
