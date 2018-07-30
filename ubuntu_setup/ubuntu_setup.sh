@@ -710,6 +710,13 @@ sudo apt-get install -y lshw-gtk
 # KInfoCenter
 sudo apt-get install -y kinfocenter
 
+#
+# linux - What Process is using all of my disk IO - Stack Overflow
+# https://stackoverflow.com/questions/488826/what-process-is-using-all-of-my-disk-io
+#
+sudo apt-get install -y iotop
+
+
 ###################
 # CUDA-Z
 # http://cuda-z.sourceforge.net/
@@ -849,6 +856,14 @@ sudo apt-get install -y qtdeclarative5-qtquick2-plugin
 # 7za, 7zCon.sfx (to make auto extractible archive), and documentation.
 # If you want to create/extract only 7z archive (without password) take p7zip (7zr) else p7zip-full (with p7zip-rar)
 sudo apt-get install -y p7zip-full
+
+#
+# install unrar
+#
+# compression - What's the easiest way to unrar a file? - Ask Ubuntu
+# https://askubuntu.com/questions/41791/whats-the-easiest-way-to-unrar-a-file
+sudo apt-get install -y unrar
+
 
 
 ############################
