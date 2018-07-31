@@ -717,6 +717,51 @@ sudo apt-get install -y kinfocenter
 sudo apt-get install -y iotop
 
 
+#########
+# install tlp
+#########
+# software recommendation - Is there a power saving application similar to Jupiter? - Ask Ubuntu
+# https://askubuntu.com/questions/285434/is-there-a-power-saving-application-similar-to-jupiter
+########
+sudo add-apt-repository -y ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get install -y tlp tlp-rdw smartmontools ethtool
+
+# Removing default Ubuntu cpu frequency config 
+sudo update-rc.d -f ondemand remove 
+
+# The main config file of TLP is at /etc/default/tlp
+#  sudo -i gedit /etc/default/tlp
+cp ./tlp_conf /etc/default/tlp
+
+# start tlp
+sudo tlp start
+
+# install indicator-cpufreq
+sudo apt-get install -y indicator-cpufreq
+
+# add to autostart
+cp ./autostart/CPU frequency Scaling Indicator.desktop ~/.config/autostart
+
+# PowerSavingTweaks for Intel Graphics
+sudo sed 's|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash intel_pstate=disable i915.lvds_downclock=1 drm.vblankoffdelay=1 i915.semaphores=1 i915_enable_rc6=1 i915_enable_fbc=1\"|' /etc/default/grub
+sudo update-grub
+
+
+#####
+# install powertop
+#####
+# PowerManagement/ReducedPower - Community Help Wiki
+# https://help.ubuntu.com/community/PowerManagement/ReducedPower
+#####
+sudo apt install -y powertop
+
+#####
+# install startup application
+#####
+sudo apt install -y gnome-startup-application
+
+
 ###################
 # CUDA-Z
 # http://cuda-z.sourceforge.net/

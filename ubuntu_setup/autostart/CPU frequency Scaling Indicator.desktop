@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=indicator-cpufreq -f 
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[zh_TW]=CPU frequency Scaling Indicator
+Comment[zh_TW]=An indicator for monitoring and switching CPU frequency
+X-GNOME-Autostart-Delay=0
