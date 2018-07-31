@@ -118,11 +118,12 @@ services:
             - "139:139"
             - "445:445"
         volumes:
-            - "$SAMBA_DIR:/data"
+            - "$SAMBA_DIR_SSD:/data_ssd"
+            - "$SAMBA_DIR_HDD:/data_hdd"
         environment:
             - USERID=0
             - GROUPID=0
-        command: -S -s "project_data;/data;yes;no"
+        command: -S -s "proj_data_ssd;/data_ssd;yes;no" -s "proj_data_hdd;/data_hdd;yes;no"
         restart: always
 
     xtensa:
