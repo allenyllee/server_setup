@@ -1,0 +1,35 @@
+<!--
+#
+# copy this file to /var/lib/gdm3/.config/monitors.xml
+#
+
+#
+# 10.04 - How to change the screen resolution for the GDM login screen? - Ask Ubuntu
+# https://askubuntu.com/questions/12998/how-to-change-the-screen-resolution-for-the-gdm-login-screen
+#
+-->
+
+
+<monitors version="2">
+  <configuration>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1</scale>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>VGA1</connector>
+          <vendor>unknown</vendor>
+          <product>unknown</product>
+          <serial>unknown</serial>
+        </monitorspec>
+        <mode>
+          <width>1920</width>
+          <height>1080</height>
+          <rate>59.962844848632812</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
