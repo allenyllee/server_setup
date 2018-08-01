@@ -879,6 +879,9 @@ ln -s /opt/telegram/telegram /usr/local/bin
 ################
 sudo apt-get install ultracopier
 
+sudo -u $USER_NAME bash <<EOF
+cp ./autostart/ultracopier.desktop ~/.config/autostart/
+EOF
 
 ############################
 # install pdfsam

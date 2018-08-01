@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=ultracopier
+GenericName=ultracopier
+Comment=ultracopier
+Keywords=ultracopier
+Icon=ultracopier
+TryExec=ultracopier
+Exec=ultracopier
+Categories=ultracopier
+X-GNOME-Autostart-Delay=30
+StartupNotify=true
+
+Name[zh_TW]=ultracopier
