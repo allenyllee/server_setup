@@ -25,6 +25,11 @@ PROJECT_DIR=$1
 # 3. "cut" get the second column of tab delimiter line
 CODENAME=$(lsb_release -a | grep "Codename" | cut -d$'\t' -f2)
 
+USER_NAME=$(logname)
+
+sudo -u $USER_NAME bash <<EOF
+mkdir -p ~/.config/autostart/
+EOF
 
 # ________  ________  ________  ___  __    _______   ________
 #|\   ___ \|\   __  \|\   ____\|\  \|\  \ |\  ___ \ |\   __  \
@@ -741,7 +746,9 @@ sudo tlp start
 sudo apt-get install -y indicator-cpufreq
 
 # add to autostart
+sudo -u $USER_NAME bash <<EOF
 cp ./autostart/CPU frequency Scaling Indicator.desktop ~/.config/autostart
+EOF
 
 # PowerSavingTweaks for Intel Graphics
 # 
@@ -866,6 +873,12 @@ sudo add-apt-repository -yppa:atareao/telegram
 sudo apt-get update
 sudo apt-get install -y telegram
 ln -s /opt/telegram/telegram /usr/local/bin
+
+################
+# install ultracopier
+################
+sudo apt-get install ultracopier
+
 
 ############################
 # install pdfsam
@@ -1043,8 +1056,9 @@ flatpak install -y flathub com.github.wwmm.pulseeffects
 # Start PulseEffects with the option of hiding the interface https://github.com/wwmm/pulseeffects/wiki/Command-Line-Options.
 # You just have to write a .desktop file that uses this command line option and copy it to ~/.config/autostart.
 #
-mkdir -p ~/.config/autostart/
-cp ./com.github.wwmm.pulseeffects.desktop ~/.config/autostart/
+sudo -u $USER_NAME bash <<EOF
+cp ./autostart/com.github.wwmm.pulseeffects.desktop ~/.config/autostart/
+EOF
 
 #
 # command line - Running a .desktop file in the terminal - Ask Ubuntu
@@ -1130,6 +1144,37 @@ echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee -a /usr/share/lightd
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo apt-get update
 sudo apt-get install -y grub-customizer
+
+
+################
+# install nautilus-admin
+################
+# How do I start Nautilus as root? - Ask Ubuntu
+# https://askubuntu.com/questions/156998/how-do-i-start-nautilus-as-root
+################
+sudo apt install nautilus-admin
+
+# kill nautilus
+nautilus -q
+
+
+###################
+# install gnome-tweak-tool
+###################
+# How to Install Themes in Ubuntu 18.04 and 17.10 | It's FOSS
+# https://itsfoss.com/install-themes-ubuntu/
+###################
+sudo apt install gnome-tweak-tool
+# install GNOME Shell Extensions
+sudo apt install gnome-shell-extensions
+
+##############
+# install communitheme
+##############
+# How to Install The New Ubuntu Community Theme “Yaru” | It's FOSS
+# https://itsfoss.com/ubuntu-community-theme/
+sudo snap install communitheme
+
 
 #########################
 # TODO: build & up all docker service
