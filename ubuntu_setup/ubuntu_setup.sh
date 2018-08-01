@@ -744,6 +744,22 @@ sudo apt-get install -y indicator-cpufreq
 cp ./autostart/CPU frequency Scaling Indicator.desktop ~/.config/autostart
 
 # PowerSavingTweaks for Intel Graphics
+# 
+# Kernel/PowerManagement/PowerSavingTweaks - Ubuntu Wiki
+# https://wiki.ubuntu.com/Kernel/PowerManagement/PowerSavingTweaks
+# 
+# This gist will show you how to tune your Intel-based Skylake, Kabylake and beyond Integrated Graphics Core for performance and reliability through GuC and HuC firmware usage on Linux.
+# https://gist.github.com/Brainiarc7/aa43570f512906e882ad6cdd835efe57
+# 
+# Intel graphics (简体中文) - ArchWiki
+# https://wiki.archlinux.org/index.php/Intel_graphics_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+# 
+# linux kernel - Setting CPU governor to on demand or conservative - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/121410/setting-cpu-governor-to-on-demand-or-conservative
+# 
+# 实现面向 Intel Core（SandyBridge 和更新的型号）处理器的调频驱动。
+# https://wiki.archlinux.org/index.php/CPU_frequency_scaling_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+# 
 sudo sed 's|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash intel_pstate=disable i915.lvds_downclock=1 drm.vblankoffdelay=1 i915.semaphores=1 i915_enable_rc6=1 i915_enable_fbc=1\"|' /etc/default/grub
 sudo update-grub
 
