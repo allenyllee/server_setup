@@ -8,6 +8,7 @@
 # */
 
 PROJECT_DIR=$1
+PROJECT_DIR_SSD=$2
 
 ###################
 # shell - How to check OS and version using a Linux command - Unix & Linux Stack Exchange
@@ -1200,7 +1201,7 @@ git fetch --all
 git reset --hard origin/xtensa
 EOF
 
-bash ./run_services.sh "$PROJECT_DIR"
+#bash ./run_services.sh "$PROJECT_DIR"
 
 ######################
 # TODO: add backup job
