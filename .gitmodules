@@ -37,9 +37,6 @@
 [submodule "gist/reverse_sshfs"]
 	path = gist/reverse_sshfs
 	url = https://gist.github.com/ddf9be045810572cd809ae3587a23658.git
-[submodule "gist/ubuntu_setup_from_git"]
-	path = gist/ubuntu_setup_from_git
-	url = https://gist.github.com/27e780b7ce7bd1248a754dff1ea3b011.git
 [submodule "repo/Machine-Learning-Foundations"]
 	path = repo/Machine-Learning-Foundations
 	url = https://github.com/allenyllee/Machine-Learning-Foundations.git
@@ -391,3 +388,6 @@
 [submodule "repo-ai/NLP-AI-in-Law"]
 	path = repo-ai/NLP-AI-in-Law
 	url = https://gitlab.com/allenyllee/NLP-AI-in-Law.git
+[submodule "ubuntu_setup/scripts/ubuntu_setup_from_git"]
+	path = ubuntu_setup/scripts/ubuntu_setup_from_git
+	url = https://gist.github.com/27e780b7ce7bd1248a754dff1ea3b011.git
