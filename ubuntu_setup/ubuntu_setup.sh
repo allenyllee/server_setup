@@ -849,16 +849,16 @@ sudo apt-get install -y gsmartcontrol
 #
 # usage:
 #   create loop device for btrfs & mount to /mnt/btrfs_dsk:
-#       truncate -s100G 100GB.img
-#       ld=$(sudo losetup --show --find 100GB.img); echo "$ld"
+#       truncate -s100G 100GB.btrfs.img
+#       ld=$(sudo losetup --show --find 100GB.btrfs.img); echo "$ld"
 #       sudo mkfs -t btrfs -f "$ld"
 #       sudo mkdir -p /mnt/btrfs_dsk
 #       sudo mount -o rw,user,noatime,space_cache,compress=zstd "$ld" /mnt/btrfs_dsk
 #   or
-#       truncate -s100G 100GB.img
-#       sudo mkfs -t btrfs -f 100GB.img
+#       truncate -s100G 100GB.btrfs.img
+#       sudo mkfs -t btrfs -f 100GB.btrfs.img
 #       sudo mkdir -p /mnt/btrfs_dsk
-#       sudo mount -o rw,user,noatime,space_cache,compress=zstd 100GB.img /mnt/btrfs_dsk
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd 100GB.btrfs.img /mnt/btrfs_dsk
 #
 #   create subvol Dataset & Snapshot:
 #       sudo btrfs subvolume create /mnt/btrfs_dsk/Dataset
@@ -872,8 +872,8 @@ sudo apt-get install -y gsmartcontrol
 #       sudo btrfs subvolume create /mnt/btrfs_dsk/Dataset
 #       sudo btrfs subvolume create /mnt/btrfs_dsk/Snapshot
 #       sudo mkdir -p /mnt/Dataset /mnt/Snapshot
-#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Dataset 100GB.img /mnt/Dataset
-#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot 100GB.img /mnt/Snapshot
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Dataset 100GB.btrfs.img /mnt/Dataset
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot 100GB.btrfs.img /mnt/Snapshot
 #       sudo umount /mnt/btrfs_dsk
 #       sudo rm -r /mnt/btrfs_dsk
 #
@@ -890,8 +890,8 @@ sudo apt-get install -y gsmartcontrol
 #       sudo btrfs subvolume list -a .
 #
 #   /etc/fstab:
-#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
-#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
+#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
+#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
 # 
 # 
 #############
