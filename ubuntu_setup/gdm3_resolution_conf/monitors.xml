@@ -19,15 +19,15 @@
       <primary>yes</primary>
       <monitor>
         <monitorspec>
-          <connector>VGA1</connector>
-          <vendor>unknown</vendor>
-          <product>unknown</product>
-          <serial>unknown</serial>
+          <connector>HDMI-1-2</connector>
+          <vendor>AGO</vendor>
+          <product>0x0001</product>
+          <serial>0x434e3031</serial>
         </monitorspec>
         <mode>
           <width>1920</width>
           <height>1080</height>
-          <rate>59.962844848632812</rate>
+          <rate>60</rate>
         </mode>
       </monitor>
     </logicalmonitor>
