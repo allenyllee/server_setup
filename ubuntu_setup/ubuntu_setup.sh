@@ -719,12 +719,6 @@ sudo apt-get install -y lshw-gtk
 # KInfoCenter
 sudo apt-get install -y kinfocenter
 
-#
-# linux - What Process is using all of my disk IO - Stack Overflow
-# https://stackoverflow.com/questions/488826/what-process-is-using-all-of-my-disk-io
-#
-sudo apt-get install -y iotop
-
 
 #########
 # install tlp
@@ -828,19 +822,96 @@ sudo apt-get install -y system-config-lvm
 ################
 sudo apt-get install -y vim
 
-################
+
+############
+# Disk space, IO, partition format
+############
+
+#
+# linux - What Process is using all of my disk IO - Stack Overflow
+# https://stackoverflow.com/questions/488826/what-process-is-using-all-of-my-disk-io
+#
+sudo apt-get install -y iotop
+
+#
 # disk space analyzer
-################
+#
 sudo apt-get install -y Baobab
 
-################
+#
 # Alternative to CrystalDiskInfo
-################
+#
 sudo apt-get install -y gsmartcontrol
 
-#########################
+
+#
+# support btrfs
+#
+# usage:
+#   create loop device for btrfs & mount to /mnt/btrfs_dsk:
+#       truncate -s100G 100GB.img
+#       ld=$(sudo losetup --show --find 100GB.img); echo "$ld"
+#       sudo mkfs -t btrfs -f "$ld"
+#       sudo mkdir -p /mnt/btrfs_dsk
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd "$ld" /mnt/btrfs_dsk
+#   or
+#       truncate -s100G 100GB.img
+#       sudo mkfs -t btrfs -f 100GB.img
+#       sudo mkdir -p /mnt/btrfs_dsk
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd 100GB.img /mnt/btrfs_dsk
+#
+#   create subvol Dataset & Snapshot:
+#       sudo btrfs subvolume create /mnt/btrfs_dsk/Dataset
+#       sudo btrfs subvolume create /mnt/btrfs_dsk/Snapshot
+#       sudo mkdir -p /mnt/Dataset /mnt/Snapshot
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Dataset "$ld" /mnt/Dataset
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot "$ld" /mnt/Snapshot
+#       sudo umount /mnt/btrfs_dsk
+#       sudo rm -r /mnt/btrfs_dsk
+#   or
+#       sudo btrfs subvolume create /mnt/btrfs_dsk/Dataset
+#       sudo btrfs subvolume create /mnt/btrfs_dsk/Snapshot
+#       sudo mkdir -p /mnt/Dataset /mnt/Snapshot
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Dataset 100GB.img /mnt/Dataset
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot 100GB.img /mnt/Snapshot
+#       sudo umount /mnt/btrfs_dsk
+#       sudo rm -r /mnt/btrfs_dsk
+#
+#   create read only (-r) snapshot for Dataset:
+#       sudo btrfs subvolume snapshot -r /mnt/Dataset /mnt/Snapshot/Dataset-`date +%Y%m%d-%H%M`
+#
+#   delete snapshot of Dataset:
+#       sudo btrfs subvolume delete /mnt/Snapshot/Dataset-20180809-1303
+#
+#   defrag & compress:
+#       btrfs filesystem defragment -r -czstd /mnt/Dataset
+#
+#   /etc/fstab:
+#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
+#       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
+# 
+# 
+#############
+# How to set a non default zstd compression level at btrfs filesystem defragment? - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/412480/how-to-set-a-non-default-zstd-compression-level-at-btrfs-filesystem-defragment
+#
+# Compression - btrfs Wiki
+# https://btrfs.wiki.kernel.org/index.php/Compression
+#
+# The level support of ZLIB has been added in v4.14, LZO does not support levels (the kernel implementation provides only one), ZSTD level support is planned. 
+# 
+# 
+sudo apt install btrfs-progs
+
+
+
+###########
+# screen, display
+###########
+
+#
 # install redshift
-#########################
+#
 sudo apt-get install -y redshift-gtk
 
 # copy redshift settings
