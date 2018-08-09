@@ -886,6 +886,9 @@ sudo apt-get install -y gsmartcontrol
 #   defrag & compress:
 #       btrfs filesystem defragment -r -czstd /mnt/Dataset
 #
+#   show subvolume info:
+#       sudo btrfs subvolume list -a .
+#
 #   /etc/fstab:
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
