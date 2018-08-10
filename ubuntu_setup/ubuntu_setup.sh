@@ -893,6 +893,16 @@ sudo apt-get install -y gsmartcontrol
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
 # 
+#   backup image & change uuid (to prevent confilct):
+#       cp /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img
+#       sudo btrfstune -u /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img
+# 
+#   send & receive:
+#       sudo mkdir -p /mnt/tmp
+#       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img /mnt/tmp
+#       sudo btrfs subvolume snapshot -r /mnt/Dataset /mnt/Snapshot/Dataset-`date +%Y%m%d-%H%M` && sync
+#       sudo btrfs send /mnt/Snapshot/Dataset-20180809-1936/ | sudo btrfs receive /mnt/tmp
+
 # 
 #############
 # How to set a non default zstd compression level at btrfs filesystem defragment? - Unix & Linux Stack Exchange
