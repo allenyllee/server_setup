@@ -10,15 +10,9 @@
 [submodule "nvidia_docker/project/CUDA-By-Example"]
 	path = nvidia_docker/project/CUDA-By-Example
 	url = https://github.com/allenyllee/CUDA-By-Example.git
-[submodule "Dockerfile/condaD"]
-	path = Dockerfile/condaD
-	url = https://github.com/allenyllee/condaD.git
 [submodule "Dockerfile/motion-webcam-server"]
 	path = Dockerfile/motion-webcam-server
 	url = https://github.com/allenyllee/motion-webcam-server.git
-[submodule "nvidia_docker/cuda90"]
-	path = nvidia_docker/cuda90
-	url = https://github.com/allenyllee/cuda90.git
 [submodule "Dockerfile/wine-base"]
 	path = Dockerfile/wine-base
 	url = https://github.com/allenyllee/wine-base.git
@@ -49,9 +43,6 @@
 [submodule "gist/Linux_Driver_Coding_Notes"]
 	path = gist/Linux_Driver_Coding_Notes
 	url = https://gist.github.com/d7431053780f469b30bfd4a073ebf711.git
-[submodule "Dockerfile/cuda80-fix"]
-	path = Dockerfile/cuda80-fix
-	url = https://github.com/allenyllee/cuda80-fix.git
 [submodule "repo-liteon/BELMAR"]
 	path = repo-liteon/BELMAR
 	url = https://gitlab.com/allenyllee/BELMAR.git
@@ -391,3 +382,15 @@
 [submodule "ubuntu_setup/scripts/ubuntu_setup_from_git"]
 	path = ubuntu_setup/scripts/ubuntu_setup_from_git
 	url = https://gist.github.com/27e780b7ce7bd1248a754dff1ea3b011.git
+[submodule "Dockerfile/cuda80-fix"]
+	path = Dockerfile/cuda80-fix
+	url = https://github.com/allenyllee/cuda80-fix.git
+[submodule "Dockerfile/cuda90-fix"]
+	path = Dockerfile/cuda90-fix
+	url = https://github.com/allenyllee/cuda90-fix.git
+[submodule "Dockerfile/anaconda3-fix"]
+	path = Dockerfile/anaconda3-fix
+	url = https://github.com/allenyllee/anaconda3-fix.git
+[submodule "Dockerfile/tensorflow-fix"]
+	path = Dockerfile/tensorflow-fix
+	url = https://github.com/allenyllee/tensorflow-fix.git
