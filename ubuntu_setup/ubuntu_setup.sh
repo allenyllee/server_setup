@@ -719,6 +719,12 @@ sudo apt-get install -y lshw-gtk
 # KInfoCenter
 sudo apt-get install -y kinfocenter
 
+########################
+#
+# power management tools
+#
+########################
+
 
 #########
 # install tlp
@@ -735,7 +741,7 @@ sudo update-rc.d -f ondemand remove
 
 # The main config file of TLP is at /etc/default/tlp
 #  sudo -i gedit /etc/default/tlp
-cp ./tlp_conf /etc/default/tlp
+sudo cp ./tlp_conf/tlp /etc/default/tlp
 
 # start tlp
 sudo tlp start
@@ -745,7 +751,7 @@ sudo apt-get install -y indicator-cpufreq
 
 # add to autostart
 sudo -u $USER_NAME bash <<EOF
-cp ./autostart/CPU frequency Scaling Indicator.desktop ~/.config/autostart
+cp "./autostart/CPU frequency Scaling Indicator.desktop" ~/.config/autostart
 EOF
 
 # PowerSavingTweaks for Intel Graphics
@@ -765,7 +771,7 @@ EOF
 # 实现面向 Intel Core（SandyBridge 和更新的型号）处理器的调频驱动。
 # https://wiki.archlinux.org/index.php/CPU_frequency_scaling_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 # 
-sudo sed 's|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash intel_pstate=disable i915.lvds_downclock=1 drm.vblankoffdelay=1 i915.semaphores=1 i915_enable_rc6=1 i915_enable_fbc=1\"|' /etc/default/grub
+sudo sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash intel_pstate=disable i915.lvds_downclock=1 drm.vblankoffdelay=1 i915.semaphores=1 i915_enable_rc6=1 i915_enable_fbc=1\"|' /etc/default/grub
 sudo update-grub
 
 
