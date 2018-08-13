@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Jupyter
+Icon=/usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
+Exec=bash -c "~/anaconda3/bin/jupyter notebook --notebook-dir=~/"
+Comment=Jupyter notebook
+MimeType=application/x-ipynb+json;
+Categories=Science;
+Terminal=true

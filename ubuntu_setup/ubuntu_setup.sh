@@ -1273,6 +1273,17 @@ sudo apt install gnome-shell-extensions
 sudo snap install communitheme
 
 
+##############
+# jupyter notebook launcher
+##############
+sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
+cp ./launcher/jupyter.desktop ~/.local/share/applications/
+
+##############
+# Nautilus launcher
+##############
+cp ./launcher/nautilus.desktop ~/.local/share/applications/
+
 #########################
 # TODO: build & up all docker service
 #########################
