@@ -685,6 +685,21 @@ echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 sudo apt-get install -y python3-pip
 sudo pip-3.3 install -y pylint
 
+###############
+# install anaconda
+###############
+# How To Install the Anaconda Python Distribution on Ubuntu 16.04 | DigitalOcean
+# https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-16-04
+# 
+# how to install anaconda / miniconda on Linux silently - Stack Overflow
+# https://stackoverflow.com/questions/49338902/how-to-install-anaconda-miniconda-on-linux-silently
+###############
+curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+bash Anaconda3-*-Linux-x86_64.sh -b
+
+
+
+
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___
 #|\   ____\     |\  \  /  /|\   ____\|\___   ___\\  ___ \ |\   _ \  _   \        |\  \|\   ___  \|\  _____\\   __  \        |\___   ___\\   __  \|\   __  \|\  \
 #\ \  \___|_    \ \  \/  / | \  \___|\|___ \  \_\ \   __/|\ \  \\\__\ \  \       \ \  \ \  \\ \  \ \  \__/\ \  \|\  \       \|___ \  \_\ \  \|\  \ \  \|\  \ \  \
