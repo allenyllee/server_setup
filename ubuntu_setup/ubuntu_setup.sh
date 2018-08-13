@@ -1276,6 +1276,13 @@ sudo snap install communitheme
 ##############
 # jupyter notebook launcher
 ##############
+# How to create a icon on Ubuntu 16.04 desktop that would start a command line app? - Ask Ubuntu
+# https://askubuntu.com/questions/812017/how-to-create-a-icon-on-ubuntu-16-04-desktop-that-would-start-a-command-line-app
+#
+# launcher - How to handle jupyter notebook files in Ubuntu? - Ask Ubuntu
+# https://askubuntu.com/questions/848350/how-to-handle-jupyter-notebook-files-in-ubuntu
+#
+##############
 sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
 cp ./launcher/jupyter.desktop ~/.local/share/applications/
 
