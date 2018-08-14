@@ -698,6 +698,19 @@ curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 bash Anaconda3-*-Linux-x86_64.sh -b
 
 
+##############
+# jupyter notebook launcher
+##############
+# How to create a icon on Ubuntu 16.04 desktop that would start a command line app? - Ask Ubuntu
+# https://askubuntu.com/questions/812017/how-to-create-a-icon-on-ubuntu-16-04-desktop-that-would-start-a-command-line-app
+#
+# launcher - How to handle jupyter notebook files in Ubuntu? - Ask Ubuntu
+# https://askubuntu.com/questions/848350/how-to-handle-jupyter-notebook-files-in-ubuntu
+#
+##############
+sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
+cp ./launcher/jupyter.desktop ~/.local/share/applications/
+
 
 
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___
@@ -1106,6 +1119,23 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sudo apt-get update
 sudo apt-get install -y google-chrome-stable
 
+
+###############
+# install deludge: the BT client
+###############
+# Plugins – Deluge
+# https://dev.deluge-torrent.org/wiki/Plugins#InstallingPluginEggs
+###############
+sudo add-apt-repository ppa:deluge-team/ppa
+sudo apt-get update
+sudo apt-get install deluge
+
+# install LabelPlus plugin
+cp ~/Projects/server_setup/ubuntu_setup/deludge/plugins/LabelPlus-0.3.2.2-py2.7.egg ~/.config/deluge/plugins/
+
+
+
+
 #############
 # install normalized audio plugin
 #############
@@ -1287,19 +1317,6 @@ sudo apt install gnome-shell-extensions
 # https://itsfoss.com/ubuntu-community-theme/
 sudo snap install communitheme
 
-
-##############
-# jupyter notebook launcher
-##############
-# How to create a icon on Ubuntu 16.04 desktop that would start a command line app? - Ask Ubuntu
-# https://askubuntu.com/questions/812017/how-to-create-a-icon-on-ubuntu-16-04-desktop-that-would-start-a-command-line-app
-#
-# launcher - How to handle jupyter notebook files in Ubuntu? - Ask Ubuntu
-# https://askubuntu.com/questions/848350/how-to-handle-jupyter-notebook-files-in-ubuntu
-#
-##############
-sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
-cp ./launcher/jupyter.desktop ~/.local/share/applications/
 
 ##############
 # Nautilus launcher
