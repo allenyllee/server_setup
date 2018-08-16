@@ -301,8 +301,13 @@ sudo apt-get remove --purge -y nvidia-*
 # Trying to install nvidia driver for ubuntu Desktop 18.04 LTS - Ask Ubuntu
 # https://askubuntu.com/questions/1032938/trying-to-install-nvidia-driver-for-ubuntu-desktop-18-04-lts
 #
+# 
+if [ $CODENAME == "bionic" ]
+then
 NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-driver-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
-
+else
+NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+fi
 
 # install latest version
 sudo apt-get install -y $NVIDIA_VERSION
