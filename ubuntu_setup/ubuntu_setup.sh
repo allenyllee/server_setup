@@ -190,25 +190,32 @@ then
     printf "\nexit 0" | sudo tee -a /etc/rc.local >>/dev/null
 fi
 
+XAUTH_CMD="XAUTH_DIR=/tmp/.docker.xauth; rm -rf \$XAUTH_DIR; install -m 777 -d \$XAUTH_DIR"
+
 # 1. Use tr to swap the newline character to NUL character.
 #       NUL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
 # 2. Use sed to match the string
 # 3. Use tr to swap back.
 # 4. insert a string into /etc/rc.local before exit 0
 tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
-sudo sed -i 's|\x00XAUTH_DIR=.*\x00\x00|\x00|' /etc/rc.local >/dev/null
+sudo sed -i 's|\x00'"$XAUTH_CMD"'\x00\x00|\x00|' /etc/rc.local >/dev/null
 tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
-sudo sed -i 's|^exit 0.*$|XAUTH_DIR=/tmp/.docker.xauth; rm -rf $XAUTH_DIR; install -m 777 -d $XAUTH_DIR\n\nexit 0|' /etc/rc.local
+sudo sed -i 's|^exit 0.*$|'"$XAUTH_CMD"'\n\nexit 0|' /etc/rc.local
 
 
 # create a folder with mod 777 that can allow all other user read/write
-XAUTH_DIR=/tmp/.docker.xauth; sudo rm -rf $XAUTH_DIR; install -m 777 -d $XAUTH_DIR
+eval "sudo bash -c '$XAUTH_CMD'"
+
+
+
+XAUTH_CMD2="XAUTH_DIR=/tmp/.docker.xauth; XAUTH=\$XAUTH_DIR/.xauth; touch \$XAUTH; xauth nlist \$DISPLAY | sed -e 's/^..../ffff/' | xauth -f \$XAUTH nmerge -"
 
 # append string in ~/.profile
 tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
-sed -i 's|\x00XAUTH_DIR=.*-\x00|\x00|' ~/.profile
+# use # as delimiter to avoid conflict with XAUTH_CMD2's pipe |
+sed -i 's#'"$XAUTH_CMD2"'\x00##' ~/.profile
 tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
-echo "XAUTH_DIR=/tmp/.docker.xauth; XAUTH=\$XAUTH_DIR/.xauth; touch \$XAUTH; xauth nlist \$DISPLAY | sed -e 's/^..../ffff/' | xauth -f \$XAUTH nmerge -" >> ~/.profile
+echo "$XAUTH_CMD2" >> ~/.profile
 source ~/.profile
 
 
@@ -969,20 +976,6 @@ sudo apt-get install -y redshift-gtk
 # copy redshift settings
 cp ./redshift.conf ~/.config/
 
-############################
-# install ssh server
-# will generate /etc/ssh/sshd_config
-############################
-sudo apt-get install -y openssh-server
-
-# install sshfs
-sudo apt-get install -y sshfs
-
-# download & install VirtualGL
-VIRTUALGL_VERSION=2.5.2
-curl -sSL https://downloads.sourceforge.net/project/virtualgl/"${VIRTUALGL_VERSION}"/virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb -o virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb && \
-    dpkg -i virtualgl_*_amd64.deb && \
-    rm virtualgl_*_amd64.deb
 
 
 #####################
@@ -1093,6 +1086,12 @@ END
 #######################
 sudo apt install -y exfat-utils exfat-fuse
 
+###################
+##############
+# network tools
+##############
+###################
+
 ####################
 # install bitmeteros
 ####################
@@ -1111,6 +1110,40 @@ sudo rm -rf bitmeteros_*-amd64.deb*
 # When it's installed, go into your browser, and enter the following into the address bar:-
 #
 # http://localhost:2605/index.html
+
+
+#########
+# install net tools (includes netstat)
+#########
+
+sudo apt install -y net-tools
+
+#########
+# install autossh
+#########
+
+sudo apt install -y autossh
+
+#########
+# install sshpass
+#########
+
+sudo apt install sshpass
+
+############################
+# install ssh server
+# will generate /etc/ssh/sshd_config
+############################
+sudo apt-get install -y openssh-server
+
+# install sshfs
+sudo apt-get install -y sshfs
+
+# download & install VirtualGL
+VIRTUALGL_VERSION=2.5.2
+curl -sSL https://downloads.sourceforge.net/project/virtualgl/"${VIRTUALGL_VERSION}"/virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb -o virtualgl_"${VIRTUALGL_VERSION}"_amd64.deb && \
+    dpkg -i virtualgl_*_amd64.deb && \
+    rm virtualgl_*_amd64.deb
 
 
 ###############
