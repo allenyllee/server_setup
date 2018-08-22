@@ -394,3 +394,6 @@
 [submodule "Dockerfile/tensorflow-fix"]
 	path = Dockerfile/tensorflow-fix
 	url = https://github.com/allenyllee/tensorflow-fix.git
+[submodule "ubuntu_setup/scripts/autossh_setup"]
+	path = ubuntu_setup/scripts/autossh_setup
+	url = https://gist.github.com/a1298c08dcd0b92ad9138e0faef979f3.git
