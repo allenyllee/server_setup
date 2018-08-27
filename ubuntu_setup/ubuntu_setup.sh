@@ -1361,6 +1361,42 @@ sudo snap install communitheme
 ##############
 cp ./launcher/nautilus.desktop ~/.local/share/applications/
 
+
+
+###############
+# install xdotool
+###############
+# linux - Kill the currently active window with a keyboard shortcut - Super User
+# https://superuser.com/questions/757160/kill-the-currently-active-window-with-a-keyboard-shortcut
+#
+# xdotool getwindowfocus windowkill
+#
+###############
+sudo apt install -y xdotool
+
+
+##########
+# command line - How to set custom keyboard shortcuts from terminal? - Ask Ubuntu
+# https://askubuntu.com/questions/597395/how-to-set-custom-keyboard-shortcuts-from-terminal
+##########
+
+# set keyboard shortcut
+KET_NAME="killwindow"
+KEY_LIST=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$KET_NAME/"
+
+NEW_BIND=`echo "$KEY_LIST" | sed -e"s%'\]%','$KEY_PATH']%" | sed -e"s%@as \[\]%['$KEY_PATH']%"`
+
+echo $NEW_BIND
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$NEW_BIND"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH name "$KET_NAME"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH command 'xdotool getwindowfocus windowkill'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH binding '<Primary><Alt>x'
+
+
+
+
 #########################
 # TODO: build & up all docker service
 #########################
