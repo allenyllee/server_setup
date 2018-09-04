@@ -1395,6 +1395,29 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KE
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH binding '<Primary><Alt>x'
 
 
+########
+# set ctrl+shift as input layout switch
+########
+# 18.04 ctrl+shift to change language - Ask Ubuntu
+# https://askubuntu.com/questions/1029588/18-04-ctrlshift-to-change-language
+#
+# ubuntu16.4 修改菜單到下方 錯誤：GLib-GIO-Message: Using the 'memory' GSettings backend. Your settings will not be saved or shared with other applications. - 掃文資訊
+# https://hk.saowen.com/a/ebbd364855b4987bcf2718a46b5045fb246b6ef0f5b72c5c8278e63bc09dd959
+
+
+export GIO_EXTRA_MODULES=/usr/lib/x86_64-linux-gnu/gio/modules/
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:ctrl_shift_toggle']"
+
+
+# 17.10 - Switching between windows with scroll wheel on Ubuntu Dock - Ask Ubuntu
+# https://askubuntu.com/questions/966887/switching-between-windows-with-scroll-wheel-on-ubuntu-dock
+
+gsettings set org.gnome.shell.extensions.dash-to-dock scroll-action 'cycle-windows'
+
+# How do I enable 'minimize on click' on Ubuntu dock in Ubuntu 17.10 and 18.04? - Ask Ubuntu
+# https://askubuntu.com/questions/960074/how-do-i-enable-minimize-on-click-on-ubuntu-dock-in-ubuntu-17-10-and-18-04
+
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
 
 
 #########################
