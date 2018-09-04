@@ -1406,7 +1406,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KE
 
 
 export GIO_EXTRA_MODULES=/usr/lib/x86_64-linux-gnu/gio/modules/
-gsettings set org.gnome.desktop.input-sources xkb-options "['grp:ctrl_shift_toggle']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:rctrl_rshift_toggle']" # right-ctrl + right-shift
 
 
 # 17.10 - Switching between windows with scroll wheel on Ubuntu Dock - Ask Ubuntu
