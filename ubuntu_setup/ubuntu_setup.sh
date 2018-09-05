@@ -723,6 +723,16 @@ bash Anaconda3-*-Linux-x86_64.sh -b
 sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
 cp ./launcher/jupyter.desktop ~/.local/share/applications/
 
+#####
+# python - Ipython Notebook: where is jupyter_notebook_config.py in Mac? - Stack Overflow
+# https://stackoverflow.com/questions/32625939/ipython-notebook-where-is-jupyter-notebook-config-py-in-mac
+#####
+# create jupyter_notebook_config.py
+#jupyter notebook --generate-config
+
+# copy jupyter_notebook_config.py to ~/.jupyter/
+cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
+
 
 
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___
