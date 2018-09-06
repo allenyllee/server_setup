@@ -1430,6 +1430,42 @@ gsettings set org.gnome.shell.extensions.dash-to-dock scroll-action 'cycle-windo
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
 
 
+
+##########
+# install deepin-screenshot
+##########
+# 
+# Deepin_Screenshot - deepin Wiki
+# https://wiki.deepin.org/index.php?title=Deepin_Screenshot&language=en#Save_Screenshot
+# 
+# -   Select auto_save to save the image under the system default picture folder.
+# -   Select save_to_desktop to save the picture to desktop.
+# -   Select save_to_dir to save the picture to your specified storage directory.
+# -   Select save_ClipBoard to copy the picture to the clipboard.
+# -   Select auto_save_ClipBoard to save the picture in the system default picture folder and copy it to the clipboard.
+# -   Adjust the quality of the saved pictures by dragging the slider left or right.
+##########
+
+sudo apt install -y deepin-screenshot
+
+# set keyboard shortcut
+export GIO_EXTRA_MODULES=/usr/lib/x86_64-linux-gnu/gio/modules/
+KET_NAME="deepin-screenshot"
+KEY_LIST=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$KET_NAME/"
+
+NEW_BIND=`echo "$KEY_LIST" | sed -e"s%'\]%','$KEY_PATH']%" | sed -e"s%@as \[\]%['$KEY_PATH']%"`
+
+echo $NEW_BIND
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$NEW_BIND"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH name "$KET_NAME"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH command 'deepin-screenshot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH binding 'F1'
+
+
+
+
 #########################
 # TODO: build & up all docker service
 #########################
