@@ -126,6 +126,19 @@ services:
         command: -S -s "proj_data_ssd;/data_ssd;yes;no" -s "proj_data;/data;yes;no"
         restart: always
 
+    ResilioSync:
+        container_name: ResilioSync
+        image: resilio/sync
+        ports:
+            - "8888:8888"
+            - "55555:55555"
+        volumes:
+            - "$SYNC_FOLDER:/mnt/sync"
+        entrypoint:
+            - /mnt/sync/init_script.sh
+        command: --config /mnt/sync/sync.conf
+        restart: on-failure
+
     xtensa:
         build:
             context: $XTENSA_GIT

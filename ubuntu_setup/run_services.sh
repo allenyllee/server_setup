@@ -40,6 +40,12 @@ export SQUID_DIR=$DOCKERDIR_SSD/squid/cache
 export SAMBA_DIR_SSD=$DOCKERDIR_SSD/samba
 export SAMBA_DIR=$DOCKERDIR/samba
 
+#
+# Resilio Sync folder
+#
+
+export SYNC_FOLDER="$PROJECT_DIR/Sync"
+
 
 #
 # xtensa source

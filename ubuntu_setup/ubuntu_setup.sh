@@ -1013,6 +1013,15 @@ ln -s /opt/telegram/telegram /usr/local/bin
 # cp ./autostart/ultracopier.desktop ~/.config/autostart/
 # EOF
 
+
+############
+# install pv
+############
+
+sudo apt install -y pv
+
+
+
 ############################
 # install pdfsam
 ############################
