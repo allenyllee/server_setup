@@ -127,7 +127,12 @@
 #  completely without authentication. These services can disable all
 #  authentication and security checks, with the full knowledge of what that
 #  implies.
-#c.NotebookApp.disable_check_xsrf = False
+
+#
+# Remote Kernels: "'_xsrf' argument missing from POST" when token is empty string · Issue #922 · nteract/hydrogen
+# https://github.com/nteract/hydrogen/issues/922
+#
+c.NotebookApp.disable_check_xsrf = True
 
 ## Whether to enable MathJax for typesetting math/TeX
 #  
