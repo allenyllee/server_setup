@@ -397,3 +397,6 @@
 [submodule "ubuntu_setup/scripts/autossh_setup"]
 	path = ubuntu_setup/scripts/autossh_setup
 	url = https://gist.github.com/a1298c08dcd0b92ad9138e0faef979f3.git
+[submodule "repo-ai/Python-in-5-days"]
+	path = repo-ai/Python-in-5-days
+	url = https://github.com/allenyllee/Python-in-5-days.git
