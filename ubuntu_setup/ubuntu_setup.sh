@@ -265,7 +265,7 @@ sudo apt-get install -y jq
 #######
 curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
 sudo chmod +x /usr/local/bin/docker-compose
-
+cp /usr/local/bin/docker-compose /home/allenyllee/.local/bin/
 
 # ________   ___      ___ ___  ________  ___  ________          ________  ________  ___  ___      ___ _______   ________
 #|\   ___  \|\  \    /  /|\  \|\   ___ \|\  \|\   __  \        |\   ___ \|\   __  \|\  \|\  \    /  /|\  ___ \ |\   __  \

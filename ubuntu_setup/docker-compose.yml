@@ -133,11 +133,45 @@ services:
             - "8888:8888"
             - "55555:55555"
         volumes:
-            - "$SYNC_FOLDER:/mnt/sync"
+            - "$SYNC_CONFIG:/mnt/sync"
+            - "$SYNC_DATA:/mnt/sync/ResilioSyncFolder"
         entrypoint:
             - /mnt/sync/init_script.sh
         command: --config /mnt/sync/sync.conf
         restart: on-failure
+
+    OneDrive:
+        container_name: OneDrive
+        image: oznu/onedrive
+        environment:
+            - PUID=$UserID
+            - PGID=$GroupID
+            - TZ=Asia/Taipei
+            - DEBUG=0
+        volumes:
+            - $ONEDRIVE_CONFIG:/config
+            - $ONEDRIVE_DATA:/documents
+        restart: on-failure
+
+
+    GoogleDrive:
+        container_name: GoogleDrive
+        image: retrohunter/docker-google-drive-ocamlfuse
+        user: rancher:rancher
+        security_opt:
+            - apparmor:unconfined
+        cap_add:
+            - mknod
+            - sys_admin
+        devices:
+            - "/dev/fuse:/dev/fuse"
+        volumes:
+            - $GOOGLEDRIVE_DATA:/mnt/google-drive
+            - $GOOGLEDRIVE_CONFIG:/home/rancher/.gdfuse/default
+        entrypoint:
+            - /home/rancher/.gdfuse/default/docker-entrypoint.sh
+        restart: on-failure
+
 
     xtensa:
         build:

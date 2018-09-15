@@ -5,6 +5,8 @@ PROJECT_DIR_SSD=$2
 DOCKERDIR="$PROJECT_DIR/docker-srv"
 DOCKERDIR_SSD="$PROJECT_DIR_SSD/docker-srv"
 export DOCKERBIN="$(which docker)"
+export UserID=$(id -u)
+export GroupID=$(id -g)
 
 sudo mkdir -p $DOCKERDIR_SSD
 sudo chmod 777 $DOCKERDIR_SSD
@@ -44,7 +46,70 @@ export SAMBA_DIR=$DOCKERDIR/samba
 # Resilio Sync folder
 #
 
-export SYNC_FOLDER="$PROJECT_DIR/Sync"
+export SYNC_CONFIG="$DOCKERDIR_SSD/ResilioSyncConfig"
+export SYNC_DATA="$PROJECT_DIR/ResilioSyncFolder"
+
+#
+# onedrive
+#
+export ONEDRIVE_CONFIG="$DOCKERDIR_SSD/OneDriveConfig"
+export ONEDRIVE_DATA="$SYNC_DATA/Cloud/OneDrive"
+
+
+COMMAND=$(cat << EOF
+docker run -it --rm \
+  -e PUID=$UserID \
+  -e PGID=$GroupID \
+  -v $ONEDRIVE_CONFIG:/config \
+  -v $ONEDRIVE_DATA:/documents \
+  oznu/onedrive
+EOF
+)
+
+if [ ! -e $ONEDRIVE_CONFIG/already_config ] ; then
+  # create new terminal window to run COMMAND
+  echo "$COMMAND"
+  bash -c "$COMMAND; touch $ONEDRIVE_CONFIG/already_config"
+fi
+
+
+#
+# Google Drive
+#
+export GOOGLEDRIVE_CONFIG="$DOCKERDIR_SSD/GoogleDriveConfig"
+export GOOGLEDRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
+
+export CLIENT_JSONFILE="google_drive_oauth.json"
+export CLIENT_ID=$(jq .installed.client_id $GOOGLEDRIVE_CONFIG/$CLIENT_JSONFILE | cut -d\" -f2 | cut -d. -f1)
+export CLIENT_SECRET=$(jq .installed.client_secret $GOOGLEDRIVE_CONFIG/$CLIENT_JSONFILE | cut -d\" -f2)
+
+
+COMMAND=$(cat << EOF
+docker run -it --rm \
+  --user rancher:rancher \
+  --security-opt apparmor:unconfined \
+  --cap-add mknod \
+  --cap-add sys_admin \
+  --device=/dev/fuse \
+  -e CLIENT_ID=$CLIENT_ID \
+  -e CLIENT_SECRET=$CLIENT_SECRET \
+  -v "$GOOGLEDRIVE_DATA":/mnt/google-drive \
+  -v "$GOOGLEDRIVE_CONFIG:/home/rancher/.gdfuse/default" \
+  --entrypoint "/home/rancher/.gdfuse/default/docker-entrypoint.sh" \
+  retrohunter/docker-google-drive-ocamlfuse
+EOF
+)
+
+
+if [ ! -e $GOOGLEDRIVE_CONFIG/already_config ] ; then
+  echo "$CLIENT_ID"
+  echo "$CLIENT_SECRET"
+  # create new terminal window to run COMMAND
+  echo "$COMMAND"
+  #gnome-terminal -x bash -c "$COMMAND"
+  bash -c "$COMMAND; touch $GOOGLEDRIVE_CONFIG/already_config"
+fi
+
 
 
 #
