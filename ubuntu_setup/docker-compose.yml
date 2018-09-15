@@ -138,7 +138,7 @@ services:
         entrypoint:
             - /mnt/sync/init_script.sh
         command: --config /mnt/sync/sync.conf
-        restart: on-failure
+        restart: always
 
     OneDrive:
         container_name: OneDrive
@@ -151,7 +151,7 @@ services:
         volumes:
             - $ONEDRIVE_CONFIG:/config
             - $ONEDRIVE_DATA:/documents
-        restart: on-failure
+        restart: always
 
 
     GoogleDrive:
@@ -170,7 +170,7 @@ services:
             - $GOOGLEDRIVE_CONFIG:/home/rancher/.gdfuse/default
         entrypoint:
             - /home/rancher/.gdfuse/default/docker-entrypoint.sh
-        restart: on-failure
+        restart: always
 
 
     xtensa:
