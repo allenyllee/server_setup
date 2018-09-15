@@ -78,6 +78,7 @@ fi
 #
 export GOOGLEDRIVE_CONFIG="$DOCKERDIR_SSD/GoogleDriveConfig"
 export GOOGLEDRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
+#export GOOGLEDRIVE_DATA="/mnt/GoogleDrive"
 
 export CLIENT_JSONFILE="google_drive_oauth.json"
 export CLIENT_ID=$(jq .installed.client_id $GOOGLEDRIVE_CONFIG/$CLIENT_JSONFILE | cut -d\" -f2 | cut -d. -f1)
@@ -86,14 +87,14 @@ export CLIENT_SECRET=$(jq .installed.client_secret $GOOGLEDRIVE_CONFIG/$CLIENT_J
 
 COMMAND=$(cat << EOF
 docker run -it --rm \
-  --user rancher:rancher \
+  --user root:root \
   --security-opt apparmor:unconfined \
   --cap-add mknod \
   --cap-add sys_admin \
   --device=/dev/fuse \
   -e CLIENT_ID=$CLIENT_ID \
   -e CLIENT_SECRET=$CLIENT_SECRET \
-  -v "$GOOGLEDRIVE_DATA":/mnt/google-drive \
+  -v "$GOOGLEDRIVE_DATA":/mnt/google-drive:shared \
   -v "$GOOGLEDRIVE_CONFIG:/home/rancher/.gdfuse/default" \
   --entrypoint "/home/rancher/.gdfuse/default/docker-entrypoint.sh" \
   retrohunter/docker-google-drive-ocamlfuse

@@ -157,7 +157,7 @@ services:
     GoogleDrive:
         container_name: GoogleDrive
         image: retrohunter/docker-google-drive-ocamlfuse
-        user: rancher:rancher
+        user: root:root
         security_opt:
             - apparmor:unconfined
         cap_add:
@@ -166,10 +166,10 @@ services:
         devices:
             - "/dev/fuse:/dev/fuse"
         volumes:
-            - $GOOGLEDRIVE_DATA:/mnt/google-drive
-            - $GOOGLEDRIVE_CONFIG:/home/rancher/.gdfuse/default
+            - $GOOGLEDRIVE_DATA:/mnt/google-drive:shared
+            - $GOOGLEDRIVE_CONFIG:/root/.gdfuse/default
         entrypoint:
-            - /home/rancher/.gdfuse/default/docker-entrypoint.sh
+            - /root/.gdfuse/default/docker-entrypoint.sh
         restart: always
 
 
