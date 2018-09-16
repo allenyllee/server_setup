@@ -973,6 +973,11 @@ sudo apt-get install -y gsmartcontrol
 sudo apt install btrfs-progs
 
 
+#
+# system backup job: install duplicity
+# 
+sudo apt install duplicity
+
 
 ###########
 # screen, display
