@@ -979,6 +979,12 @@ sudo apt install btrfs-progs
 sudo apt install duplicity
 
 
+#
+# add swapness
+#
+echo vm.swappiness=80 | sudo tee /etc/sysctl.d/99-sawapness.conf; sudo sysctl -p --system
+
+
 ###########
 # screen, display
 ###########
