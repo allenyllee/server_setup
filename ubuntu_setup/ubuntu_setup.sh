@@ -980,9 +980,22 @@ sudo apt install duplicity
 
 
 #
-# add swapness
+# add swappiness
 #
-echo vm.swappiness=80 | sudo tee /etc/sysctl.d/99-sawapness.conf; sudo sysctl -p --system
+echo vm.swappiness=80 | sudo tee /etc/sysctl.d/99-sawapness.conf && sudo sysctl -p --system
+
+# show current value
+cat /proc/sys/vm/swappiness
+sysctl vm.swappiness
+
+# #
+# # add inotify max_user_watches
+# #
+# echo fs.inotify.max_user_watches=100000 | sudo tee /etc/sysctl.d/99-max_user_watches.conf && sudo sysctl -p --system
+
+# # show current value
+# cat /proc/sys/fs/inotify/max_user_watches
+# sysctl fs.inotify.max_user_watches
 
 
 ###########
