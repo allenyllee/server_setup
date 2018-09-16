@@ -154,23 +154,23 @@ services:
         restart: always
 
 
-    GoogleDrive:
-        container_name: GoogleDrive
-        image: retrohunter/docker-google-drive-ocamlfuse
-        user: root:root
-        security_opt:
-            - apparmor:unconfined
-        cap_add:
-            - mknod
-            - sys_admin
-        devices:
-            - "/dev/fuse:/dev/fuse"
-        volumes:
-            - $GOOGLEDRIVE_DATA:/mnt/google-drive:shared
-            - $GOOGLEDRIVE_CONFIG:/root/.gdfuse/default
-        entrypoint:
-            - /root/.gdfuse/default/docker-entrypoint.sh
-        restart: always
+    # GoogleDrive:
+    #     container_name: GoogleDrive
+    #     image: retrohunter/docker-google-drive-ocamlfuse
+    #     user: root:root
+    #     security_opt:
+    #         - apparmor:unconfined
+    #     cap_add:
+    #         - mknod
+    #         - sys_admin
+    #     devices:
+    #         - "/dev/fuse:/dev/fuse"
+    #     volumes:
+    #         - $GOOGLEDRIVE_DATA:/mnt/google-drive:shared
+    #         - $GOOGLEDRIVE_CONFIG:/root/.gdfuse/default
+    #     entrypoint:
+    #         - /root/.gdfuse/default/docker-entrypoint.sh
+    #     restart: always
 
 
     xtensa:
