@@ -49,6 +49,9 @@ export SAMBA_DIR=$DOCKERDIR/samba
 export SYNC_CONFIG="$DOCKERDIR_SSD/ResilioSyncConfig"
 export SYNC_DATA="$PROJECT_DIR/ResilioSyncFolder"
 
+mkdir -p "$SYNC_CONFIG"
+cp ./entrypoint_script/init_script.sh "$SYNC_CONFIG"
+
 #
 # onedrive
 #
@@ -76,14 +79,15 @@ fi
 #
 # Google Drive
 #
-# export GOOGLEDRIVE_CONFIG="$DOCKERDIR_SSD/GoogleDriveConfig"
-# export GOOGLEDRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
-# #export GOOGLEDRIVE_DATA="/mnt/GoogleDrive"
+export GOOGLEDRIVE_CONFIG="$DOCKERDIR_SSD/GoogleDriveConfig"
+export GOOGLEDRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
 
 # export CLIENT_JSONFILE="google_drive_oauth.json"
 # export CLIENT_ID=$(jq .installed.client_id $GOOGLEDRIVE_CONFIG/$CLIENT_JSONFILE | cut -d\" -f2 | cut -d. -f1)
 # export CLIENT_SECRET=$(jq .installed.client_secret $GOOGLEDRIVE_CONFIG/$CLIENT_JSONFILE | cut -d\" -f2)
 
+mkdir -p "$GOOGLEDRIVE_CONFIG"
+cp ./entrypoint_script/docker-entrypoint.sh "$GOOGLEDRIVE_CONFIG"
 
 # COMMAND=$(cat << EOF
 # docker run -it --rm \
@@ -116,6 +120,9 @@ fi
 #
 export DROPBOX_CONFIG="$DOCKERDIR_SSD/DropboxConfig"
 export DROPBOX_DATA="$SYNC_DATA/Cloud/Dropbox"
+
+mkdir -p "$DROPBOX_CONFIG"
+cp ./entrypoint_script/run.sh "$DROPBOX_CONFIG"
 
 # COMMAND=$(cat << EOF
 # docker run -it --rm \

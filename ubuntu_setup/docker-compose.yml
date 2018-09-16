@@ -184,7 +184,7 @@ services:
             - $DROPBOX_CONFIG:/dbox/.dropbox
         privileged: true
         entrypoint:
-            - /dbox/.dropbox/run
+            - /dbox/.dropbox/run.sh
         restart: always
 
 
