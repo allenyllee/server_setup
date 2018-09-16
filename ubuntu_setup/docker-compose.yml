@@ -172,6 +172,22 @@ services:
     #         - /root/.gdfuse/default/docker-entrypoint.sh
     #     restart: always
 
+    Dropbox:
+        container_name: Dropbox
+        image: janeczku/dropbox
+        environment:
+            - DBOX_UID=$UserID
+            - DBOX_GID=$GroupID
+        network_mode: "host"
+        volumes:
+            - $DROPBOX_DATA:/dbox/Dropbox
+            - $DROPBOX_CONFIG:/dbox/.dropbox
+        privileged: true
+        entrypoint:
+            - /dbox/.dropbox/run
+        restart: always
+
+
 
     xtensa:
         build:

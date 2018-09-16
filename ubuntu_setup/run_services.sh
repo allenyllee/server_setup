@@ -111,6 +111,31 @@ fi
 #   bash -c "$COMMAND; touch $GOOGLEDRIVE_CONFIG/already_config"
 # fi
 
+#
+# Dropbox
+#
+export DROPBOX_CONFIG="$DOCKERDIR_SSD/DropboxConfig"
+export DROPBOX_DATA="$SYNC_DATA/Cloud/Dropbox"
+
+# COMMAND=$(cat << EOF
+# docker run -it --rm \
+#   -e DBOX_UID=$UserID \
+#   -e DBOX_GID=$GroupID \
+#   -v $DROPBOX_DATA:/dbox/Dropbox \
+#   -v $DROPBOX_CONFIG:/dbox/.dropbox \
+#   --net="host" \
+#   --entrypoint /dbox/.dropbox/run \
+#   --privileged=true \
+#   janeczku/dropbox
+# EOF
+# )
+
+# if [ ! -e $DROPBOX_CONFIG/already_config ] ; then
+#   # create new terminal window to run COMMAND
+#   echo "$COMMAND"
+#   bash -c "$COMMAND; touch $ONEDRIVE_CONFIG/already_config"
+# fi
+
 
 
 #
@@ -130,6 +155,8 @@ export XTENSA_DIR=$SAMBA_DIR/xtensa_dir
 
 # starting docker containers in the background and leaves them running
 docker-compose up -d
+
+docker logs Dropbox
 
 ###################
 # nvidia docker
