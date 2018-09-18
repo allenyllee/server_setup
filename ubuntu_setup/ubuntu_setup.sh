@@ -972,6 +972,12 @@ sudo apt-get install -y gsmartcontrol
 # 
 sudo apt install btrfs-progs
 
+#
+# install snapper
+#
+sudo apt install snapper
+
+
 
 #
 # system backup job: install duplicity
