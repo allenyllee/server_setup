@@ -400,3 +400,6 @@
 [submodule "repo-ai/Python-in-5-days"]
 	path = repo-ai/Python-in-5-days
 	url = https://github.com/allenyllee/Python-in-5-days.git
+[submodule "ubuntu_setup/scripts/mount_vhdx"]
+	path = ubuntu_setup/scripts/mount_vhdx
+	url = https://gist.github.com/0a4c02952bf695470860b27369bbb60d.git
