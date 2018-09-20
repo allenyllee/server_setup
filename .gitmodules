@@ -403,3 +403,6 @@
 [submodule "ubuntu_setup/scripts/mount_vhdx"]
 	path = ubuntu_setup/scripts/mount_vhdx
 	url = https://gist.github.com/0a4c02952bf695470860b27369bbb60d.git
+[submodule "ubuntu_setup/scripts/set_networking"]
+	path = ubuntu_setup/scripts/set_networking
+	url = https://gist.github.com/c11c150842578d514c6a46caaaa7e1ad.git
