@@ -160,7 +160,7 @@ export DELUGE_CONFIG="$DOCKERDIR_SSD/DelugeConfig"
 sudo ln -s -T -f $DELUGE_DATA/.deluge ~/.config/deluge
 # mount config folder
 #sudo mount --bind ~/Projects_SSD/docker-srv/DelugeConfig ~/.config/deluge
-sudo ln -s -T -f "$DELUGE_DATA" /downloads
+#sudo ln -s -T -f "$DELUGE_DATA" /downloads
 
 #
 # xtensa source
