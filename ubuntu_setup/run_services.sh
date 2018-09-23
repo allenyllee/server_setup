@@ -8,6 +8,11 @@ export DOCKERBIN="$(which docker)"
 export UserID=$(id -u)
 export GroupID=$(id -g)
 
+export XSOCK=/tmp/.X11-unix
+export XAUTH_DIR=/tmp/.docker.xauth
+export XAUTH=$XAUTH_DIR/.xauth
+
+
 sudo mkdir -p $DOCKERDIR_SSD
 sudo chmod 777 $DOCKERDIR_SSD
 
@@ -144,6 +149,18 @@ cp ./entrypoint_script/run.sh "$DROPBOX_CONFIG"
 # fi
 
 
+#
+# deluge
+#
+export DELUGE_DATA="$SYNC_DATA/Media(btsync)"
+export DELUGE_CONFIG="$DOCKERDIR_SSD/DelugeConfig"
+
+# mount data folder
+#sudo mount --bind ~/Projects/ResilioSyncFolder/Media\(btsync\)/ /downloads
+sudo ln -s ~/Projects/ResilioSyncFolder/Media\(btsync\)/.deluge ~/.config/deluge
+# mount config folder
+#sudo mount --bind ~/Projects_SSD/docker-srv/DelugeConfig ~/.config/deluge
+sudo ln -s ~/Projects/ResilioSyncFolder/Media\(btsync\) /downloads
 
 #
 # xtensa source

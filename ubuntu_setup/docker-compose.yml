@@ -188,6 +188,24 @@ services:
         restart: always
 
 
+    Deluge:
+        container_name: Deluge
+        image: linuxserver/deluge
+        environment:
+            - PUID=$UserID
+            - PGID=$GroupID
+            - TZ=Asia/Taipei
+            - UMASK_SET=000
+            - DISPLAY=$DISPLAY
+            - XAUTHORITY=$XAUTH
+        network_mode: "host"
+        volumes:
+            - $DELUGE_DATA:/downloads
+            - $DELUGE_CONFIG:/config
+            - $XSOCK:$XSOCK
+            - $XAUTH_DIR:$XAUTH_DIR
+        restart: always
+
 
     xtensa:
         build:

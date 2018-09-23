@@ -1218,7 +1218,7 @@ sudo apt-get update
 sudo apt-get install deluge
 
 # install LabelPlus plugin
-cp ~/Projects/server_setup/ubuntu_setup/deludge/plugins/LabelPlus-0.3.2.2-py2.7.egg ~/.config/deluge/plugins/
+#cp ~/Projects/server_setup/ubuntu_setup/deludge/plugins/LabelPlus-0.3.2.2-py2.7.egg ~/.config/deluge/plugins/
 
 
 
