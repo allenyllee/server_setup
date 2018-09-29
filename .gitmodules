@@ -406,3 +406,6 @@
 [submodule "ubuntu_setup/scripts/set_networking"]
 	path = ubuntu_setup/scripts/set_networking
 	url = https://gist.github.com/c11c150842578d514c6a46caaaa7e1ad.git
+[submodule "ubuntu_setup/scripts/crontab_jobs"]
+	path = ubuntu_setup/scripts/crontab_jobs
+	url = https://gist.github.com/39074c2765d2fc90e91e096be6b88dc0.git
