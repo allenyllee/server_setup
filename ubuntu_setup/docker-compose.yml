@@ -201,6 +201,7 @@ services:
         network_mode: "host"
         volumes:
             - $DELUGE_DATA:/downloads
+            - $DELUGE_DATA2:/downloads2
             - $DELUGE_TEMP:/temps
             - $DELUGE_CONFIG:/config
             - $XSOCK:$XSOCK

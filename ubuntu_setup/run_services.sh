@@ -153,6 +153,7 @@ cp ./entrypoint_script/run.sh "$DROPBOX_CONFIG"
 # deluge
 #
 export DELUGE_DATA="$SYNC_DATA/Media(btsync)"
+export DELUGE_DATA2="$SYNC_DATA/BT"
 export DELUGE_TEMP="$SYNC_DATA/temps"
 export DELUGE_CONFIG="$DOCKERDIR_SSD/DelugeConfig"
 
