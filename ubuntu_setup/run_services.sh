@@ -150,6 +150,13 @@ cp ./entrypoint_script/run.sh "$DROPBOX_CONFIG"
 
 
 #
+# WebStorage
+# 
+export WebStorage_CONFIG="$DOCKERDIR_SSD/WebStorageConfig/.wine"
+export WebStorage_DATA="$SYNC_DATA/Cloud/WebStorage"
+
+
+#
 # deluge
 #
 export DELUGE_DATA="$SYNC_DATA/Media(btsync)"
@@ -182,7 +189,7 @@ export XTENSA_DIR=$SAMBA_DIR/xtensa_dir
 # starting docker containers in the background and leaves them running
 docker-compose up -d
 
-docker logs Dropbox
+#docker logs Dropbox
 
 ###################
 # nvidia docker

@@ -187,6 +187,21 @@ services:
             - /dbox/.dropbox/run.sh
         restart: always
 
+    WebStorage:
+        container_name: WebStorage
+        image: allenyllee/webstorage-wine
+        environment:
+            - DISPLAY=$DISPLAY
+            - XAUTHORITY=$XAUTH
+        volumes:
+            - $WebStorage_DATA:/WebStorage
+            - $WebStorage_CONFIG:/root/.wine
+            - $XSOCK:$XSOCK
+            - $XAUTH_DIR:$XAUTH_DIR
+        entrypoint:
+            - /init/run_webstorage.sh
+        restart: always
+
 
     Deluge:
         container_name: Deluge
