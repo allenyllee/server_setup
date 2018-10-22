@@ -203,6 +203,21 @@ services:
         restart: always
 
 
+    BaiduYun:
+        container_name: BaiduYun
+        image: allenyllee/baiduyun-wine
+        environment:
+            - DISPLAY=$DISPLAY
+            - XAUTHORITY=$XAUTH
+        volumes:
+            - $BaiduYun_DATA:/baidubox
+            - $BaiduYun_CONFIG:/root/.wine
+            - $XSOCK:$XSOCK
+            - $XAUTH_DIR:$XAUTH_DIR
+        entrypoint:
+            - /init/run_baiduyun.sh
+        restart: always
+
     Deluge:
         container_name: Deluge
         image: linuxserver/deluge

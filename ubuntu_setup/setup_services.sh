@@ -157,6 +157,13 @@ export WebStorage_DATA="$SYNC_DATA/Cloud/WebStorage"
 
 
 #
+# BaiduYun
+# 
+export BaiduYun_CONFIG="$DOCKERDIR_SSD/BaiduYunConfig/.wine"
+export BaiduYun_DATA="$SYNC_DATA/Cloud/baidubox"
+
+
+#
 # deluge
 #
 export DELUGE_DATA="$SYNC_DATA/Media(btsync)"
