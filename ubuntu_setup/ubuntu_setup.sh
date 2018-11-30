@@ -720,6 +720,14 @@ bash Anaconda3-*-Linux-x86_64.sh -b
 # https://askubuntu.com/questions/848350/how-to-handle-jupyter-notebook-files-in-ubuntu
 #
 ##############
+# .desktop file with .bashrc environment - Ask Ubuntu
+# https://askubuntu.com/questions/542152/desktop-file-with-bashrc-environment
+#
+# to source ~/.bashrc, just change .desktop Exec= from
+#     bash -c "~/anaconda3/bin/jupyter notebook --notebook-dir=~/"
+# to
+#     bash -c "source ~/.bashrc && ~/anaconda3/bin/jupyter notebook --notebook-dir=~/"
+##############
 sudo wget https://cdn.rawgit.com/jupyter/design/121ca202/logos/Square%20Logo/squarelogo-greytext-orangebody-greymoons/squarelogo-greytext-orangebody-greymoons.svg -O /usr/share/icons/squarelogo-greytext-orangebody-greymoons.svg
 cp ./launcher/jupyter.desktop ~/.local/share/applications/
 
@@ -730,9 +738,50 @@ cp ./launcher/jupyter.desktop ~/.local/share/applications/
 # create jupyter_notebook_config.py
 #jupyter notebook --generate-config
 
+
 # copy jupyter_notebook_config.py to ~/.jupyter/
 cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
 
+
+# add CUDA environments in ~/.bashrc
+# Add a line to a specific position in a file using Linux sed
+# https://www.garron.me/en/linux/add-line-to-specific-position-in-file-linux.html
+
+# .desktop file with .bashrc environment - Ask Ubuntu
+# https://askubuntu.com/questions/542152/desktop-file-with-bashrc-environment
+#
+# When running from a launcher, the idea.sh script is started using a non-iteractive shell. 
+# In your .bashrc make sure the environment variables are exported before
+# # If not running interactively, don't do anything
+
+# escaping - How to escape single quote in sed? - Stack Overflow
+# https://stackoverflow.com/questions/24509214/how-to-escape-single-quote-in-sed
+
+# bash - how to smart append LD_LIBRARY_PATH in shell when nounset - Stack Overflow
+# https://stackoverflow.com/questions/9631228/how-to-smart-append-ld-library-path-in-shell-when-nounset
+# 
+# You could use this construct:
+# ```
+# export LD_LIBRARY_PATH=/mypath${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+# ```
+# Explanation:
+# -   If `LD_LIBRARY_PATH` is not set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
+#           expands to nothing without evaluating `$LD_LIBRARY_PATH`, thus the 
+#           result is equivalent to `export LD_LIBRARY_PATH=/mypath` and no error is raised.
+# -   If `LD_LIBRARY_PATH` is already set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
+#           expands to `:$LD_LIBRARY_PATH`, thus the result is equivalent to 
+#           `export LD_LIBRARY_PATH=/mypath:$LD_LIBRARY_PATH`.
+# 
+
+CUDA_ENV='# add by allen for cuda \x00export PATH="/usr/local/cuda-9.0/bin:$PATH"\x00export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\x00export CUDA_HOME="/usr/local/cuda-9.0"'
+NONINTERACTIVE='# If not running interactively, don\x27t do anything'
+
+tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+sudo sed -i 's|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
+tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+sudo sed -i 's|\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
+tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
 
 
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___

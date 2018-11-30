@@ -713,6 +713,19 @@ c.NotebookApp.disable_check_xsrf = True
 #  By default, all installed kernels are allowed.
 #c.KernelSpecManager.whitelist = set()
 
+# print environment path
+# python - How to set env variable in Jupyter notebook - Stack Overflow
+# https://stackoverflow.com/questions/37890898/how-to-set-env-variable-in-jupyter-notebook
+#
+# library path not work in notebook · Issue #1290 · jupyter/notebook
+# https://github.com/jupyter/notebook/issues/1290
+
+import os
+c = get_config()
+print('PATH=',os.environ['PATH'])
+print('LD_LIBRARY_PATH=',os.environ['LD_LIBRARY_PATH'])
+#os.environ['LD_LIBRARY_PATH'] = '/usr/local/cuda-9.0/lib64'
+
 import io
 import os
 from notebook.utils import to_api_path
