@@ -319,6 +319,48 @@ fi
 # install latest version
 sudo apt-get install -y $NVIDIA_VERSION
 
+
+########
+# install CUDA
+########
+# How can I install CUDA 9 on Ubuntu 17.10 - Ask Ubuntu
+# https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10
+
+wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
+
+chmod +x cuda_9.0.176_384.81_linux-run
+
+sudo sh -c './cuda_9.0.176_384.81_linux-run --override --silent --toolkit --samples'
+
+#######
+# install cuDNN
+#######
+# cuDNN Download | NVIDIA Developer
+# https://developer.nvidia.com/rdp/cudnn-download
+#######
+# The easy way: Install Nvidia drivers, CUDA, CUDNN and Tensorflow GPU on Ubuntu 18.04 - Ask Ubuntu
+# https://askubuntu.com/questions/1033489/the-easy-way-install-nvidia-drivers-cuda-cudnn-and-tensorflow-gpu-on-ubuntu-1
+#######
+
+wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb
+wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
+
+dpkg -i libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
+
+
+# Installing Tensorflow GPU on Ubuntu 18.04 LTS – Taylor Denouden – Medium
+# https://medium.com/@taylordenouden/installing-tensorflow-gpu-on-ubuntu-18-04-89a142325138
+
+# Install libcupti
+sudo apt-get install libcupti-dev
+
+# test tensorflow
+python << EOF
+from tensorflow.python.client import device_lib 
+device_lib.list_local_devices()
+EOF
+
+
 ######################
 # install nvidia docker
 # NVIDIA/nvidia-docker: Build and run Docker containers leveraging NVIDIA GPUs
@@ -773,8 +815,10 @@ cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
 #           `export LD_LIBRARY_PATH=/mypath:$LD_LIBRARY_PATH`.
 # 
 
-CUDA_ENV='# add by allen for cuda \x00export PATH="/usr/local/cuda-9.0/bin:$PATH"\x00export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\x00export CUDA_HOME="/usr/local/cuda-9.0"'
+CUDA_ENV='# add by allen for cuda \x00export PATH="/usr/local/cuda-9.0/bin${PATH:+:$PATH}"\x00export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\x00export CUDA_HOME="/usr/local/cuda-9.0"'
 NONINTERACTIVE='# If not running interactively, don\x27t do anything'
+
+cp ~/.bashrc ~/.bashrc_allen_cuda.bak
 
 tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
 sudo sed -i 's|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
