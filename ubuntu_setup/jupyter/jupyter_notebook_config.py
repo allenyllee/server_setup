@@ -721,10 +721,12 @@ c.NotebookApp.disable_check_xsrf = True
 # https://github.com/jupyter/notebook/issues/1290
 
 import os
-c = get_config()
 print('PATH=',os.environ['PATH'])
 print('LD_LIBRARY_PATH=',os.environ['LD_LIBRARY_PATH'])
+#c = get_config()
 #os.environ['LD_LIBRARY_PATH'] = '/usr/local/cuda-9.0/lib64'
+#c.Spawner.env.update('LD_LIBRARY_PATH')
+
 
 import io
 import os

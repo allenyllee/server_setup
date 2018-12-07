@@ -332,6 +332,60 @@ chmod +x cuda_9.0.176_384.81_linux-run
 
 sudo sh -c './cuda_9.0.176_384.81_linux-run --override --silent --toolkit --samples'
 
+# add CUDA environments in ~/.bashrc
+# Add a line to a specific position in a file using Linux sed
+# https://www.garron.me/en/linux/add-line-to-specific-position-in-file-linux.html
+
+# .desktop file with .bashrc environment - Ask Ubuntu
+# https://askubuntu.com/questions/542152/desktop-file-with-bashrc-environment
+#
+# When running from a launcher, the idea.sh script is started using a non-iteractive shell. 
+# In your .bashrc make sure the environment variables are exported before
+# # If not running interactively, don't do anything
+
+# escaping - How to escape single quote in sed? - Stack Overflow
+# https://stackoverflow.com/questions/24509214/how-to-escape-single-quote-in-sed
+
+# bash - how to smart append LD_LIBRARY_PATH in shell when nounset - Stack Overflow
+# https://stackoverflow.com/questions/9631228/how-to-smart-append-ld-library-path-in-shell-when-nounset
+# 
+# You could use this construct:
+# ```
+# export LD_LIBRARY_PATH=/mypath${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+# ```
+# Explanation:
+# -   If `LD_LIBRARY_PATH` is not set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
+#           expands to nothing without evaluating `$LD_LIBRARY_PATH`, thus the 
+#           result is equivalent to `export LD_LIBRARY_PATH=/mypath` and no error is raised.
+# -   If `LD_LIBRARY_PATH` is already set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
+#           expands to `:$LD_LIBRARY_PATH`, thus the result is equivalent to 
+#           `export LD_LIBRARY_PATH=/mypath:$LD_LIBRARY_PATH`.
+# 
+
+# 导入tensorflow：ImportError: libcublas.so.9.0: cannot open shared object file: No such file or director - ZeroZone零域的博客 - CSDN博客
+# https://blog.csdn.net/ksws0292756/article/details/80034086
+# 
+# 对于tensorflow 1.7版本，只接受cuda 9.0（9.1也不可以！），和cudnn 7.0，所以如果你安装了cuda9.1和cudnn7.1或以上版本，那么你需要重新安装9.0和7.0版本。
+# 安装完正确的版本后，确认你在你的~/.bashrc（或者~/.zshrc）文件中加入了下面环境变量
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64
+# export PATH=$PATH:/usr/local/cuda-9.0/bin
+# export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-9.0
+
+
+CUDA_ENV='# add by allen for cuda \x00export PATH="/usr/local/cuda-9.0/bin${PATH:+:$PATH}"\x00export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\x00export CUDA_HOME="/usr/local/cuda-9.0"'
+NONINTERACTIVE='# If not running interactively, don\x27t do anything'
+
+cp ~/.bashrc ~/.bashrc_allen_cuda.bak
+
+tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+sudo sed -i 's|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
+tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+sudo sed -i 's|\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
+tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+
+
+
 #######
 # install cuDNN
 #######
@@ -785,47 +839,6 @@ cp ./launcher/jupyter.desktop ~/.local/share/applications/
 cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
 
 
-# add CUDA environments in ~/.bashrc
-# Add a line to a specific position in a file using Linux sed
-# https://www.garron.me/en/linux/add-line-to-specific-position-in-file-linux.html
-
-# .desktop file with .bashrc environment - Ask Ubuntu
-# https://askubuntu.com/questions/542152/desktop-file-with-bashrc-environment
-#
-# When running from a launcher, the idea.sh script is started using a non-iteractive shell. 
-# In your .bashrc make sure the environment variables are exported before
-# # If not running interactively, don't do anything
-
-# escaping - How to escape single quote in sed? - Stack Overflow
-# https://stackoverflow.com/questions/24509214/how-to-escape-single-quote-in-sed
-
-# bash - how to smart append LD_LIBRARY_PATH in shell when nounset - Stack Overflow
-# https://stackoverflow.com/questions/9631228/how-to-smart-append-ld-library-path-in-shell-when-nounset
-# 
-# You could use this construct:
-# ```
-# export LD_LIBRARY_PATH=/mypath${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-# ```
-# Explanation:
-# -   If `LD_LIBRARY_PATH` is not set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
-#           expands to nothing without evaluating `$LD_LIBRARY_PATH`, thus the 
-#           result is equivalent to `export LD_LIBRARY_PATH=/mypath` and no error is raised.
-# -   If `LD_LIBRARY_PATH` is already set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
-#           expands to `:$LD_LIBRARY_PATH`, thus the result is equivalent to 
-#           `export LD_LIBRARY_PATH=/mypath:$LD_LIBRARY_PATH`.
-# 
-
-CUDA_ENV='# add by allen for cuda \x00export PATH="/usr/local/cuda-9.0/bin${PATH:+:$PATH}"\x00export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\x00export CUDA_HOME="/usr/local/cuda-9.0"'
-NONINTERACTIVE='# If not running interactively, don\x27t do anything'
-
-cp ~/.bashrc ~/.bashrc_allen_cuda.bak
-
-tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
-sudo sed -i 's|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
-tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
-tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
-sudo sed -i 's|\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
-tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
 
 
 # ________       ___    ___ ________  _________  _______   _____ ______           ___  ________   ________ ________          _________  ________  ________  ___
