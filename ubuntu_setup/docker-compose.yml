@@ -31,6 +31,9 @@ services:
             - "$GITLAB_DIR/config:/etc/gitlab"
             - "$GITLAB_DIR/logs:/var/log/gitlab"
             - "$GITLAB_DIR/data:/var/opt/gitlab"
+        logging:
+            options:
+                max-size: 50m
         environment:
             - GITLAB_OMNIBUS_CONFIG=" \
                 gitlab_rails['lfs_enabled'] = true; \
@@ -109,6 +112,9 @@ services:
             - "3128:3128"
         volumes:
             - "$SQUID_DIR:/var/spool/squid3"
+        logging:
+            options:
+                max-size: 50m
         restart: always
 
     samba:
@@ -135,6 +141,9 @@ services:
         volumes:
             - "$SYNC_CONFIG:/mnt/sync"
             - "$SYNC_DATA:/mnt/sync/ResilioSyncFolder"
+        logging:
+            options:
+                max-size: 50m
         entrypoint:
             - /mnt/sync/init_script.sh
         command: --config /mnt/sync/sync.conf
@@ -148,6 +157,9 @@ services:
             - PGID=$GroupID
             - TZ=Asia/Taipei
             - DEBUG=0
+        logging:
+            options:
+                max-size: 50m
         volumes:
             - $ONEDRIVE_CONFIG:/config
             - $ONEDRIVE_DATA:/documents
@@ -182,6 +194,9 @@ services:
         volumes:
             - $DROPBOX_DATA:/dbox/Dropbox
             - $DROPBOX_CONFIG:/dbox/.dropbox
+        logging:
+            options:
+                max-size: 50m
         privileged: true
         entrypoint:
             - /dbox/.dropbox/run.sh
@@ -205,6 +220,9 @@ services:
             - $WebStorage_CONFIG:/root/.wine
             - $XSOCK:$XSOCK
             - $XAUTH_DIR:$XAUTH_DIR
+        logging:
+            options:
+                max-size: 50m
         entrypoint:
             - /init/run_webstorage.sh
         restart: always
@@ -236,6 +254,9 @@ services:
             - DISPLAY=$DISPLAY
             - XAUTHORITY=$XAUTH
         network_mode: "host"
+        logging:
+            options:
+                max-size: 50m
         volumes:
             - $DELUGE_DATA:/downloads
             - $DELUGE_DATA2:/downloads2
