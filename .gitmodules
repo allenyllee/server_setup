@@ -409,3 +409,6 @@
 [submodule "ubuntu_setup/scripts/crontab_jobs"]
 	path = ubuntu_setup/scripts/crontab_jobs
 	url = https://gist.github.com/39074c2765d2fc90e91e096be6b88dc0.git
+[submodule "repo-ai/gensim"]
+	path = repo-ai/gensim
+	url = https://github.com/allenyllee/gensim.git
