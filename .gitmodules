@@ -412,3 +412,6 @@
 [submodule "repo-ai/gensim"]
 	path = repo-ai/gensim
 	url = https://github.com/allenyllee/gensim.git
+[submodule "repo-blockchain/StorjNode"]
+	path = repo-blockchain/StorjNode
+	url = https://github.com/allenyllee/StorjNode.git
