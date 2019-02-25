@@ -13,3 +13,4 @@ git submodule add https://github.com/allenyllee/AIacademy.git
 git submodule add https://gitlab.com/allenyllee/NLP-AI-in-Law.git
 git submodule add https://github.com/allenyllee/Python-in-5-days.git
 git submodule add https://github.com/allenyllee/gensim.git
+git submodule add https://gitlab.com/allenyllee/nlp-ai-in-law-exercise.git

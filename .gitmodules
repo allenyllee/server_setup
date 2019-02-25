@@ -415,3 +415,6 @@
 [submodule "repo-blockchain/StorjNode"]
 	path = repo-blockchain/StorjNode
 	url = https://github.com/allenyllee/StorjNode.git
+[submodule "repo-ai/nlp-ai-in-law-exercise"]
+	path = repo-ai/nlp-ai-in-law-exercise
+	url = https://gitlab.com/allenyllee/nlp-ai-in-law-exercise.git
