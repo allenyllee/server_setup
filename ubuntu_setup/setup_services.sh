@@ -1,5 +1,6 @@
 #!/bin/bash
 
+UPDATE=$3
 PROJECT_DIR=$1
 PROJECT_DIR_SSD=$2
 DOCKERDIR="$PROJECT_DIR/docker-srv"
@@ -201,8 +202,29 @@ export XTENSA_DIR=$SAMBA_DIR/xtensa_dir
 # docker
 ###################
 
-# starting docker containers in the background and leaves them running
-docker-compose up -d
+# bash - unary operator expected - Stack Overflow
+# https://stackoverflow.com/questions/13617843/unary-operator-expected
+if [ "$UPDATE" == "update" ]
+then
+  # update image
+  # How to update existing images with docker-compose? - Stack Overflow
+  # https://stackoverflow.com/questions/49316462/how-to-update-existing-images-with-docker-compose
+  # 
+  # build process - how to get docker-compose to use the latest image from repository - Stack Overflow
+  # https://stackoverflow.com/questions/37685581/how-to-get-docker-compose-to-use-the-latest-image-from-repository
+  echo "update image"
+  docker-compose stop
+  docker-compose rm -f
+  docker-compose pull
+  docker-compose up -d
+  docker image prune -f
+else
+  echo "run services"
+  # starting docker containers in the background and leaves them running
+  docker-compose up -d
+fi
+
+
 
 #docker logs Dropbox
 
