@@ -10,3 +10,4 @@ git submodule add https://github.com/allenyllee/docker-compassxport.git
 git submodule add https://github.com/allenyllee/cuda90-fix.git
 git submodule add https://github.com/allenyllee/anaconda3-fix.git
 git submodule add https://github.com/allenyllee/tensorflow-fix.git
+git submodule add https://github.com/allenyllee/ODrive.git

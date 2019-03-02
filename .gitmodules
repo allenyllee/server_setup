@@ -418,3 +418,6 @@
 [submodule "repo-ai/nlp-ai-in-law-exercise"]
 	path = repo-ai/nlp-ai-in-law-exercise
 	url = https://gitlab.com/allenyllee/nlp-ai-in-law-exercise.git
+[submodule "Dockerfile/ODrive"]
+	path = Dockerfile/ODrive
+	url = https://github.com/allenyllee/ODrive.git
