@@ -1,4 +1,4 @@
-version: '2.2'
+version: '2.3'
 
 # 
 # tamplate
@@ -183,6 +183,32 @@ services:
     #     entrypoint:
     #         - /root/.gdfuse/default/docker-entrypoint.sh
     #     restart: always
+
+    ODrive:
+        container_name: ODrive
+        image: allenyllee/odrive
+        user: guest:guest
+        environment:
+            - DISPLAY=$DISPLAY
+            - XAUTHORITY=$XAUTH
+        runtime: nvidia
+        security_opt:
+            - apparmor:unconfined
+        cap_add:
+            - sys_admin
+        devices:
+            - "/dev/fuse:/dev/fuse"
+        volumes:
+            - $ODRIVE_DATA:/ODrive
+            - $ODRIVE_CONFIG:/home/guest/.config/odrive
+            - $XSOCK:$XSOCK
+            - $XAUTH_DIR:$XAUTH_DIR
+        logging:
+            options:
+                max-size: 50m
+        entrypoint:
+            - /scripts/init.sh
+        restart: always
 
     Dropbox:
         container_name: Dropbox

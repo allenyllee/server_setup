@@ -121,6 +121,14 @@ cp ./entrypoint_script/docker-entrypoint.sh "$GOOGLEDRIVE_CONFIG"
 # fi
 
 #
+# ODrive (Google Drive client)
+#
+export ODRIVE_CONFIG="$DOCKERDIR_SSD/ODriveConfig/odrive"
+export ODRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
+#export ODRIVE_DATA="/home/allenyllee/Projects/Google 雲端硬碟"
+
+
+#
 # Dropbox
 #
 export DROPBOX_CONFIG="$DOCKERDIR_SSD/DropboxConfig"
