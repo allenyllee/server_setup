@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UPDATE=$3
+
 PROJECT_DIR=$1
 PROJECT_DIR_SSD=$2
 DOCKERDIR="$PROJECT_DIR/docker-srv"
@@ -126,7 +126,6 @@ cp ./entrypoint_script/docker-entrypoint.sh "$GOOGLEDRIVE_CONFIG"
 #
 export ODRIVE_CONFIG="$DOCKERDIR_SSD/ODriveConfig/odrive"
 export ODRIVE_DATA="$SYNC_DATA/Cloud/Google 雲端硬碟"
-#export ODRIVE_DATA="/home/allenyllee/Projects/Google 雲端硬碟"
 
 
 #
@@ -198,46 +197,3 @@ export XTENSA_GIT=$(eval echo $PROJECT_DIR)/xtensa_X_docker
 # folder to share with samba
 export XTENSA_DIR=$SAMBA_DIR/xtensa_dir
 
-###################
-# docker
-###################
-
-# bash - unary operator expected - Stack Overflow
-# https://stackoverflow.com/questions/13617843/unary-operator-expected
-if [ "$UPDATE" == "update" ]
-then
-  # update image
-  # How to update existing images with docker-compose? - Stack Overflow
-  # https://stackoverflow.com/questions/49316462/how-to-update-existing-images-with-docker-compose
-  # 
-  # build process - how to get docker-compose to use the latest image from repository - Stack Overflow
-  # https://stackoverflow.com/questions/37685581/how-to-get-docker-compose-to-use-the-latest-image-from-repository
-  echo "update image"
-  docker-compose stop
-  docker-compose rm -f
-  docker-compose pull
-  docker-compose up -d
-  docker image prune -f
-else
-  echo "run services"
-  # starting docker containers in the background and leaves them running
-  docker-compose up -d
-fi
-
-
-
-#docker logs Dropbox
-
-###################
-# nvidia docker
-###################
-
-# clone submodules
-#bash ../nvidia_docker/project/init_submodule.sh
-
-# for nvidia-docker 1.0(deprecated)
-# starting nvidia docker containers in the background and leaves them running
-#bash -c "cd ../nvidia_docker;nvidia-docker-compose build;nvidia-docker-compose up -d"
-
-# nvidia-docker2
-#bash -c "cd ../nvidia_docker;docker-compose build;docker-compose up -d"
