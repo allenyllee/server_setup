@@ -793,6 +793,16 @@ echo GTAGSLABEL=pygments|sudo tee -a /etc/environment
 sudo apt-get install -y python3-pip
 sudo pip-3.3 install -y pylint
 
+
+#
+# install poetry
+# sdispater/poetry: Python dependency management and packaging made easy.
+# https://github.com/sdispater/poetry
+#
+curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+
+
+
 ###############
 # install anaconda
 ###############
