@@ -378,7 +378,7 @@
 	url = https://github.com/allenyllee/HPC-book-and-course.git
 [submodule "repo-ai/NLP-AI-in-Law"]
 	path = repo-ai/NLP-AI-in-Law
-	url = https://gitlab.com/allenyllee/NLP-AI-in-Law.git
+	url = https://gitlab.com/AIFR/ai-in-law/NLP-AI-in-Law.git
 [submodule "ubuntu_setup/scripts/ubuntu_setup_from_git"]
 	path = ubuntu_setup/scripts/ubuntu_setup_from_git
 	url = https://gist.github.com/27e780b7ce7bd1248a754dff1ea3b011.git
@@ -417,7 +417,7 @@
 	url = https://github.com/allenyllee/StorjNode.git
 [submodule "repo-ai/nlp-ai-in-law-exercise"]
 	path = repo-ai/nlp-ai-in-law-exercise
-	url = https://gitlab.com/allenyllee/nlp-ai-in-law-exercise.git
+	url = https://gitlab.com/AIFR/ai-in-law/nlp-ai-in-law-exercise.git
 [submodule "Dockerfile/ODrive"]
 	path = Dockerfile/ODrive
 	url = https://github.com/allenyllee/ODrive.git
