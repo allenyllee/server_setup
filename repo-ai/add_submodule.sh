@@ -14,3 +14,4 @@ git submodule add https://gitlab.com/AIFR/ai-in-law/NLP-AI-in-Law.git
 git submodule add https://github.com/allenyllee/Python-in-5-days.git
 git submodule add https://github.com/allenyllee/gensim.git
 git submodule add https://gitlab.com/AIFR/ai-in-law/nlp-ai-in-law-exercise.git
+git submodule add https://gitlab.com/AIFR/ai-in-law/nlpxlaw_official_web.git

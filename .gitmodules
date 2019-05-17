@@ -421,3 +421,6 @@
 [submodule "Dockerfile/ODrive"]
 	path = Dockerfile/ODrive
 	url = https://github.com/allenyllee/ODrive.git
+[submodule "repo-ai/nlpxlaw_official_web"]
+	path = repo-ai/nlpxlaw_official_web
+	url = https://gitlab.com/AIFR/ai-in-law/nlpxlaw_official_web.git
