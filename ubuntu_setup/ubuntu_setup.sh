@@ -68,7 +68,7 @@ sudo apt-key fingerprint 0EBFCD88
 
 # Use the following command to set up the stable repository.
 # amd64
-sudo add-apt-repository \
+sudo add-apt-repository -y \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
@@ -667,6 +667,22 @@ wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt
 sudo apt-get update && sudo apt-get install git-secret
 
 
+# 
+# git lfs
+# 
+
+# PPA repo installed to get git >= 1.8.2
+sudo apt-get install software-properties-common
+sudo add-apt-repository -y ppa:git-core/ppa
+
+# The curl script below calls apt-get update, if you aren't using it, 
+# don't forget to call apt-get update before installing git-lfs.
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
+git lfs install
+
+
+
 # ________   ________  ________  _______         ___  ________
 #|\   ___  \|\   __  \|\   ___ \|\  ___ \       |\  \|\   ____\
 #\ \  \\ \  \ \  \|\  \ \  \_|\ \ \   __/|      \ \  \ \  \___|_
@@ -869,9 +885,28 @@ cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
 ###############################
 
 # I-Nex
+if [ $CODENAME == "bionic" ]
+then
+# remove offical ppa first
+sudo add-apt-repository -r ppa:i-nex-development-team/stable
+# for ubuntu 18.04 (unoffical)
+sudo add-apt-repository -y ppa:trebelnik-stefina/i-nex
+else
+# for ubuntu 16.04 (offical)
 sudo add-apt-repository -y ppa:i-nex-development-team/stable
+fi
+
+# i-nex depends on gambas3
+sudo add-apt-repository -y ppa:gambas-team/gambas3
 sudo apt-get update
 sudo apt-get install -y i-nex
+
+if [ $CODENAME == "bionic" ]
+then
+# add sym link libcpuid.so.14.0.0 -> libcpuid.so.14.0.1
+sudo ln -s ./libcpuid.so.14.0.1 ./libcpuid.so.14.0.0
+fi
+
 
 # Hardinfo
 sudo apt-get install -y hardinfo
@@ -1145,7 +1180,7 @@ sudo apt install -y copyq
 #################
 # install telegram
 #################
-sudo add-apt-repository -yppa:atareao/telegram
+sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt-get update
 sudo apt-get install -y telegram
 ln -s /opt/telegram/telegram /usr/local/bin
@@ -1329,7 +1364,7 @@ sudo apt-get install -y google-chrome-stable
 # Plugins – Deluge
 # https://dev.deluge-torrent.org/wiki/Plugins#InstallingPluginEggs
 ###############
-sudo add-apt-repository ppa:deluge-team/ppa
+sudo add-apt-repository -y ppa:deluge-team/ppa
 sudo apt-get update
 sudo apt-get install deluge
 

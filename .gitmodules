@@ -424,3 +424,6 @@
 [submodule "repo-ai/nlpxlaw_official_web"]
 	path = repo-ai/nlpxlaw_official_web
 	url = https://gitlab.com/AIFR/ai-in-law/nlpxlaw_official_web.git
+[submodule "repo-ai/NLP-AI-in-Law-backend"]
+	path = repo-ai/NLP-AI-in-Law-backend
+	url = https://gitlab.com/AIFR/ai-in-law/NLP-AI-in-Law-backend.git
