@@ -619,6 +619,16 @@ sudo apt install -y texlive-xetex
 
 
 #############
+# fonts
+#############
+
+# firacode
+#  tonsky/FiraCode: Monospaced font with programming ligatures
+#  https://github.com/tonsky/FiraCode
+sudo apt install -y fonts-firacode
+
+
+#############
 # compare tool
 #############
 
@@ -1621,6 +1631,26 @@ gsettings set org.gnome.shell.extensions.dash-to-dock scroll-action 'cycle-windo
 
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
 
+##########
+# Powerline shell
+##########
+# b-ryan/powerline-shell: A beautiful and useful prompt for your shell
+# https://github.com/b-ryan/powerline-shell
+######
+# will hang on bit git directory...
+##################
+# POWERLINE_ENV='# added by powerline-shell\nfunction _update_ps1() {\n    PS1=$(powerline-shell $?)\n}\n\nif [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then\n    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"\nfi'
+# POWERLINE_regex='# added by powerline-shell\x00function _update_ps1.*PROMPT_COMMAND"\x00fi'
+
+# cp ~/.bashrc ~/.bashrc_allen_powerline.bak
+
+# # remove previous POWERLINE setting
+# tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+# sudo sed -i 's|\x00\x00'"$POWERLINE_regex"'\x00|\x00|' ~/.bashrc
+# tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+
+# # append POWERLINE setting
+# printf "\n$POWERLINE_ENV\n" | sudo tee -a ~/.bashrc >>/dev/null
 
 
 ##########
