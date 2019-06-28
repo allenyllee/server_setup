@@ -427,3 +427,6 @@
 [submodule "repo-ai/NLP-AI-in-Law-backend"]
 	path = repo-ai/NLP-AI-in-Law-backend
 	url = https://gitlab.com/AIFR/ai-in-law/NLP-AI-in-Law-backend.git
+[submodule "repo-ai/ML_exercise"]
+	path = repo-ai/ML_exercise
+	url = https://github.com/allenyllee/ML_exercise.git
