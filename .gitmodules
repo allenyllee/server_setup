@@ -430,3 +430,6 @@
 [submodule "repo-ai/ML_exercise"]
 	path = repo-ai/ML_exercise
 	url = https://github.com/allenyllee/ML_exercise.git
+[submodule "repo-ai/nlp-judgement-frontend"]
+	path = repo-ai/nlp-judgement-frontend
+	url = https://gitlab.com/AIFR/ai-in-law/nlp-judgement-frontend.git
