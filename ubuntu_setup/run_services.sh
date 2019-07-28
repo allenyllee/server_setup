@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-UPDATE=$1
+SERVICE=$1
 
 source ./setup_services.sh ~/Projects ~/Projects_SSD
 
@@ -11,7 +11,7 @@ source ./setup_services.sh ~/Projects ~/Projects_SSD
 
 # bash - unary operator expected - Stack Overflow
 # https://stackoverflow.com/questions/13617843/unary-operator-expected
-if [ "$UPDATE" == "update" ]
+if [ "$SERVICE" == "update" ]
 then
   # update image
   # How to update existing images with docker-compose? - Stack Overflow
@@ -28,7 +28,7 @@ then
 else
   echo "run services"
   # starting docker containers in the background and leaves them running
-  docker-compose up -d
+  docker-compose up -d $SERVICE
 fi
 
 
