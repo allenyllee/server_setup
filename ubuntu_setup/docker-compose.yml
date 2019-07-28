@@ -20,19 +20,19 @@ version: '2.3'
 # run services
 # 
 services:
-  watchtower:
-    image: v2tec/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - WATCHTOWER_NOTIFICATIONS=email
-      - WATCHTOWER_NOTIFICATION_EMAIL_FROM=allen7575@gmail.com
-      - WATCHTOWER_NOTIFICATION_EMAIL_TO=allen7575@gmail.com
-      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
-      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=allen7575@gmail.com
-      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=password
-    restart: always
-    command: --cleanup
+    watchtower:
+        image: v2tec/watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - WATCHTOWER_NOTIFICATIONS=email
+            - WATCHTOWER_NOTIFICATION_EMAIL_FROM=allen7575@gmail.com
+            - WATCHTOWER_NOTIFICATION_EMAIL_TO=allen7575@gmail.com
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=allen7575@gmail.com
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=password
+        restart: always
+        command: --cleanup
 
 
     gitlab:
