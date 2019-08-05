@@ -35,81 +35,81 @@ services:
         command: --cleanup
 
 
-    gitlab:
-        container_name: gitlab
-        image: gitlab/gitlab-ce:latest
-        ports:
-            - "443:443"
-            - "80:80"
-            - "44:22"
-        volumes:
-            - "$GITLAB_DIR/config:/etc/gitlab"
-            - "$GITLAB_DIR/logs:/var/log/gitlab"
-            - "$GITLAB_DIR/data:/var/opt/gitlab"
-        logging:
-            options:
-                max-size: 50m
-        environment:
-            - GITLAB_OMNIBUS_CONFIG=" \
-                gitlab_rails['lfs_enabled'] = true; \
-                gitlab_rails['gitlab_email_enabled'] = true; \
-                gitlab_rails['gitlab_email_from'] = 'SASSD.Admin@liteon.com'; \
-                gitlab_rails['gitlab_email_display_name'] = 'Gitlab'; \
-                gitlab_rails['gitlab_email_reply_to'] = 'SASSD.Admin@liteon.com'; \
-                gitlab_rails['smtp_enable'] = true; \
-                gitlab_rails['smtp_address'] = '10.1.15.143'; \
-                gitlab_rails['smtp_port'] = 25; \
-                gitlab_rails['smtp_domain'] = 'liteon.com'; \
-                gitlab_rails['smtp_authentication'] = false; \
-                gitlab_rails['smtp_enable_starttls_auto'] = true; \
-                gitlab_rails['smtp_tls'] = false; \
-                gitlab_rails['smtp_openssl_verify_mode'] = 'peer'"
-        hostname: 10.1.53.168
-        restart: always
+    # gitlab:
+    #     container_name: gitlab
+    #     image: gitlab/gitlab-ce:latest
+    #     ports:
+    #         - "443:443"
+    #         - "80:80"
+    #         - "44:22"
+    #     volumes:
+    #         - "$GITLAB_DIR/config:/etc/gitlab"
+    #         - "$GITLAB_DIR/logs:/var/log/gitlab"
+    #         - "$GITLAB_DIR/data:/var/opt/gitlab"
+    #     logging:
+    #         options:
+    #             max-size: 50m
+    #     environment:
+    #         - GITLAB_OMNIBUS_CONFIG=" \
+    #             gitlab_rails['lfs_enabled'] = true; \
+    #             gitlab_rails['gitlab_email_enabled'] = true; \
+    #             gitlab_rails['gitlab_email_from'] = 'SASSD.Admin@liteon.com'; \
+    #             gitlab_rails['gitlab_email_display_name'] = 'Gitlab'; \
+    #             gitlab_rails['gitlab_email_reply_to'] = 'SASSD.Admin@liteon.com'; \
+    #             gitlab_rails['smtp_enable'] = true; \
+    #             gitlab_rails['smtp_address'] = '10.1.15.143'; \
+    #             gitlab_rails['smtp_port'] = 25; \
+    #             gitlab_rails['smtp_domain'] = 'liteon.com'; \
+    #             gitlab_rails['smtp_authentication'] = false; \
+    #             gitlab_rails['smtp_enable_starttls_auto'] = true; \
+    #             gitlab_rails['smtp_tls'] = false; \
+    #             gitlab_rails['smtp_openssl_verify_mode'] = 'peer'"
+    #     hostname: 10.1.53.168
+    #     restart: always
 
-    jenkins:
-        container_name: jenkins
-        image: jenkins/jenkins:lts
-        ports:
-            - "8081:8080"
-            - "50000:50000"
-        volumes:
-            - "$JENKINS_DIR:/var/jenkins_home"
-            - "/var/run/docker.sock:/var/run/docker.sock"
-            # Invalid interpolation format for "command" option in service "node-exporter": "^/(sys|proc|dev|host|etc)($|/)" · Issue #4485 · docker/compose
-            # https://github.com/docker/compose/issues/4485
-            - "${DOCKERBIN}:/usr/bin/docker"
-            - "/usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7"
-        restart: always
+    # jenkins:
+    #     container_name: jenkins
+    #     image: jenkins/jenkins:lts
+    #     ports:
+    #         - "8081:8080"
+    #         - "50000:50000"
+    #     volumes:
+    #         - "$JENKINS_DIR:/var/jenkins_home"
+    #         - "/var/run/docker.sock:/var/run/docker.sock"
+    #         # Invalid interpolation format for "command" option in service "node-exporter": "^/(sys|proc|dev|host|etc)($|/)" · Issue #4485 · docker/compose
+    #         # https://github.com/docker/compose/issues/4485
+    #         - "${DOCKERBIN}:/usr/bin/docker"
+    #         - "/usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7"
+    #     restart: always
 
-    #
-    # run a docker registry backend container and link it to network bridge above
-    #
-    reg_server:
-        container_name: reg_server
-        image: registry:2
-        ports:
-            - "$REG_BACKENDPORT:5000"
-        volumes:
-            - "$REGISTRY_DIR:/var/lib/registry"
-        networks:
-            - reg_net
-        restart: always
+    # #
+    # # run a docker registry backend container and link it to network bridge above
+    # #
+    # reg_server:
+    #     container_name: reg_server
+    #     image: registry:2
+    #     ports:
+    #         - "$REG_BACKENDPORT:5000"
+    #     volumes:
+    #         - "$REGISTRY_DIR:/var/lib/registry"
+    #     networks:
+    #         - reg_net
+    #     restart: always
 
-    #
-    # run a docker registry frontend container and link it to network bridge above
-    #
-    reg_ui:
-        container_name: reg_ui
-        image: konradkleine/docker-registry-frontend:v2
-        ports:
-            - "8080:80"
-        environment:
-            - ENV_DOCKER_REGISTRY_HOST=reg_server
-            - ENV_DOCKER_REGISTRY_PORT=$REG_BACKENDPORT
-        networks:
-            - reg_net
-        restart: always
+    # #
+    # # run a docker registry frontend container and link it to network bridge above
+    # #
+    # reg_ui:
+    #     container_name: reg_ui
+    #     image: konradkleine/docker-registry-frontend:v2
+    #     ports:
+    #         - "8080:80"
+    #     environment:
+    #         - ENV_DOCKER_REGISTRY_HOST=reg_server
+    #         - ENV_DOCKER_REGISTRY_PORT=$REG_BACKENDPORT
+    #     networks:
+    #         - reg_net
+    #     restart: always
 
     portainer:
         container_name: portainer
@@ -121,17 +121,17 @@ services:
             - "portainer_data:/data portainer/portainer"
         restart: always
 
-    squid:
-        container_name: squid
-        image: sameersbn/squid:latest
-        ports:
-            - "3128:3128"
-        volumes:
-            - "$SQUID_DIR:/var/spool/squid3"
-        logging:
-            options:
-                max-size: 50m
-        restart: always
+    # squid:
+    #     container_name: squid
+    #     image: sameersbn/squid:latest
+    #     ports:
+    #         - "3128:3128"
+    #     volumes:
+    #         - "$SQUID_DIR:/var/spool/squid3"
+    #     logging:
+    #         options:
+    #             max-size: 50m
+    #     restart: always
 
     samba:
         container_name: samba
@@ -313,24 +313,24 @@ services:
         restart: always
 
 
-    xtensa:
-        build:
-            context: $XTENSA_GIT
-            dockerfile: Dockerfile
-        container_name: xtensa
-        image: xtensa/xplorer:7.0.4
-        ports:
-            - "3322:22"
-        volumes:
-            - "/tmp/.X11-unix:/tmp/.X11-unix"
-            - "$XTENSA_DIR:/home/project"
-            - "xtensa:/home/xtensa"
-        environment:
-            - DISPLAY=$DISPLAY
-        stdin_open: true
-        tty: true
-        command: bash -c "service sshd start;bash"
-        restart: always
+    # xtensa:
+    #     build:
+    #         context: $XTENSA_GIT
+    #         dockerfile: Dockerfile
+    #     container_name: xtensa
+    #     image: xtensa/xplorer:7.0.4
+    #     ports:
+    #         - "3322:22"
+    #     volumes:
+    #         - "/tmp/.X11-unix:/tmp/.X11-unix"
+    #         - "$XTENSA_DIR:/home/project"
+    #         - "xtensa:/home/xtensa"
+    #     environment:
+    #         - DISPLAY=$DISPLAY
+    #     stdin_open: true
+    #     tty: true
+    #     command: bash -c "service sshd start;bash"
+    #     restart: always
 
 
 networks:
