@@ -61,6 +61,9 @@ cp ./entrypoint_script/init_script.sh "$SYNC_CONFIG"
 #
 # onedrive
 #
+# 2019/08/05 update to latest version
+# abraunegg/onedrive: Free Client for OneDrive on Linux
+# https://github.com/abraunegg/onedrive
 export ONEDRIVE_CONFIG="$DOCKERDIR_SSD/OneDriveConfig"
 export ONEDRIVE_DATA="$SYNC_DATA/Cloud/OneDrive"
 
@@ -69,9 +72,9 @@ COMMAND=$(cat << EOF
 docker run -it --rm \
   -e PUID=$UserID \
   -e PGID=$GroupID \
-  -v $ONEDRIVE_CONFIG:/config \
-  -v $ONEDRIVE_DATA:/documents \
-  oznu/onedrive
+  -v $ONEDRIVE_CONFIG:/onedrive/conf \
+  -v $ONEDRIVE_DATA:/onedrive/data \
+  driveone/onedrive
 EOF
 )
 

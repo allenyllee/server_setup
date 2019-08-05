@@ -165,9 +165,13 @@ services:
         command: --config /mnt/sync/sync.conf
         restart: always
 
+    # 2019/08/05 update to latest version
+    # abraunegg/onedrive: Free Client for OneDrive on Linux
+    # https://github.com/abraunegg/onedrive
+    # 
     OneDrive:
         container_name: OneDrive
-        image: oznu/onedrive
+        image: driveone/onedrive
         environment:
             - PUID=$UserID
             - PGID=$GroupID
@@ -177,8 +181,8 @@ services:
             options:
                 max-size: 50m
         volumes:
-            - $ONEDRIVE_CONFIG:/config
-            - $ONEDRIVE_DATA:/documents
+            - $ONEDRIVE_CONFIG:/onedrive/conf
+            - $ONEDRIVE_DATA:/onedrive/data
         restart: always
 
 
