@@ -21,6 +21,7 @@ version: '2.3'
 # 
 services:
     watchtower:
+        container_name: watchtower
         image: v2tec/watchtower
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
@@ -32,7 +33,7 @@ services:
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=allen7575@gmail.com
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=password
         restart: always
-        command: --cleanup
+        command: --cleanup --schedule "0 0 3 * * *"
 
 
     # gitlab:
