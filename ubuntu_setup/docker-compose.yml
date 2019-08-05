@@ -205,6 +205,8 @@ services:
     #         - /root/.gdfuse/default/docker-entrypoint.sh
     #     restart: always
 
+    # if files are out-of-sync, just remove $ODRIVE_CONFIG/db/global.db file
+    # restart and it'll prompt for re-auth and choose data folder
     ODrive:
         container_name: ODrive
         image: allenyllee/odrive
