@@ -21,6 +21,10 @@ PROJECT_DIR_SSD=$2
 # https://unix.stackexchange.com/questions/35369/how-to-define-tab-delimiter-with-cut-in-bash
 ###################
 
+## code name ##
+# 16.04 xenial
+# 18.04 bionic
+###############
 # 1. "lsb_release -a" get the distribution information
 # 2. "grep" get the line contains "Codename"
 # 3. "cut" get the second column of tab delimiter line
@@ -626,6 +630,14 @@ sudo apt install -y texlive-xetex
 #  tonsky/FiraCode: Monospaced font with programming ligatures
 #  https://github.com/tonsky/FiraCode
 sudo apt install -y fonts-firacode
+
+if [ $CODENAME == "xenial" ]
+then
+./fira_code/install_fira_code.sh
+else
+sudo apt install -y fonts-firacode
+fi
+
 
 
 #############
