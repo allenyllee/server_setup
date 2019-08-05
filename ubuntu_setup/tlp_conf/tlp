@@ -88,7 +88,7 @@ CPU_HWP_ON_BAT=balance_power
 # - This may conflict with your distribution's governor settings
 # - A value of 1 does *not* activate boosting, it just allows it
 # Default: <none>
-#CPU_BOOST_ON_AC=1
+#CPU_BOOST_ON_AC=0
 #CPU_BOOST_ON_BAT=0
 
 # Minimize number of used CPU cores/hyper-threads under light load conditions:
@@ -139,7 +139,7 @@ DISK_APM_LEVEL_ON_BAT="128 128"
 # Separate values for multiple disks with spaces. Use the special value 'keep'
 # to keep the hardware default for the particular disk.
 # Default: <none>
-DISK_SPINDOWN_TIMEOUT_ON_AC="0 0 0"
+DISK_SPINDOWN_TIMEOUT_ON_AC="243 243 243"
 DISK_SPINDOWN_TIMEOUT_ON_BAT="243 243 243"
 
 # Select I/O scheduler for the disk devices.
@@ -312,7 +312,7 @@ USB_BLACKLIST_WWAN=1
 # Note: the parameters DEVICES_TO_DISABLE/ENABLE_ON_STARTUP/SHUTDOWN below
 #   are ignored when this is enabled.
 # Default: 0
-RESTORE_DEVICE_STATE_ON_STARTUP=1
+RESTORE_DEVICE_STATE_ON_STARTUP=0
 
 # Radio devices to disable on startup: bluetooth, wifi, wwan.
 # Separate multiple devices with spaces.
