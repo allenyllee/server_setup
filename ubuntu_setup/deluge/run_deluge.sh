@@ -1,5 +1,14 @@
 #!/bin/bash
 
+echo "default HOME is $HOME"
+
+if [ $1 != "" ]; then
+    export HOME=$1
+fi
+
+echo "change HOME to $HOME"
+
+
 # mount data folder
 sudo mkdir /downloads
 sudo mount --bind ~/Projects/ResilioSyncFolder/Media\(btsync\)/ /downloads
@@ -12,9 +21,10 @@ sudo mkdir ~/.config/deluge
 sudo mount --bind ~/Projects_SSD/docker-srv/DelugeConfig.bak ~/.config/deluge
 #sudo ln -s ~/Projects/ResilioSyncFolder/Media\(btsync\) /downloads
 
+umask 000
 
 # run deluge
-deluge-gtk
+deluge
 # run deamon
 # deluged -d
 

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Deluge
+Icon=deluge
+# use sh to pass $HOME env
+Exec=sh -c "pkexec /media/allenyllee/DATA/Projects/server_setup/ubuntu_setup/deluge/run_deluge.sh $HOME"
+StartupNotify=false
+StartupWMClass=Deluge
+OnlyShowIn=Unity;
+X-UnityGenerated=true
