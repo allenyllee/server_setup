@@ -294,12 +294,14 @@ services:
 
     Deluge:
         container_name: Deluge
-        image: linuxserver/deluge
+        image: linuxserver/deluge:5b398f77-ls22
+        labels:
+            - "com.centurylinklabs.watchtower.enable=false" # exclude from watchtower autoupdate
         environment:
             - PUID=$UserID
             - PGID=$GroupID
             - TZ=Asia/Taipei
-            - UMASK_SET=000
+            - UMASK_SET=022
             - DISPLAY=$DISPLAY
             - XAUTHORITY=$XAUTH
         network_mode: "host"
