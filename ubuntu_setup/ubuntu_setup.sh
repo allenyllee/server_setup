@@ -1325,7 +1325,7 @@ sudo apt install -y exfat-utils exfat-fuse
 # software installation - How do I install a .deb file via the command line? - Ask Ubuntu
 # https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line
 ####################
-wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64
+wget -N --content-disposition https://codebox.net/downloads/bitmeteros/linux64/080
 sudo dpkg -i bitmeteros_*-amd64.deb
 sudo rm -rf bitmeteros_*-amd64.deb*
 
@@ -1334,6 +1334,8 @@ sudo rm -rf bitmeteros_*-amd64.deb*
 # When it's installed, go into your browser, and enter the following into the address bar:-
 #
 # http://localhost:2605/index.html
+# 
+# 如果發現完全沒有流量資訊，可以嘗試bmdb capstop 再 bmdb capstart
 
 
 #########
