@@ -168,17 +168,17 @@ if [ $CODENAME == "bionic" ]
 then
     echo "hello" $CODENAME
     sudo ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc.local.service
-    
+
     # 在rc.local.service 新增 [Install] 区块，定义如何安装这个配置文件，即怎样做到开机启动。
     tr '\n' '\000' < /etc/systemd/system/rc.local.service | sudo tee /etc/systemd/system/rc.local.service >/dev/null
     sudo sed -i 's|\x00\[Install\]\x00WantedBy=multi-user.target\x00Alias=rc.local.service||' /etc/systemd/system/rc.local.service
     tr '\000' '\n' < /etc/systemd/system/rc.local.service | sudo tee /etc/systemd/system/rc.local.service >/dev/null
     printf "[Install]\nWantedBy=multi-user.target\nAlias=rc.local.service\n" | sudo tee -a /etc/systemd/system/rc.local.service >>/dev/null
-    
+
     # 新增 /etc/rc.local
     sudo touch /etc/rc.local
     sudo chmod 755 /etc/rc.local
-    
+
     # 第一行插入 #!/bin/bash
     # Add a line to a specific position in a file using Linux sed
     # https://www.garron.me/en/linux/add-line-to-specific-position-in-file-linux.html
@@ -186,7 +186,7 @@ then
     sudo sed -i 's|^#!/bin/bash\x00||' /etc/rc.local
     tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
     sudo sed -i '1i#!/bin/bash' /etc/rc.local
-    
+
     # 最後一行插入exit 0
     tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
     sudo sed -i 's|\x00exit 0.*$||' /etc/rc.local
@@ -242,30 +242,30 @@ sudo apt-get install -y jq
 #######
 # jq Manual (development version)
 # https://stedolan.github.io/jq/manual/
-# 
+#
 # --arg name value:
-# This option passes a value to the jq program as a predefined variable. 
-# If you run jq with --arg foo bar, then $foo is available in the program and has the value "bar". 
+# This option passes a value to the jq program as a predefined variable.
+# If you run jq with --arg foo bar, then $foo is available in the program and has the value "bar".
 # Note that value will be treated as a string, so --arg foo 123 will bind $foo to "123".
-# 
+#
 # --raw-output / -r:
-# With this option, if the filter’s result is a string then it will be written directly to standard 
-# output rather than being formatted as a JSON string with quotes. This can be useful for making jq 
+# With this option, if the filter’s result is a string then it will be written directly to standard
+# output rather than being formatted as a JSON string with quotes. This can be useful for making jq
 # filters talk to non-JSON-based systems.
 #
 #  select(boolean_expression)
-# The function select(foo) produces its input unchanged if foo returns true for that input, 
+# The function select(foo) produces its input unchanged if foo returns true for that input,
 # and produces no output otherwise.
 # It’s useful for filtering lists: [1,2,3] | map(select(. >= 2)) will give you [2,3].
-# 
+#
 #  endswith(str)
 # Outputs true if . ends with the given string argument.
 #######
 # curl - How To Use
 # https://curl.haxx.se/docs/manpage.html
-# 
+#
 # --url <url>
-# Specify a URL to fetch. This option is mostly handy when you want to specify URL(s) in a config file. 
+# Specify a URL to fetch. This option is mostly handy when you want to specify URL(s) in a config file.
 #######
 curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
 sudo chmod +x /usr/local/bin/docker-compose
@@ -312,7 +312,7 @@ sudo apt-get remove --purge -y nvidia-*
 # Trying to install nvidia driver for ubuntu Desktop 18.04 LTS - Ask Ubuntu
 # https://askubuntu.com/questions/1032938/trying-to-install-nvidia-driver-for-ubuntu-desktop-18-04-lts
 #
-# 
+#
 if [ $CODENAME == "bionic" ]
 then
 NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-driver-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
@@ -343,7 +343,7 @@ sudo sh -c './cuda_9.0.176_384.81_linux-run --override --silent --toolkit --samp
 # .desktop file with .bashrc environment - Ask Ubuntu
 # https://askubuntu.com/questions/542152/desktop-file-with-bashrc-environment
 #
-# When running from a launcher, the idea.sh script is started using a non-iteractive shell. 
+# When running from a launcher, the idea.sh script is started using a non-iteractive shell.
 # In your .bashrc make sure the environment variables are exported before
 # # If not running interactively, don't do anything
 
@@ -352,23 +352,23 @@ sudo sh -c './cuda_9.0.176_384.81_linux-run --override --silent --toolkit --samp
 
 # bash - how to smart append LD_LIBRARY_PATH in shell when nounset - Stack Overflow
 # https://stackoverflow.com/questions/9631228/how-to-smart-append-ld-library-path-in-shell-when-nounset
-# 
+#
 # You could use this construct:
 # ```
 # export LD_LIBRARY_PATH=/mypath${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 # ```
 # Explanation:
-# -   If `LD_LIBRARY_PATH` is not set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
-#           expands to nothing without evaluating `$LD_LIBRARY_PATH`, thus the 
+# -   If `LD_LIBRARY_PATH` is not set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}`
+#           expands to nothing without evaluating `$LD_LIBRARY_PATH`, thus the
 #           result is equivalent to `export LD_LIBRARY_PATH=/mypath` and no error is raised.
-# -   If `LD_LIBRARY_PATH` is already set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}` 
-#           expands to `:$LD_LIBRARY_PATH`, thus the result is equivalent to 
+# -   If `LD_LIBRARY_PATH` is already set, then `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}`
+#           expands to `:$LD_LIBRARY_PATH`, thus the result is equivalent to
 #           `export LD_LIBRARY_PATH=/mypath:$LD_LIBRARY_PATH`.
-# 
+#
 
 # 导入tensorflow：ImportError: libcublas.so.9.0: cannot open shared object file: No such file or director - ZeroZone零域的博客 - CSDN博客
 # https://blog.csdn.net/ksws0292756/article/details/80034086
-# 
+#
 # 对于tensorflow 1.7版本，只接受cuda 9.0（9.1也不可以！），和cudnn 7.0，所以如果你安装了cuda9.1和cudnn7.1或以上版本，那么你需要重新安装9.0和7.0版本。
 # 安装完正确的版本后，确认你在你的~/.bashrc（或者~/.zshrc）文件中加入了下面环境变量
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64
@@ -414,7 +414,7 @@ sudo apt-get install libcupti-dev
 
 # test tensorflow
 python << EOF
-from tensorflow.python.client import device_lib 
+from tensorflow.python.client import device_lib
 device_lib.list_local_devices()
 EOF
 
@@ -429,23 +429,42 @@ EOF
 docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
 sudo apt-get purge nvidia-docker
 
+# # Repository configuration | nvidia-docker
+# # https://nvidia.github.io/nvidia-docker/
+# #
+# # setup the nvidia-docker repository
+# curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+#   sudo apt-key add -
+# distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+# curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+#   sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+# sudo apt-get update
+
+
+
+# # Installation (version 2.0) · NVIDIA/nvidia-docker Wiki
+# # https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
+# #
+# # Install the nvidia-docker2 package and reload the Docker daemon configuration:
+# sudo apt-get install -y nvidia-docker2
+# sudo pkill -SIGHUP dockerd
+
+
 # Repository configuration | nvidia-docker
 # https://nvidia.github.io/nvidia-docker/
 #
-# setup the nvidia-docker repository
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-sudo apt-get update
-
-# Installation (version 2.0) · NVIDIA/nvidia-docker Wiki
-# https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
+# Note that with the release of Docker 19.03,
+# usage of nvidia-docker2 packages are deprecated since NVIDIA GPUs
+# are now natively supported as devices in the Docker runtime.
 #
-# Install the nvidia-docker2 package and reload the Docker daemon configuration:
-sudo apt-get install -y nvidia-docker2
-sudo pkill -SIGHUP dockerd
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
 
 # test nvidia-smi
 docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
@@ -474,7 +493,7 @@ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 # using native docker-compose with default runtime: nvidia
 #
 # the specific runtime can be set in /etc/docker/daemon.json
-# 
+#
 # {
 #     "default-runtime": "nvidia",
 #     "runtimes": {
@@ -484,12 +503,12 @@ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 #         }
 #     }
 # }
-# 
+#
 # by using this the docker-compose started to work again, because eliminates the necessity of pass this argument all the time.
 #
 # Example of nvidia-docker2 with docker-compose · Issue #568 · NVIDIA/nvidia-docker
 # https://github.com/NVIDIA/nvidia-docker/issues/568
-# 
+#
 # Add "default-runtime": "nvidia",
 #
 sudo sed -i 's/    \"runtimes\":/    \"default-runtime\": \"nvidia\",\n    \"runtimes\":/' /etc/docker/daemon.json
@@ -550,21 +569,21 @@ mkdir -p ~/.local/share/nautilus-python/extensions && cp -f VSCodeExtension.py ~
 ####
 # Set default application using `xdg-mime` | Guy Rutenberg
 # https://www.guyrutenberg.com/2018/01/20/set-default-application-using-xdg-mime/
-# 
+#
 # 1. Query the default mime-type associations,
 #    Will return the .desktop file associated with the default app to open mp4 files.
-# 
+#
 #       xdg-mime query default video/mp4
-# 
+#
 # 2. To change the default association, you need to specify the desktop
 #    file to open files of the specified mime type.
-# 
+#
 #       xdg-mime default vlc.desktop video/mp4
-# 
+#
 # 3. To check the mime-type of a given file, use
-# 
+#
 #       file -ib filename
-# 
+#
 ####
 xdg-mime default code.desktop text/plain
 
@@ -689,15 +708,15 @@ wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt
 sudo apt-get update && sudo apt-get install git-secret
 
 
-# 
+#
 # git lfs
-# 
+#
 
 # PPA repo installed to get git >= 1.8.2
 sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:git-core/ppa
 
-# The curl script below calls apt-get update, if you aren't using it, 
+# The curl script below calls apt-get update, if you aren't using it,
 # don't forget to call apt-get update before installing git-lfs.
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
@@ -846,7 +865,7 @@ curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.p
 ###############
 # How To Install the Anaconda Python Distribution on Ubuntu 16.04 | DigitalOcean
 # https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-16-04
-# 
+#
 # how to install anaconda / miniconda on Linux silently - Stack Overflow
 # https://stackoverflow.com/questions/49338902/how-to-install-anaconda-miniconda-on-linux-silently
 ###############
@@ -961,8 +980,8 @@ sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get install -y tlp tlp-rdw smartmontools ethtool
 
-# Removing default Ubuntu cpu frequency config 
-sudo update-rc.d -f ondemand remove 
+# Removing default Ubuntu cpu frequency config
+sudo update-rc.d -f ondemand remove
 
 # The main config file of TLP is at /etc/default/tlp
 #  sudo -i gedit /etc/default/tlp
@@ -980,22 +999,22 @@ cp "./autostart/CPU frequency Scaling Indicator.desktop" ~/.config/autostart
 EOF
 
 # PowerSavingTweaks for Intel Graphics
-# 
+#
 # Kernel/PowerManagement/PowerSavingTweaks - Ubuntu Wiki
 # https://wiki.ubuntu.com/Kernel/PowerManagement/PowerSavingTweaks
-# 
+#
 # This gist will show you how to tune your Intel-based Skylake, Kabylake and beyond Integrated Graphics Core for performance and reliability through GuC and HuC firmware usage on Linux.
 # https://gist.github.com/Brainiarc7/aa43570f512906e882ad6cdd835efe57
-# 
+#
 # Intel graphics (简体中文) - ArchWiki
 # https://wiki.archlinux.org/index.php/Intel_graphics_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-# 
+#
 # linux kernel - Setting CPU governor to on demand or conservative - Unix & Linux Stack Exchange
 # https://unix.stackexchange.com/questions/121410/setting-cpu-governor-to-on-demand-or-conservative
-# 
+#
 # 实现面向 Intel Core（SandyBridge 和更新的型号）处理器的调频驱动。
 # https://wiki.archlinux.org/index.php/CPU_frequency_scaling_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-# 
+#
 sudo sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"|GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash intel_pstate=disable i915.lvds_downclock=1 drm.vblankoffdelay=1 i915.semaphores=1 i915_enable_rc6=1 i915_enable_fbc=1\"|' /etc/default/grub
 sudo update-grub
 
@@ -1123,18 +1142,18 @@ sudo apt-get install -y gsmartcontrol
 #   /etc/fstab:
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Dataset    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Dataset   0       0
 #       /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img  /mnt/Snapshot    btrfs   rw,user,noatime,ssd,space_cache,compress=zstd,subvol=/Snapshot   0       0
-# 
+#
 #   backup image & change uuid (to prevent confilct):
 #       cp /media/allenyl/DATA_SSD/Projects_SSD/100GB.btrfs.img /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img
 #       sudo btrfstune -u /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img
-# 
+#
 #   send & receive:
 #       sudo mkdir -p /mnt/tmp
 #       sudo mount -o rw,user,noatime,space_cache,compress=zstd,subvol=Snapshot /media/allenyl/DATA/Projects/server_setup/repo-ai/NLP-AI-in-Law/tw_law_dataset/100GB.2.btrfs.img /mnt/tmp
 #       sudo btrfs subvolume snapshot -r /mnt/Dataset /mnt/Snapshot/Dataset-`date +%Y%m%d-%H%M` && sync
 #       sudo btrfs send /mnt/Snapshot/Dataset-20180809-1936/ | sudo btrfs receive /mnt/tmp
 
-# 
+#
 #############
 # How to set a non default zstd compression level at btrfs filesystem defragment? - Unix & Linux Stack Exchange
 # https://unix.stackexchange.com/questions/412480/how-to-set-a-non-default-zstd-compression-level-at-btrfs-filesystem-defragment
@@ -1142,9 +1161,9 @@ sudo apt-get install -y gsmartcontrol
 # Compression - btrfs Wiki
 # https://btrfs.wiki.kernel.org/index.php/Compression
 #
-# The level support of ZLIB has been added in v4.14, LZO does not support levels (the kernel implementation provides only one), ZSTD level support is planned. 
-# 
-# 
+# The level support of ZLIB has been added in v4.14, LZO does not support levels (the kernel implementation provides only one), ZSTD level support is planned.
+#
+#
 sudo apt install btrfs-progs
 
 #
@@ -1156,7 +1175,7 @@ sudo apt install snapper
 
 #
 # system backup job: install duplicity
-# 
+#
 sudo apt install duplicity
 
 
@@ -1334,7 +1353,7 @@ sudo rm -rf bitmeteros_*-amd64.deb*
 # When it's installed, go into your browser, and enter the following into the address bar:-
 #
 # http://localhost:2605/index.html
-# 
+#
 # 如果發現完全沒有流量資訊，可以嘗試bmdb capstop 再 bmdb capstart
 
 
@@ -1671,10 +1690,10 @@ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-
 ##########
 # install deepin-screenshot
 ##########
-# 
+#
 # Deepin_Screenshot - deepin Wiki
 # https://wiki.deepin.org/index.php?title=Deepin_Screenshot&language=en#Save_Screenshot
-# 
+#
 # -   Select auto_save to save the image under the system default picture folder.
 # -   Select save_to_desktop to save the picture to desktop.
 # -   Select save_to_dir to save the picture to your specified storage directory.
