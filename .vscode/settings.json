@@ -7,6 +7,7 @@
         "dockerfile",
         "shellscript"
     ],
-    "python.pythonPath": "C:\\Users\\allen\\Anaconda3\\envs\\tensorflow-gpu\\python.exe",
+    "python.pythonPath": "/usr/bin/python3",
     "git.detectSubmodules": false,
+    "python.linting.pylintEnabled": true,
 }
