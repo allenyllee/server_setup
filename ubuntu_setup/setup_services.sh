@@ -17,6 +17,13 @@ export XAUTH=$XAUTH_DIR/.xauth
 sudo mkdir -p $DOCKERDIR_SSD
 sudo chmod 777 $DOCKERDIR_SSD
 
+
+#
+# Protainer
+#
+export PORTAINER_CONFIG="$DOCKERDIR_SSD/PortainerConfig"
+mkdir -p "$PORTAINER_CONFIG"
+
 #
 # gitlab data
 #
@@ -162,14 +169,14 @@ cp ./entrypoint_script/run.sh "$DROPBOX_CONFIG"
 
 #
 # WebStorage
-# 
+#
 export WebStorage_CONFIG="$DOCKERDIR_SSD/WebStorageConfig/.wine"
 export WebStorage_DATA="$SYNC_DATA/Cloud/WebStorage"
 
 
 #
 # BaiduYun
-# 
+#
 export BaiduYun_CONFIG="$DOCKERDIR_SSD/BaiduYunConfig/.wine"
 export BaiduYun_DATA="$SYNC_DATA/Cloud/baidubox"
 

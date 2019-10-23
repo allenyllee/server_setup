@@ -1,6 +1,6 @@
 version: '2.3'
 
-# 
+#
 # tamplate
 #   service:
 #       name:
@@ -13,12 +13,12 @@ version: '2.3'
 #           networks:
 #           .............
 #           restart: always
-# 
+#
 
 
 #
 # run services
-# 
+#
 services:
     watchtower:
         container_name: watchtower
@@ -119,7 +119,7 @@ services:
             - "9000:9000"
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "portainer_data:/data portainer/portainer"
+            - "$PORTAINER_CONFIG:/data"
         restart: always
 
     # squid:
@@ -169,7 +169,7 @@ services:
     # 2019/08/05 update to latest version
     # abraunegg/onedrive: Free Client for OneDrive on Linux
     # https://github.com/abraunegg/onedrive
-    # 
+    #
     OneDrive:
         container_name: OneDrive
         image: driveone/onedrive
@@ -253,8 +253,8 @@ services:
 
 # Compose file version 2 reference | Docker Documentation
 # https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources
-# Note: The following options were added in version 2.2: 
-# cpu_count, cpu_percent, cpus. The following options were 
+# Note: The following options were added in version 2.2:
+# cpu_count, cpu_percent, cpus. The following options were
 # added in version 2.1: oom_kill_disable, cpu_period
 
     WebStorage:
@@ -338,10 +338,9 @@ services:
     #     restart: always
 
 
-networks:
-    reg_net:
-        driver: bridge
+# networks:
+#     reg_net:
+#         driver: bridge
 
-volumes:
-    xtensa:
-    portainer_data:
+# volumes:
+#     xtensa:
