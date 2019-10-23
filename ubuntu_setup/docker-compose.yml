@@ -260,7 +260,7 @@ services:
     WebStorage:
         container_name: WebStorage
         image: allenyllee/webstorage-wine
-        cpus: '0.05'
+        cpus: '0'
         environment:
             - DISPLAY=$DISPLAY
             - XAUTHORITY=$XAUTH
