@@ -255,17 +255,23 @@ eval "sudo bash -c '$DBUS_CMD'"
 
 
 
-DBUS_CMD2="DBUS_DIR=/tmp/.dbus; DBUS_PROXY=\$DBUS_DIR/.proxybus; xdg-dbus-proxy \$DBUS_SESSION_BUS_ADDRESS \$DBUS_PROXY &"
+# DBUS_CMD2="DBUS_DIR=/tmp/.dbus; DBUS_PROXY=\$DBUS_DIR/.proxybus; xdg-dbus-proxy \$DBUS_SESSION_BUS_ADDRESS \$DBUS_PROXY &"
 
-# append string in ~/.profile
-tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
-# use # as delimiter to avoid conflict with DBUS_CMD2's pipe |
-sed -i 's#'"$DBUS_CMD2"'\x00##' ~/.profile
-tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
-echo "$DBUS_CMD2" >> ~/.profile
-source ~/.profile
+# # append string in ~/.profile
+# tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+# # use # as delimiter to avoid conflict with DBUS_CMD2's pipe |
+# sed -i 's#'"$DBUS_CMD2"'\x00##' ~/.profile
+# tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+# echo "$DBUS_CMD2" >> ~/.profile
+# source ~/.profile
 
-
+#
+# use upstart to run dbus proxy
+#
+# gnome-open raises this error when run from inside tmux - Ask Ubuntu
+# https://askubuntu.com/questions/51132/gnome-open-raises-this-error-when-run-from-inside-tmux
+#
+sudo cp ./upstart/dbus_proxy.conf /usr/share/upstart/sessions/
 
 
 # install jq
