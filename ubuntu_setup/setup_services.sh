@@ -12,6 +12,7 @@ export GroupID=$(id -g)
 export XSOCK=/tmp/.X11-unix
 export XAUTH_DIR=/tmp/.docker.xauth
 export XAUTH=$XAUTH_DIR/.xauth
+export DBUS_PROXY=unix:path=/tmp/.dbus/.proxybus
 
 
 sudo mkdir -p $DOCKERDIR_SSD

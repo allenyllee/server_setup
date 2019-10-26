@@ -223,6 +223,40 @@ echo "$XAUTH_CMD2" >> ~/.profile
 source ~/.profile
 
 
+#############
+# run GUI app with host dbus
+#############
+
+DBUS_CMD="DBUS_DIR=/tmp/.dbus; rm -rf \$DBUS_DIR; install -m 777 -d \$DBUS_DIR"
+
+# 1. Use tr to swap the newline character to NUL character.
+#       NUL (\000 or \x00) is nice because it doesn't need UTF-8 support and it's not likely to be used.
+# 2. Use sed to match the string
+# 3. Use tr to swap back.
+# 4. insert a string into /etc/rc.local before exit 0
+tr '\n' '\000' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+sudo sed -i 's|\x00'"$DBUS_CMD"'\x00\x00|\x00|' /etc/rc.local >/dev/null
+tr '\000' '\n' < /etc/rc.local | sudo tee /etc/rc.local >/dev/null
+sudo sed -i 's|^exit 0.*$|'"$DBUS_CMD"'\n\nexit 0|' /etc/rc.local
+
+
+# create a folder with mod 777 that can allow all other user read/write
+eval "sudo bash -c '$DBUS_CMD'"
+
+
+
+DBUS_CMD2="DBUS_DIR=/tmp/.dbus; DBUS_PROXY=\$DBUS_DIR/.proxybus; xdg-dbus-proxy \$DBUS_SESSION_BUS_ADDRESS \$DBUS_PROXY &"
+
+# append string in ~/.profile
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+# use # as delimiter to avoid conflict with DBUS_CMD2's pipe |
+sed -i 's#'"$DBUS_CMD2"'\x00##' ~/.profile
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+echo "$DBUS_CMD2" >> ~/.profile
+source ~/.profile
+
+
+
 
 # install jq
 # https://stedolan.github.io/jq/

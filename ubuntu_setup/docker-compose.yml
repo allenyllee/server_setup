@@ -210,10 +210,11 @@ services:
     ODrive:
         container_name: ODrive
         image: allenyllee/odrive
-        user: guest:guest
+        user: root:root
         environment:
             - DISPLAY=$DISPLAY
             - XAUTHORITY=$XAUTH
+            - DBUS_SESSION_BUS_ADDRESS=$DBUS_PROXY
         runtime: nvidia
         security_opt:
             - apparmor:unconfined
@@ -224,13 +225,14 @@ services:
         volumes:
             - $ODRIVE_DATA:/ODrive
             - $ODRIVE_CONFIG:/home/guest/.config/odrive
-            - $XSOCK:$XSOCK
-            - $XAUTH_DIR:$XAUTH_DIR
+            - /tmp:/tmp
         logging:
             options:
                 max-size: 50m
         entrypoint:
             - /scripts/init.sh
+        command:
+            - /scripts/run_odrive.sh
         restart: always
 
     Dropbox:
