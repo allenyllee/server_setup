@@ -227,6 +227,16 @@ source ~/.profile
 # run GUI app with host dbus
 #############
 
+#
+# d bus - Connect with D-Bus in a network namespace - Unix & Linux Stack Exchange
+# https://unix.stackexchange.com/questions/184964/connect-with-d-bus-in-a-network-namespace/396821#396821
+#
+# xdg-dbus-proxy package : Ubuntu
+# https://launchpad.net/ubuntu/+source/xdg-dbus-proxy
+#
+curl 'https://launchpadlibrarian.net/448458251/xdg-dbus-proxy_0.1.2-1_amd64.deb' --output 'xdg-dbus-proxy_0.1.2-1_amd64.deb'
+sudo dpkg -i xdg-dbus-proxy_0.1.2-1_amd64.deb
+
 DBUS_CMD="DBUS_DIR=/tmp/.dbus; rm -rf \$DBUS_DIR; install -m 777 -d \$DBUS_DIR"
 
 # 1. Use tr to swap the newline character to NUL character.
