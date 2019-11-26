@@ -15,3 +15,4 @@ git submodule add https://github.com/allenyllee/git-helper-script.git
 git submodule add https://gist.github.com/85f6fe42166c382ff0df126cc3df3666.git ./cloudSettings
 git submodule add https://gist.github.com/bc7975f787ef83604e3ca262fa5e6fc0.git ./uuid
 git submodule add https://gitlab.com/allenyllee/vscode_settings.git
+git submodule add https://gist.github.com/818c302249b491c057e00ac3dd00bf2b.git ./defaultdict
