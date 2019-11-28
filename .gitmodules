@@ -433,15 +433,9 @@
 [submodule "repo-ai/nlp-judgement-frontend"]
 	path = repo-ai/nlp-judgement-frontend
 	url = https://gitlab.com/AIFR/ai-in-law/nlp-judgement-frontend.git
-[submodule "repo-ai/custody-prediction-dataset"]
-	path = repo-ai/custody-prediction-dataset
-	url = https://gitlab.com/AIFR/ai-in-law/custody-prediction-dataset.git
 [submodule "repo-ai/custody-prediction-modeling"]
 	path = repo-ai/custody-prediction-modeling
 	url = https://gitlab.com/AIFR/ai-in-law/custody-prediction-modeling.git
-[submodule "repo-ai/custody-prediction-data-preparation"]
-	path = repo-ai/custody-prediction-data-preparation
-	url = https://gitlab.com/AIFR/ai-in-law/custody-prediction-data-preparation.git
 [submodule "gist/vscode_settings"]
 	path = gist/vscode_settings
 	url = https://gitlab.com/allenyllee/vscode_settings.git
