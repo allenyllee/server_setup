@@ -18,6 +18,4 @@ git submodule add https://gitlab.com/AIFR/ai-in-law/nlpxlaw_official_web.git
 git submodule add https://gitlab.com/AIFR/ai-in-law/NLP-AI-in-Law-backend.git
 git submodule add https://github.com/allenyllee/ML_exercise.git
 git submodule add https://gitlab.com/AIFR/ai-in-law/nlp-judgement-frontend.git
-git submodule add https://gitlab.com/AIFR/ai-in-law/custody-prediction-dataset.git
 git submodule add https://gitlab.com/AIFR/ai-in-law/custody-prediction-modeling.git
-git submodule add https://gitlab.com/AIFR/ai-in-law/custody-prediction-data-preparation.git
