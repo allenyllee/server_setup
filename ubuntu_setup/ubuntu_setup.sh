@@ -1565,6 +1565,14 @@ sudo apt-get install -y guvcview
 sudo apt-get install -y v4l-utils
 v4l2-ctl --list-devices
 
+
+############
+# install solaar
+# Linux device manager for a wide range of Logitech devices https://pwr-solaar.github.io/Solaar
+############
+sudo apt install solaar
+
+
 ###############
 # How To Create Menu Icon in Ubuntu for Installed Flatpak Application
 # http://www.ubuntubuzz.com/2016/12/how-to-create-menu-icon-in-ubuntu-for-installed-flatpak-application.html
@@ -1656,6 +1664,13 @@ sudo snap install communitheme
 # Nautilus launcher
 ##############
 cp ./launcher/nautilus.desktop ~/.local/share/applications/
+
+
+###############
+# install barrier
+###############
+
+sudo snap install barrier
 
 
 
