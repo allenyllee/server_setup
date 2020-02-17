@@ -1033,9 +1033,10 @@ sudo apt-get install -y tlp tlp-rdw smartmontools ethtool
 # Removing default Ubuntu cpu frequency config
 sudo update-rc.d -f ondemand remove
 
-# The main config file of TLP is at /etc/default/tlp
+# The main config file of TLP is at /etc/default/tlp (old) /etc/tlp.conf (current)
 #  sudo -i gedit /etc/default/tlp
-sudo cp ./tlp_conf/tlp /etc/default/tlp
+# sudo cp ./tlp_conf/tlp /etc/default/tlp
+sudo cp ./tlp_conf/tlp.conf /etc/tlp.conf
 
 # start tlp
 sudo tlp start
