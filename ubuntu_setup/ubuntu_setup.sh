@@ -976,20 +976,18 @@ cp ./jupyter/jupyter_notebook_config.py ~/.jupyter/
 ###############################
 
 # I-Nex
-if [ $CODENAME == "bionic" ]
-then
 # remove offical ppa first
+# this didn't work because i-nex-development-team have removed its offical ppa (use add-apt-repository -r)
 sudo add-apt-repository -r ppa:i-nex-development-team/stable
+# this worked (manually remove ppa list from /etc/apt/sources.list.d)
+sudo rm /etc/apt/sources.list.d/i-nex-development-team-ubuntu-stable-xenial.list*
 # for ubuntu 18.04 (unoffical)
 # I-Nex PPA for Ubuntu 18/Mint 19? · Issue #89 · i-nex/I-Nex
 # https://github.com/i-nex/I-Nex/issues/89
 sudo add-apt-repository -y ppa:trebelnik-stefina/i-nex
 # i-nex depends on gambas3
 sudo add-apt-repository -y ppa:gambas-team/gambas3
-else
-# for ubuntu 16.04 (offical)
-sudo add-apt-repository -y ppa:i-nex-development-team/stable
-fi
+
 
 sudo apt-get update
 sudo apt-get install -y i-nex
