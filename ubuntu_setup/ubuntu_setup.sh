@@ -1614,11 +1614,30 @@ sudo apt-get install -y numlockx
 # Turn on NumLock Automatically When Ubuntu 14.04 Boots Up | UbuntuHandbook
 # http://ubuntuhandbook.org/index.php/2014/06/turn-on-numlock-ubuntu-14-04/
 #
-sudo sed -i 's|^.*numlockx.*||' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
-tr '\n' '@' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
-sudo sed -i 's|@@$|@|' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
-tr '@' '\n' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
-echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee -a /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+# sudo sed -i 's|^.*numlockx.*||' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+# tr '\n' '@' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+# sudo sed -i 's|@@$|@|' /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+# tr '@' '\n' < /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf | sudo tee /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf >/dev/null
+# echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee -a /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+
+#######
+# How to run greeter/login script with lightdm - Ask Ubuntu
+# https://askubuntu.com/questions/395955/how-to-run-greeter-login-script-with-lightdm
+#####
+# Wifi not getting detected in Ubuntu 16.04 - Stack Overflow
+# https://stackoverflow.com/questions/46836085/wifi-not-getting-detected-in-ubuntu-16-04
+#####
+# networking - Wifi networks are not showing in Ubuntu 16.04 - Ask Ubuntu
+# https://askubuntu.com/questions/769521/wifi-networks-are-not-showing-in-ubuntu-16-04
+#####
+# (18) How to fix Ubuntu 16.04's Annoying Wi-Fi Resume Bug - YouTube
+# https://www.youtube.com/watch?v=n49kukPf8HI
+#######
+sudo cp ./run_before_login/before-greeter-script.sh /etc/lightdm/
+sudo cp ./run_before_login/60-before-greeter-script.conf /usr/share/lightdm/lightdm.conf.d/
+sudo chmod +x /etc/lightdm/before-greeter-script.sh
+
+
 
 
 ###################
