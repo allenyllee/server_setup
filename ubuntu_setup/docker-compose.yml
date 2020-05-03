@@ -237,7 +237,7 @@ services:
 
     Dropbox:
         container_name: Dropbox
-        image: janeczku/dropbox
+        image: adamkdean/dropbox
         environment:
             - DBOX_UID=$UserID
             - DBOX_GID=$GroupID
