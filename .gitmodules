@@ -442,3 +442,6 @@
 [submodule "gist/defaultdict"]
 	path = gist/defaultdict
 	url = https://gist.github.com/818c302249b491c057e00ac3dd00bf2b.git
+[submodule "repo-ai/suicide-text-detection"]
+	path = repo-ai/suicide-text-detection
+	url = https://gitlab.com/AIFR/nlp/suicide-text-detection.git
