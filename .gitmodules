@@ -445,3 +445,6 @@
 [submodule "repo-ai/suicide-text-detection"]
 	path = repo-ai/suicide-text-detection
 	url = https://gitlab.com/AIFR/nlp/suicide-text-detection.git
+[submodule "repo-ai/fxxk-nthu-post-classify"]
+	path = repo-ai/fxxk-nthu-post-classify
+	url = https://gitlab.com/AIFR/nlp/fxxk-nthu-post-classify.git
