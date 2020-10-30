@@ -448,3 +448,6 @@
 [submodule "repo-ai/fxxk-nthu-post-classify"]
 	path = repo-ai/fxxk-nthu-post-classify
 	url = https://gitlab.com/AIFR/nlp/fxxk-nthu-post-classify.git
+[submodule "repo-ai/emoji"]
+	path = repo-ai/emoji
+	url = https://github.com/allenyllee/emoji.git

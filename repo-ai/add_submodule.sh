@@ -21,3 +21,4 @@ git submodule add https://gitlab.com/AIFR/ai-in-law/nlp-judgement-frontend.git
 git submodule add https://gitlab.com/AIFR/ai-in-law/custody-prediction-modeling.git
 git submodule add https://gitlab.com/AIFR/nlp/suicide-text-detection.git
 git submodule add https://gitlab.com/AIFR/nlp/fxxk-nthu-post-classify.git
+git submodule add https://github.com/allenyllee/emoji.git
