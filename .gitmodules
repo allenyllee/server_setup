@@ -451,3 +451,6 @@
 [submodule "repo-ai/emoji"]
 	path = repo-ai/emoji
 	url = https://github.com/allenyllee/emoji.git
+[submodule "repo-ai/gun-criminal"]
+	path = repo-ai/gun-criminal
+	url = https://gitlab.com/AIFR/ai-in-law/gun-criminal.git
