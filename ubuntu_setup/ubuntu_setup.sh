@@ -1,5 +1,9 @@
 #!/bin/bash
 
+###################
+# please do not execute this script as root, because we need current $USER env
+###################
+
 #/*
 # * @Author: Allen_Lee
 # * @Date: 2017-10-15 00:27:41
@@ -24,13 +28,25 @@ PROJECT_DIR_SSD=$2
 ## code name ##
 # 16.04 xenial
 # 18.04 bionic
+# 20.04 focal
 ###############
 # 1. "lsb_release -a" get the distribution information
 # 2. "grep" get the line contains "Codename"
 # 3. "cut" get the second column of tab delimiter line
+######
+# to fix "No LSB modules are available." error
+# install lsb-core
+###
+# Ubuntu Linux ，判斷 Linux版本資訊 與 解決 No LSB modules are available. 訊息 | 龍崗山上的倉鼠
+# https://kanchengzxdfgcv.blogspot.com/2016/03/ubuntu-linux-no-lsb-modules-are.html
+######
+sudo apt-get install lsb-core -y
+
 CODENAME=$(lsb_release -a | grep "Codename" | cut -d$'\t' -f2)
+echo $CODENAME
 
 USER_NAME=$(logname)
+echo $USER_NAME
 
 sudo -u $USER_NAME bash <<EOF
 mkdir -p ~/.config/autostart/
@@ -62,6 +78,7 @@ sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
+    gnupg-agent \
     software-properties-common
 
 # Add Docker’s official GPG key:
@@ -79,7 +96,7 @@ sudo add-apt-repository -y \
 
 # Install Docker CE
 sudo apt-get update
-sudo apt-get install -y docker-ce
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Verify that Docker CE is installed correctly by running the hello-world image.
 sudo docker run --rm hello-world
@@ -92,6 +109,7 @@ sudo docker run --rm hello-world
 
 # add docker group & add current user into it
 sudo groupadd docker
+echo user is $USER
 sudo gpasswd -a $USER docker
 
 # activate the changes to groups
@@ -363,11 +381,11 @@ sudo apt-get remove --purge -y nvidia-*
 # https://askubuntu.com/questions/1032938/trying-to-install-nvidia-driver-for-ubuntu-desktop-18-04-lts
 #
 #
-if [ $CODENAME == "bionic" ]
+if [ $CODENAME == "xenial" ]
 then
-NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-driver-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
-else
 NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
+else
+NVIDIA_VERSION=$(sudo apt-cache search ^nvidia-driver-[0-9]{3}$ | sort | tail -n -1 | cut -d' ' -f1)
 fi
 
 # install latest version
@@ -377,14 +395,29 @@ sudo apt-get install -y $NVIDIA_VERSION
 ########
 # install CUDA
 ########
+
+if [ $CODENAME == "xenial" ]
+then
 # How can I install CUDA 9 on Ubuntu 17.10 - Ask Ubuntu
 # https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10
-
 wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
-
 chmod +x cuda_9.0.176_384.81_linux-run
-
 sudo sh -c './cuda_9.0.176_384.81_linux-run --override --silent --toolkit --samples'
+
+#######
+# install cuDNN
+#######
+# cuDNN Download | NVIDIA Developer
+# https://developer.nvidia.com/rdp/cudnn-download
+#######
+# The easy way: Install Nvidia drivers, CUDA, CUDNN and Tensorflow GPU on Ubuntu 18.04 - Ask Ubuntu
+# https://askubuntu.com/questions/1033489/the-easy-way-install-nvidia-drivers-cuda-cudnn-and-tensorflow-gpu-on-ubuntu-1
+#######
+
+wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb
+wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
+
+dpkg -i libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
 
 # add CUDA environments in ~/.bashrc
 # Add a line to a specific position in a file using Linux sed
@@ -438,35 +471,63 @@ tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
 sudo sed -i 's|\x00\x00'"$NONINTERACTIVE"'\x00|\x00\x00'"$CUDA_ENV"'\x00\x00'"$NONINTERACTIVE"'\x00|' ~/.bashrc
 tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
 
-
-
-#######
-# install cuDNN
-#######
-# cuDNN Download | NVIDIA Developer
-# https://developer.nvidia.com/rdp/cudnn-download
-#######
-# The easy way: Install Nvidia drivers, CUDA, CUDNN and Tensorflow GPU on Ubuntu 18.04 - Ask Ubuntu
-# https://askubuntu.com/questions/1033489/the-easy-way-install-nvidia-drivers-cuda-cudnn-and-tensorflow-gpu-on-ubuntu-1
-#######
-
-wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb
-wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.1.5/prod/9.0_20181108/Ubuntu16_04-x64/libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
-
-dpkg -i libcudnn7_7.4.1.5-1%2Bcuda9.0_amd64.deb libcudnn7-dev_7.4.1.5-1%2Bcuda9.0_amd64.deb
-
-
 # Installing Tensorflow GPU on Ubuntu 18.04 LTS – Taylor Denouden – Medium
 # https://medium.com/@taylordenouden/installing-tensorflow-gpu-on-ubuntu-18-04-89a142325138
 
 # Install libcupti
 sudo apt-get install libcupti-dev
 
-# test tensorflow
-python << EOF
-from tensorflow.python.client import device_lib
-device_lib.list_local_devices()
-EOF
+# # install tensorflow 1.12
+# pip3 install tensorflow-gpu==1.12
+
+else
+# Installing CUDA 10.1 on Ubuntu 20.04 | by Stephen Gregory | Medium
+# https://medium.com/@stephengregory_69986/installing-cuda-10-1-on-ubuntu-20-04-e562a5e724a0
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+sudo bash -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
+sudo bash -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda_learn.list'
+
+sudo apt update
+sudo apt install cuda-10-1
+sudo apt install libcudnn7
+
+
+CUDA_ENV='# set PATH for cuda 10.1 installation\x00if [ -d "/usr/local/cuda-10.1/bin/" ]; then\x00    export PATH=/usr/local/cuda-10.1/bin${PATH:+:$PATH}\x00    export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\x00fi'
+CUDA_ENV_PAT='# set PATH for cuda 10.1 installation\x00if .* then\x00    export PATH=/usr/local/cuda-10.1/bin${PATH:+:$PATH}\x00    export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\x00fi'
+
+cp ~/.profile ~/.profile.bak
+
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+sudo sed -i 's|\x00\x00'"$CUDA_ENV_PAT"'\x00\x00|\x00\x00|' ~/.profile
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+
+tr '\n' '\000' < ~/.profile | sudo tee ~/.profile >/dev/null
+printf "$CUDA_ENV\n\n" | sudo tee -a .profile >>/dev/null
+tr '\000' '\n' < ~/.profile | sudo tee ~/.profile >/dev/null
+
+# # install tensorflow 1.12
+# pip3 install tensorflow-gpu==1.13
+
+fi
+
+# source .profile
+source ~/.profile
+
+# check NVIDIA driver
+nvidia-smi
+# check CUDA
+nvcc --version
+# check cuDNN
+/sbin/ldconfig -N -v $(sed 's/:/ /' <<< $LD_LIBRARY_PATH) 2>/dev/null | grep libcudnn
+
+
+# # test tensorflow
+# python3 << EOF
+# from tensorflow.python.client import device_lib
+# device_lib.list_local_devices()
+# EOF
+
 
 
 ######################
@@ -512,12 +573,13 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
 curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 
-sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo apt-get update && sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
 
 
 # test nvidia-smi
-docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+# docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 
 
 # nvidia-docker 1.0 was deprecated
@@ -918,9 +980,25 @@ curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.p
 #
 # how to install anaconda / miniconda on Linux silently - Stack Overflow
 # https://stackoverflow.com/questions/49338902/how-to-install-anaconda-miniconda-on-linux-silently
+#
+# Installing in silent mode — Anaconda documentation
+# https://docs.anaconda.com/anaconda/install/silent-mode/
+#
+# Anaconda with Python 3 on 64-bit Linux — Anaconda documentation
+# https://docs.anaconda.com/anaconda/install/hashes/lin-3-64/
 ###############
-curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
-bash Anaconda3-*-Linux-x86_64.sh -b
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+bash Anaconda3-*-Linux-x86_64.sh -b -p /share/apps/Anaconda3
+
+## add anaconda path
+DST=/share/apps/Anaconda3
+SOURCE_PATH=". ${DST}/etc/profile.d/conda.sh"
+
+tr '\n' '\000' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+sudo sed -i 's|\x00'"$SOURCE_PATH"'\x00|\x00|' ~/.bashrc
+tr '\000' '\n' < ~/.bashrc | sudo tee ~/.bashrc >/dev/null
+
+echo -e "$SOURCE_PATH" >> ${HOME}/.bashrc
 
 
 ##############
@@ -1801,6 +1879,14 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH name "$KET_NAME"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH command 'deepin-screenshot'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$KEY_PATH binding 'F1'
+
+
+##########
+# install peek (a screen recorder which record to gif)
+##########
+sudo add-apt-repository ppa:peek-developers/stable
+sudo apt update
+sudo apt install peek
 
 
 
