@@ -454,3 +454,6 @@
 [submodule "repo-ai/gun-criminal"]
 	path = repo-ai/gun-criminal
 	url = https://gitlab.com/AIFR/ai-in-law/gun-criminal.git
+[submodule "repo-blockchain/locallogm"]
+	path = repo-blockchain/locallogm
+	url = https://github.com/allenyllee/locallogm.git
